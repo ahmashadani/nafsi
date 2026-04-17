@@ -1781,13 +1781,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const resetSuccSec   = document.getElementById('reset-success-section');
   const resetDone      = document.getElementById('reset-done');
 
+  // Show set-password modal when link contains forgotPasswordToken
   if (resetToken) {
-    // Hand off to the real Wix site — it handles the token natively and correctly
-    window.location.replace('https://www.nafsiclinic.com/' + window.location.search);
-  }
-
-  if (resetToken) {
-    // Clean token from URL bar without reload
+    // Remove token from URL bar (no reload) so the token stays in the JS variable only
     window.history.replaceState({}, document.title, window.location.pathname);
     resetModal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1813,32 +1809,41 @@ document.addEventListener('DOMContentLoaded', () => {
     resetSubmit.disabled = true;
     resetSubmit.querySelector('.lang-en').textContent = 'Saving…';
 
+    let success = false;
+
+    // Try 1: Wix SDK (members.authentication.changePassword)
     try {
-      // Primary: use @wix/members authentication.changePassword
       await wixClient.members.authentication.changePassword(newPass, resetToken);
-      resetFormSec.style.display = 'none';
-      resetSuccSec.style.display = 'block';
-    } catch (err) {
-      // Fallback: call the Wix Members REST API directly
+      success = true;
+    } catch (_) { /* fall through */ }
+
+    // Try 2: Wix REST API directly
+    if (!success) {
       try {
         const resp = await fetch('https://www.wixapis.com/members/v1/auth/members/change-password', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'x-wix-client-id': CLIENT_ID },
-          body: JSON.stringify({ forgotPasswordToken: resetToken, newPassword: newPass })
+          body: JSON.stringify({ forgotPasswordToken: resetToken, newPassword: newPass }),
         });
         if (resp.ok) {
-          resetFormSec.style.display = 'none';
-          resetSuccSec.style.display = 'block';
+          success = true;
         } else {
           const data = await resp.json().catch(() => ({}));
-          throw new Error(data.message || 'Reset failed');
+          console.warn('[reset] REST failed:', data);
         }
       } catch (err2) {
-        resetError.textContent = 'Could not reset password. The link may have expired — please request a new one.';
-        resetError.classList.add('visible');
-        resetSubmit.disabled = false;
-        resetSubmit.querySelector('.lang-en').textContent = 'Save Password';
+        console.warn('[reset] REST error:', err2);
       }
+    }
+
+    if (success) {
+      resetFormSec.style.display = 'none';
+      resetSuccSec.style.display = 'block';
+    } else {
+      resetError.textContent = 'Could not reset password. The link may have expired — please request a new one.';
+      resetError.classList.add('visible');
+      resetSubmit.disabled = false;
+      resetSubmit.querySelector('.lang-en').textContent = 'Save Password';
     }
   });
 

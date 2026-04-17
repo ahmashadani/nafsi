@@ -1,0 +1,2089 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Nafsi Clinic | Sara Adham &middot; CBT Therapist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Serif+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+/* ================================================================
+   NAFSI CLINIC — SHARED STYLESHEET
+   nafsiclinic.com | Sara Adham
+================================================================ */
+
+/* ---- RESET ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ---- TOKENS ---- */
+:root {
+  --cream: #F8F4EF;
+  --cream-dark: #EFE8DE;
+  --teal: #2C5F5D;
+  --teal-light: #3D7A78;
+  --teal-pale: #EAF2F2;
+  --gold: #B8945A;
+  --gold-light: #D4AF78;
+  --maroon: #8B2035;
+  --charcoal: #2D2D2D;
+  --mid: #555;
+  --white: #FFFFFF;
+  --border: #DDD4C8;
+  --shadow: 0 4px 24px rgba(44,95,93,0.10);
+  --shadow-lg: 0 8px 40px rgba(44,95,93,0.15);
+  --radius: 12px;
+  --radius-lg: 20px;
+}
+
+/* ---- BASE ---- */
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  line-height: 1.7;
+  font-size: 16px;
+}
+html[dir="rtl"] body { font-family: 'Noto Sans Arabic', sans-serif; }
+
+h1,h2,h3,h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4 { font-family: 'Noto Serif Arabic', serif; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+.section-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: block;
+}
+html[dir="rtl"] .section-label { letter-spacing: 1px; }
+
+/* ---- LANG VISIBILITY ---- */
+html[lang="ar"] .lang-en { display: none !important; }
+html[lang="en"] .lang-ar { display: none !important; }
+
+/* ---- BUTTONS ---- */
+.btn { display: inline-block; padding: 13px 28px; border-radius: 5px; font-size: 14px; font-weight: 500; transition: all 0.2s; cursor: pointer; border: none; }
+.btn-primary  { background: var(--teal);   color: var(--white); }
+.btn-primary:hover  { background: var(--teal-light); transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn-secondary { background: transparent; color: var(--teal); border: 1.5px solid var(--teal); }
+.btn-secondary:hover { background: var(--teal); color: var(--white); }
+.btn-gold { background: var(--gold); color: var(--white); }
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-white { background: var(--white); color: var(--teal); font-weight: 600; }
+.btn-white:hover { background: var(--cream); }
+.btn-lg { padding: 16px 36px; font-size: 15px; }
+
+/* ---- LOGIN MODAL ---- */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 2000;
+  background: rgba(30,30,30,0.55); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 48px 40px 40px; width: 100%; max-width: 420px;
+  margin: 20px; box-shadow: var(--shadow-lg); position: relative;
+  animation: modalIn 0.25s ease;
+}
+@keyframes modalIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+.modal-close {
+  position: absolute; top: 16px; right: 20px;
+  background: none; border: none; font-size: 24px;
+  cursor: pointer; color: var(--mid); line-height: 1;
+}
+.modal-close:hover { color: var(--charcoal); }
+.modal-brand { text-align: center; margin-bottom: 6px; }
+.modal-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--teal); }
+.modal-brand-sub { font-size: 11px; color: var(--gold); letter-spacing: 0.5px; }
+.modal-divider-line { border: none; border-top: 1px solid var(--border); margin: 16px 0 20px; }
+.modal-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--charcoal); text-align: center; margin-bottom: 6px; }
+.modal-sub { font-size: 14px; color: var(--mid); text-align: center; margin-bottom: 28px; }
+.modal-field { margin-bottom: 16px; }
+.modal-field label { display: block; font-size: 11px; font-weight: 600; color: var(--charcoal); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+.modal-field input {
+  width: 100%; padding: 12px 14px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-size: 15px; font-family: 'Inter', sans-serif;
+  background: var(--cream); color: var(--charcoal); transition: border-color 0.2s, background 0.2s;
+}
+.modal-field input:focus { outline: none; border-color: var(--teal); background: var(--white); }
+.modal-error {
+  background: #fef2f2; border: 1px solid #fca5a5; color: #dc2626;
+  padding: 10px 14px; border-radius: 8px; font-size: 13px;
+  margin-bottom: 14px; display: none;
+}
+.modal-error.visible { display: block; }
+.modal-submit {
+  width: 100%; padding: 14px; background: var(--teal); color: var(--white);
+  border: none; border-radius: 8px; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s; font-family: 'Inter', sans-serif;
+  margin-top: 4px;
+}
+.modal-submit:hover:not(:disabled) { background: var(--teal-light); }
+.modal-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+.modal-footer { text-align: center; margin-top: 18px; font-size: 13px; color: var(--mid); }
+.modal-footer a { color: var(--teal); font-weight: 500; }
+.modal-footer a:hover { text-decoration: underline; }
+
+/* ---- STRIPE BUTTON ---- */
+.stripe-btn { position: relative; overflow: hidden; }
+.stripe-btn .spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto; }
+.stripe-btn.loading span { display: none; }
+.stripe-btn.loading .spinner { display: block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---- NAV ---- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(248,244,239,0.96); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo-wrap { display: flex; flex-direction: column; gap: 1px; }
+.nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--teal); line-height: 1; }
+html[dir="rtl"] .nav-logo-main { font-family: 'Noto Serif Arabic', serif; }
+.nav-logo-sub { font-size: 11px; color: var(--gold); letter-spacing: 0.5px; }
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a { font-size: 13px; font-weight: 500; color: var(--mid); letter-spacing: 0.3px; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--teal); }
+.nav-links a.active { font-weight: 600; border-bottom: 2px solid var(--teal); padding-bottom: 2px; }
+.nav-right { display: flex; align-items: center; gap: 14px; }
+.lang-toggle { display: flex; align-items: center; background: var(--cream-dark); border-radius: 20px; padding: 3px; border: 1px solid var(--border); }
+.lang-btn { font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 16px; cursor: pointer; border: none; background: transparent; color: var(--mid); transition: all 0.2s; }
+.lang-btn.active { background: var(--teal); color: var(--white); }
+@media (max-width: 900px) { .nav-links { display: none; } }
+
+/* ---- PAGE HERO (inner pages) ---- */
+.page-hero {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 70%, #4a9997 100%);
+  padding: 140px 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content:''; position:absolute; top:-80px; right:-80px; width:300px; height:300px;
+  background:rgba(255,255,255,0.05); border-radius:50%;
+}
+.page-hero::after {
+  content:''; position:absolute; bottom:-60px; left:15%; width:200px; height:200px;
+  background:rgba(255,255,255,0.04); border-radius:50%;
+}
+.page-hero h1 { font-size: clamp(36px,5vw,62px); color: var(--white); margin-bottom: 14px; position:relative;z-index:1; }
+.page-hero p { font-size: 17px; color: rgba(255,255,255,0.8); max-width: 560px; margin: 0 auto; position:relative;z-index:1; line-height:1.7; }
+
+/* ---- SECTION HEADER ---- */
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-header h2 { font-size: clamp(32px,4vw,50px); color: var(--teal); margin-bottom: 14px; }
+.section-header p { font-size: 16px; color: var(--mid); max-width: 560px; margin: 0 auto; }
+
+/* ---- CARDS ---- */
+.card {
+  background: var(--white); border-radius: var(--radius); border: 1px solid var(--border);
+  transition: all 0.3s; overflow: hidden;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+/* ---- FOOTER ---- */
+footer { background: var(--charcoal); padding: 64px 0 32px; color: rgba(255,255,255,0.7); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
+.footer-brand h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--white); margin-bottom: 4px; }
+html[dir="rtl"] .footer-brand h3 { font-family: 'Noto Serif Arabic', serif; }
+.footer-brand .sub { font-size: 13px; color: var(--gold); margin-bottom: 14px; }
+.footer-brand p { font-size: 14px; line-height: 1.7; max-width: 280px; }
+.footer-social { display: flex; gap: 10px; margin-top: 20px; }
+.social-icon { width: 36px; height: 36px; background: rgba(255,255,255,0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; transition: background 0.2s; }
+.social-icon:hover { background: var(--teal); color: var(--white); }
+.footer-col h4 { font-size: 12px; font-weight: 600; color: var(--white); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px; }
+html[dir="rtl"] .footer-col h4 { letter-spacing: 0; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+.footer-col ul a:hover { color: var(--gold); }
+.footer-bottom { padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; font-size: 12px; flex-wrap: wrap; gap: 8px; }
+
+/* ---- TAG ---- */
+.tag { background: var(--teal-pale); color: var(--teal); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; border: 1px solid rgba(44,95,93,0.15); display: inline-block; }
+
+/* ---- UTILS ---- */
+.text-teal { color: var(--teal); }
+.text-gold { color: var(--gold); }
+.mt-8  { margin-top: 8px;  }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mb-8  { margin-bottom: 8px;  }
+.pt-100 { padding-top: 100px; }
+.pb-100 { padding-bottom: 100px; }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .container { padding: 0 20px; }
+}
+
+/* ---- SPA ROUTER ---- */
+.page-section { display: none; }
+.page-section.active { display: block; }
+.success-hero, .cancel-hero {
+  min-height: calc(100vh - 68px); display: flex; align-items: center;
+  justify-content: center; background: linear-gradient(135deg,#F8F4EF,#EAF2F2);
+  text-align: center; padding: 40px 20px; margin-top: 68px;
+}
+.success-card, .cancel-card {
+  background: #fff; border-radius: 24px; padding: 60px 52px; max-width: 600px;
+  border: 1px solid var(--border); box-shadow: var(--shadow-lg);
+}
+.check-circle {
+  width: 80px; height: 80px; background: linear-gradient(135deg,var(--teal),var(--teal-light));
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 28px; font-size: 36px; color: #fff;
+}
+
+/* ================================================================
+   MOBILE RESPONSIVE — max-width 768px
+================================================================ */
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; background:none; border:none; z-index:1001; }
+.hamburger span { display:block; width:24px; height:2px; background:var(--teal); border-radius:2px; transition:all 0.3s; }
+.hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; }
+.hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+.mobile-drawer {
+  display:none; position:fixed; inset:0; z-index:1000;
+}
+.mobile-drawer-overlay {
+  position:absolute; inset:0; background:rgba(0,0,0,0.4);
+}
+.mobile-drawer-panel {
+  position:absolute; top:0; right:0; bottom:0; width:280px;
+  background:#fff; padding:80px 32px 40px; display:flex; flex-direction:column; gap:8px;
+  box-shadow:-4px 0 32px rgba(0,0,0,0.12);
+}
+html[dir="rtl"] .mobile-drawer-panel { right:auto; left:0; box-shadow:4px 0 32px rgba(0,0,0,0.12); }
+.mobile-drawer.open { display:block; }
+.mobile-drawer-panel a {
+  display:block; padding:14px 0; font-size:17px; font-weight:500;
+  color:var(--charcoal); border-bottom:1px solid var(--border); text-decoration:none;
+}
+.mobile-drawer-panel a:hover { color:var(--teal); }
+.mobile-drawer-panel .drawer-book-btn {
+  margin-top:24px; display:block; text-align:center;
+  background:var(--teal); color:#fff; border-radius:10px; padding:14px;
+  font-weight:600; text-decoration:none;
+}
+.mobile-drawer-panel .drawer-lang { display:flex; gap:10px; margin-top:16px; }
+.mobile-drawer-panel .drawer-lang button {
+  flex:1; padding:10px; border:1px solid var(--border); border-radius:8px;
+  background:none; cursor:pointer; font-size:14px; font-weight:600; color:var(--mid);
+}
+.mobile-drawer-panel .drawer-lang button.active { background:var(--teal); color:#fff; border-color:var(--teal); }
+
+@media (max-width: 768px) {
+  /* Nav */
+  .hamburger { display:flex; }
+  .nav-right { display:none; }
+  nav { padding:0 20px; }
+  .container { padding:0 20px !important; }
+
+  /* Collapse ALL 2-col grids */
+  div[style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns:1fr auto"],
+  div[style*="grid-template-columns:360px 1fr"],
+  div[style*="grid-template-columns:2fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  /* Collapse 3-col grids */
+  div[style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* 4-col → 2×2 */
+  div[style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Hero gap */
+  div[style*="gap:80px"] { gap: 0 !important; }
+
+  /* Portrait photo — centre and size down */
+  div[style*="width:320px;height:420px"] {
+    width: 200px !important;
+    height: 260px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Sections spacing */
+  section { padding-top: 60px !important; padding-bottom: 60px !important; }
+
+  /* Hero min-height */
+  section[style*="min-height:100vh"] {
+    min-height: unset !important;
+    padding-top: 88px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* Success/cancel cards */
+  .success-card, .cancel-card { padding: 36px 24px !important; }
+
+  /* Page hero */
+  .page-hero { padding: 80px 0 48px !important; text-align:center; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+
+  /* Books page fixed-col */
+  div[style*="grid-template-columns:360px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Session/course aside card */
+  div[style*="min-width:260px"] {
+    min-width: unset !important;
+    width: 100% !important;
+  }
+
+  /* Button groups */
+  div[style*="display:flex"][style*="gap:12px"],
+  div[style*="display:flex"][style*="gap:14px"] {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  div[style*="display:flex"][style*="gap:12px"] a,
+  div[style*="display:flex"][style*="gap:14px"] a {
+    text-align: center !important;
+  }
+
+  /* Misc */
+  .card { padding: 28px 22px !important; }
+  .page-hero h1 { font-size: clamp(28px,7vw,48px) !important; }
+}
+
+@media (max-width: 480px) {
+  div[style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .container { padding: 0 16px !important; }
+  div[style*="width:320px;height:420px"] {
+    width: 160px !important;
+    height: 210px !important;
+  }
+}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo-wrap">
+    <span class="nav-logo-main lang-en">Nafsi Clinic</span>
+    <span class="nav-logo-main lang-ar" style="font-family:'Noto Serif Arabic',serif;">&#x639;&#x64A;&#x627;&#x62F;&#x629; &#x646;&#x641;&#x633;&#x64A;</span>
+    <span class="nav-logo-sub lang-en">Sara Adham &middot; CBT Therapist</span>
+    <span class="nav-logo-sub lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645; &middot; &#x645;&#x639;&#x627;&#x644;&#x62C;&#x629; CBT</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home"     data-page="home">    <span class="lang-en">Home</span>    <span class="lang-ar">&#x627;&#x644;&#x631;&#x626;&#x64A;&#x633;&#x64A;&#x629;</span></a></li>
+    <li><a href="#books"    data-page="books">   <span class="lang-en">Books</span>   <span class="lang-ar">&#x627;&#x644;&#x643;&#x62A;&#x628;</span></a></li>
+    <li><a href="#sessions" data-page="sessions"><span class="lang-en">Sessions</span><span class="lang-ar">&#x627;&#x644;&#x62C;&#x644;&#x633;&#x627;&#x62A;</span></a></li>
+    <li><a href="#courses"  data-page="courses"> <span class="lang-en">Courses</span> <span class="lang-ar">&#x627;&#x644;&#x62F;&#x648;&#x631;&#x627;&#x62A;</span></a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ar">AR</button>
+    </div>
+    <a href="#" class="btn btn-secondary signin-course-btn" style="font-size:13px;padding:9px 20px;">
+      <span class="lang-en">Sign In to Course</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">ادخل دوراتك</span>
+    </a>
+    <a href="#sessions" class="btn btn-primary" style="font-size:13px;padding:9px 20px;">
+      <span class="lang-en">Book a Session</span><span class="lang-ar">&#x627;&#x62D;&#x62C;&#x632; &#x62C;&#x644;&#x633;&#x629;</span>
+    </a>
+  </div>
+  <button class="hamburger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mobile-drawer" id="mobile-drawer">
+  <div class="mobile-drawer-overlay" id="drawer-overlay"></div>
+  <div class="mobile-drawer-panel">
+    <a href="#home"     data-page="home">    <span class="lang-en">Home</span>    <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x627;&#x644;&#x631;&#x626;&#x64A;&#x633;&#x64A;&#x629;</span></a>
+    <a href="#books"    data-page="books">   <span class="lang-en">Books</span>   <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x627;&#x644;&#x643;&#x62A;&#x628;</span></a>
+    <a href="#sessions" data-page="sessions"><span class="lang-en">Sessions</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x627;&#x644;&#x62C;&#x644;&#x633;&#x627;&#x62A;</span></a>
+    <a href="#courses"  data-page="courses"> <span class="lang-en">Courses</span> <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x627;&#x644;&#x62F;&#x648;&#x631;&#x627;&#x62A;</span></a>
+    <a href="#" class="drawer-book-btn signin-course-btn" style="background:transparent;border:2px solid var(--teal);color:var(--teal);margin-top:8px;"><span class="lang-en">Sign In to Course</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">ادخل دوراتك</span></a>
+    <a href="#sessions" class="drawer-book-btn"><span class="lang-en">Book a Session</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x627;&#x62D;&#x62C;&#x632; &#x62C;&#x644;&#x633;&#x629;</span></a>
+    <div class="drawer-lang">
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ar">AR</button>
+    </div>
+  </div>
+</div>
+
+<div id="page-home" class="page-section">
+<!-- HERO -->
+<section style="min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#F8F4EF 0%,#EAF2F2 50%,#F0EBE3 100%);padding-top:68px;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(44,95,93,0.07) 0%,transparent 70%);border-radius:50%;pointer-events:none;"></div>
+  <div class="container" style="width:100%;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+      <div>
+        <div class="lang-en">
+          <span class="section-label">Cognitive Behavioral Therapy · Online Sessions</span>
+          <h1 style="font-size:clamp(48px,5vw,72px);color:var(--teal);line-height:1.0;margin-bottom:10px;">Sara<br/>Adham</h1>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);margin-bottom:24px;font-style:italic;">Founder of Nafsi Clinic</p>
+          <p style="font-size:16px;color:var(--mid);line-height:1.85;max-width:480px;margin-bottom:36px;">CBT therapist offering online mental health sessions in Arabic, English &amp; Swedish. Author of books on narcissism and personal growth. Certified CBT trainer through Nafsi Academy.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="#sessions" class="btn btn-primary">Book a Session</a>
+            <a href="#courses" class="btn btn-secondary">CBT Certification</a>
+            <a href="#books" class="btn btn-gold">Shop Books</a>
+          </div>
+        </div>
+        <div class="lang-ar">
+          <span class="section-label">العلاج المعرفي السلوكي · جلسات عبر الإنترنت</span>
+          <h1 style="font-family:'Noto Serif Arabic',serif;font-size:clamp(44px,5vw,68px);color:var(--teal);line-height:1.2;margin-bottom:10px;">سارة<br/>أدهم</h1>
+          <p style="font-family:'Noto Serif Arabic',serif;font-size:20px;color:var(--gold);margin-bottom:24px;">مؤسسة عيادة نفسي</p>
+          <p style="font-family:'Noto Sans Arabic',sans-serif;font-size:16px;color:var(--mid);line-height:1.95;max-width:480px;margin-bottom:36px;">معالجة CBT تقدم جلسات صحة نفسية عبر الإنترنت بالعربية والإنجليزية والسويدية. مؤلفة كتب في النرجسية والنمو الشخصي. مدربة معتمدة في CBT.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="#sessions" class="btn btn-primary">احجز جلسة</a>
+            <a href="#courses" class="btn btn-secondary">شهادة CBT</a>
+            <a href="#books" class="btn btn-gold">تسوق الكتب</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;">
+        <div style="position:relative;">
+          <div style="width:320px;height:420px;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);">
+            <img src="data:image/jpeg;base64,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" alt="Sara Adham" style="width:100%;height:100%;object-fit:cover;object-position:top center;"/>
+          </div>
+          <div style="position:absolute;bottom:-18px;right:24px;background:#fff;border-radius:10px;padding:12px 18px;box-shadow:var(--shadow-lg);border:1px solid var(--border);text-align:center;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--teal);line-height:1;">CBT</div>
+            <div style="font-size:11px;color:var(--mid);margin-top:3px;" class="lang-en">Certified Therapist</div>
+            <div style="font-size:11px;color:var(--mid);margin-top:3px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">معالجة معتمدة</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div style="background:var(--teal);padding:56px 0;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center;">
+      <div><div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:700;color:#fff;">3</div><p style="font-size:13px;color:rgba(255,255,255,0.75);margin-top:6px;" class="lang-en">Languages — Arabic, English &amp; Swedish</p><p style="font-size:13px;color:rgba(255,255,255,0.75);margin-top:6px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">لغات — عربي · إنجليزي · سويدي</p></div>
+      <div><div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:700;color:#fff;">100%</div><p style="font-size:13px;color:rgba(255,255,255,0.75);margin-top:6px;" class="lang-en">Online · Anywhere in the World</p><p style="font-size:13px;color:rgba(255,255,255,0.75);margin-top:6px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">عبر الإنترنت · من أي مكان</p></div>
+      <div><div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:700;color:#fff;">CBT</div><p style="font-size:13px;color:rgba(255,255,255,0.75);margin-top:6px;" class="lang-en">Evidence-Based Therapy</p><p style="font-size:13px;color:rgba(255,255,255,0.75);margin-top:6px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">علاج قائم على الأدلة</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section style="padding:100px 0;background:var(--white);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+      <div>
+        <div class="lang-en">
+          <span class="section-label">About Sara</span>
+          <h2 style="font-size:clamp(30px,4vw,48px);color:var(--teal);margin-bottom:20px;">Healing Through Understanding</h2>
+          <p style="font-size:16px;color:var(--mid);line-height:1.85;margin-bottom:14px;">I'm Sara Adham, the owner and founder of Nafsi Clinic. As a CBT therapist with experience from Cady Academy, I offer online mental health sessions in Arabic, English, and Swedish.</p>
+          <p style="font-size:16px;color:var(--mid);line-height:1.85;margin-bottom:24px;">I have authored books on narcissism and personal growth, and created a complete CBT certification programme through Nafsi Academy.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;"><span class="tag">CBT Specialist</span><span class="tag">Cady Academy</span><span class="tag">Narcissism Recovery</span><span class="tag">3 Languages</span></div>
+        </div>
+        <div class="lang-ar">
+          <span class="section-label">عن سارة</span>
+          <h2 style="font-family:'Noto Serif Arabic',serif;font-size:clamp(28px,4vw,46px);color:var(--teal);margin-bottom:20px;">الشفاء من خلال الفهم</h2>
+          <p style="font-family:'Noto Sans Arabic',sans-serif;font-size:16px;color:var(--mid);line-height:1.95;margin-bottom:14px;">أنا سارة أدهم، مؤسسة عيادة نفسي. أنا معالجة متخصصة في العلاج المعرفي السلوكي (CBT) بخبرة من أكاديمية كادي، أقدم جلسات عبر الإنترنت بالعربية والإنجليزية والسويدية.</p>
+          <p style="font-family:'Noto Sans Arabic',sans-serif;font-size:16px;color:var(--mid);line-height:1.95;margin-bottom:24px;">ألّفت كتبًا في النرجسية والنمو الشخصي، وأنشأت برنامج شهادة CBT الكامل عبر أكاديمية نفسي.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;"><span class="tag">متخصصة CBT</span><span class="tag">أكاديمية كادي</span><span class="tag">التعافي من النرجسية</span></div>
+        </div>
+      </div>
+      <div style="background:linear-gradient(160deg,var(--teal-pale),var(--cream-dark));border-radius:16px;padding:44px;border:1px solid var(--border);">
+        <blockquote class="lang-en" style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--teal);line-height:1.6;font-style:italic;padding-left:20px;border-left:3px solid var(--gold);">"My mission is to empower individuals facing social challenges and mental health issues, facilitating personal growth and well-being."<cite style="display:block;font-style:normal;font-size:13px;color:var(--mid);margin-top:14px;">— Sara Adham</cite></blockquote>
+        <blockquote class="lang-ar" style="font-family:'Noto Serif Arabic',serif;font-size:20px;color:var(--teal);line-height:1.7;padding-right:20px;border-right:3px solid var(--gold);text-align:right;">"مهمتي هي تمكين الأفراد الذين يواجهون التحديات الاجتماعية ومشكلات الصحة النفسية."<cite style="display:block;font-style:normal;font-size:13px;color:var(--mid);margin-top:14px;">— سارة أدهم</cite></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE OFFERINGS -->
+<section style="padding:100px 0;background:var(--cream);">
+  <div class="container">
+    <div class="section-header">
+      <div class="lang-en"><span class="section-label">What Sara Offers</span><h2>Three Ways to Work Together</h2><p>Whether you want to read, heal, or certify — there's a path for you.</p></div>
+      <div class="lang-ar"><span class="section-label">ما تقدمه سارة</span><h2 style="font-family:'Noto Serif Arabic',serif;">ثلاث طرق للعمل معًا</h2><p style="font-family:'Noto Sans Arabic',sans-serif;">سواء أردت القراءة أو الشفاء أو الحصول على شهادة — هناك مسار لك.</p></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
+      <a href="#books" class="card" style="padding:36px 28px;display:block;">
+        <div style="width:52px;height:52px;background:var(--teal-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px;">📚</div>
+        <h3 style="font-size:22px;color:var(--teal);margin-bottom:8px;" class="lang-en">Books</h3>
+        <h3 style="font-family:'Noto Serif Arabic',serif;font-size:20px;color:var(--teal);margin-bottom:8px;" class="lang-ar">الكتب</h3>
+        <p style="font-size:14px;color:var(--mid);line-height:1.7;margin-bottom:20px;" class="lang-en">Evidence-based books on narcissism and personal growth.</p>
+        <p style="font-family:'Noto Sans Arabic',sans-serif;font-size:14px;color:var(--mid);line-height:1.8;margin-bottom:20px;" class="lang-ar">كتب قائمة على الأدلة حول النرجسية والنمو الشخصي.</p>
+        <span style="font-size:14px;font-weight:600;color:var(--teal);" class="lang-en">Shop Books →</span>
+        <span style="font-family:'Noto Sans Arabic',sans-serif;font-size:14px;font-weight:600;color:var(--teal);" class="lang-ar">تسوق الكتب ←</span>
+      </a>
+      <a href="#sessions" class="card" style="padding:36px 28px;display:block;background:var(--teal);border-color:var(--teal);">
+        <div style="width:52px;height:52px;background:rgba(255,255,255,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px;">🧠</div>
+        <h3 style="font-size:22px;color:#fff;margin-bottom:8px;" class="lang-en">1-on-1 Sessions</h3>
+        <h3 style="font-family:'Noto Serif Arabic',serif;font-size:20px;color:#fff;margin-bottom:8px;" class="lang-ar">جلسات فردية</h3>
+        <p style="font-size:14px;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:20px;" class="lang-en">Private CBT sessions — single or package, secure Stripe checkout.</p>
+        <p style="font-family:'Noto Sans Arabic',sans-serif;font-size:14px;color:rgba(255,255,255,0.8);line-height:1.8;margin-bottom:20px;" class="lang-ar">جلسات CBT خاصة — جلسة أو باقة، دفع آمن.</p>
+        <span style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.9);" class="lang-en">View Packages →</span>
+        <span style="font-family:'Noto Sans Arabic',sans-serif;font-size:14px;font-weight:600;color:rgba(255,255,255,0.9);" class="lang-ar">عرض الباقات ←</span>
+      </a>
+      <a href="#courses" class="card" style="padding:36px 28px;display:block;">
+        <div style="width:52px;height:52px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px;">🏆</div>
+        <h3 style="font-size:22px;color:var(--teal);margin-bottom:8px;" class="lang-en">CBT Certification</h3>
+        <h3 style="font-family:'Noto Serif Arabic',serif;font-size:20px;color:var(--teal);margin-bottom:8px;" class="lang-ar">شهادة CBT</h3>
+        <p style="font-size:14px;color:var(--mid);line-height:1.7;margin-bottom:20px;" class="lang-en">Complete CBT Levels 1 &amp; 2 programme. Enroll for $3,495.</p>
+        <p style="font-family:'Noto Sans Arabic',sans-serif;font-size:14px;color:var(--mid);line-height:1.8;margin-bottom:20px;" class="lang-ar">برنامج CBT المستويين 1 و2. سجّل مقابل $3,495.</p>
+        <span style="font-size:14px;font-weight:600;color:var(--gold);" class="lang-en">Enroll Now →</span>
+        <span style="font-family:'Noto Sans Arabic',sans-serif;font-size:14px;font-weight:600;color:var(--gold);" class="lang-ar">سجّل الآن ←</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div style="background:var(--teal-pale);padding:72px 0;border-top:1px solid var(--border);">
+  <div class="container" style="text-align:center;">
+    <blockquote class="lang-en" style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,30px);color:var(--teal);max-width:720px;margin:0 auto;line-height:1.6;font-style:italic;">"Whether through a book, a session, or a course — every offering is designed to bring you closer to understanding yourself and living well."</blockquote>
+    <blockquote class="lang-ar" style="font-family:'Noto Serif Arabic',serif;font-size:clamp(18px,3vw,26px);color:var(--teal);max-width:720px;margin:0 auto;line-height:1.7;">"سواء من خلال كتاب أو جلسة أو دورة — كل ما أقدمه مصمم ليقربك من فهم نفسك."</blockquote>
+    <p style="margin-top:18px;font-size:13px;color:var(--mid);">Sara Adham · Nafsi Clinic</p>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3 class="lang-en">Nafsi Clinic</h3>
+        <h3 class="lang-ar">عيادة نفسي</h3>
+        <p class="sub lang-en">Sara Adham · CBT Therapist</p>
+        <p class="sub lang-ar">سارة أدهم · معالجة CBT</p>
+        <p class="lang-en">Online CBT therapy, books &amp; certification — Arabic, English &amp; Swedish.</p>
+        <p class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">علاج CBT وكتب وشهادة معتمدة.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/nafsiclinic/" target="_blank" class="social-icon">f</a>
+          <a href="#" class="social-icon">ig</a>
+          <a href="https://wa.me/66966673420" class="social-icon">w</a>
+          <a href="#" class="social-icon">▶</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="lang-en">Explore</h4><h4 class="lang-ar">استكشف</h4>
+        <ul>
+          <li><a href="#books"><span class="lang-en">Books</span><span class="lang-ar">الكتب</span></a></li>
+          <li><a href="#sessions"><span class="lang-en">Sessions</span><span class="lang-ar">الجلسات</span></a></li>
+          <li><a href="#courses"><span class="lang-en">CBT Certification</span><span class="lang-ar">شهادة CBT</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="lang-en">Get Started</h4><h4 class="lang-ar">ابدأ الآن</h4>
+        <ul>
+          <li><a href="#sessions"><span class="lang-en">Book a Session</span><span class="lang-ar">احجز جلسة</span></a></li>
+          <li><a href="#books"><span class="lang-en">Buy a Book</span><span class="lang-ar">اشترِ كتابًا</span></a></li>
+          <li><a href="#courses"><span class="lang-en">Enroll in CBT</span><span class="lang-ar">سجّل في CBT</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="lang-en">© 2026 Nafsi Clinic · Sara Adham. All rights reserved.</span>
+      <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">© ٢٠٢٦ عيادة نفسي · جميع الحقوق محفوظة.</span>
+      <span style="opacity:0.4;font-size:11px;">nafsiclinic.com</span>
+    </div>
+  </div>
+</footer>
+</div>
+
+<div id="page-books" class="page-section">
+<div class="page-hero">
+  <div class="container">
+    <div class="lang-en">
+      <span class="section-label" style="color:rgba(255,255,255,0.6);">Sara Adham &middot; Author</span>
+      <h1>Books by Sara Adham</h1>
+      <p>Evidence-based books on narcissism, personal growth, and self-healing &mdash; written for Arabic and English readers.</p>
+    </div>
+    <div class="lang-ar">
+      <span class="section-label" style="color:rgba(255,255,255,0.6);">&#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645; &middot; &#x645;&#x624;&#x644;&#x641;&#x629;</span>
+      <h1 style="font-family:'Noto Serif Arabic',serif;">&#x643;&#x62A;&#x628; &#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645;</h1>
+      <p style="font-family:'Noto Sans Arabic',sans-serif;">&#x643;&#x62A;&#x628; &#x642;&#x627;&#x626;&#x645;&#x629; &#x639;&#x644;&#x649; &#x627;&#x644;&#x623;&#x62F;&#x644;&#x629; &#x62D;&#x648;&#x644; &#x627;&#x644;&#x646;&#x631;&#x62C;&#x633;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x646;&#x645;&#x648; &#x627;&#x644;&#x634;&#x62E;&#x635;&#x64A; &#x648;&#x627;&#x644;&#x634;&#x641;&#x627;&#x621; &#x627;&#x644;&#x630;&#x627;&#x62A;&#x64A;.</p>
+    </div>
+  </div>
+</div>
+
+<section style="padding:80px 0 100px;background:var(--cream);">
+  <div class="container">
+
+    <!-- Unified Books Grid — all 5 books, same card size -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px;">
+
+      <!-- 1. Narcissism: The Disease & The Cure -->
+      <div class="card" style="padding:32px 24px;display:flex;flex-direction:column;">
+        <img src="/books/covers/narcissism-001.jpg" alt="Narcissism: The Disease & The Cure"
+             style="width:120px;height:165px;object-fit:cover;border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,0.18);margin-bottom:20px;align-self:center;">
+        <span class="tag lang-en" style="margin-bottom:10px;width:fit-content;">Mental Health · Arabic &amp; English</span>
+        <span class="tag lang-ar" style="margin-bottom:10px;width:fit-content;font-family:'Noto Sans Arabic',sans-serif;">صحة نفسية · عربي وإنجليزي</span>
+        <h3 style="font-size:17px;color:var(--teal);margin-bottom:8px;line-height:1.35;" class="lang-en">Narcissism: The Disease &amp; The Cure</h3>
+        <h3 style="font-family:'Noto Serif Arabic',serif;font-size:16px;color:var(--teal);margin-bottom:8px;line-height:1.5;" class="lang-ar">النرجسية: الداء والدواء</h3>
+        <p style="font-size:13px;color:var(--mid);line-height:1.75;flex:1;margin-bottom:20px;" class="lang-en">Understand narcissistic relationships, protect yourself, and find your path to lasting healing — written by Sara Adham from her clinical CBT experience.</p>
+        <p style="font-size:13px;color:var(--mid);line-height:1.85;flex:1;margin-bottom:20px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">افهم العلاقات النرجسية وحمِ نفسك وابدأ رحلة الشفاء — بقلم سارة أدهم.</p>
+        <div style="border-top:1px solid var(--border);padding-top:16px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--teal);">$9.99</span>
+          <button data-price="book_narcissism" class="btn btn-primary stripe-btn lang-en" style="padding:10px 22px;"><span>Buy Now</span><div class="spinner"></div></button>
+          <button data-price="book_narcissism" class="btn btn-primary stripe-btn lang-ar" style="padding:10px 22px;font-family:'Noto Sans Arabic',sans-serif;"><span>اشترِ الآن</span><div class="spinner"></div></button>
+        </div>
+      </div>
+
+      <!-- 2. CBT E-book English -->
+      <div class="card" style="padding:32px 24px;display:flex;flex-direction:column;">
+        <img src="/books/covers/cbt-en-01.jpg" alt="Let Go of the Past — CBT E-book English"
+             style="width:120px;height:165px;object-fit:cover;border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,0.18);margin-bottom:20px;align-self:center;">
+        <span class="tag lang-en" style="margin-bottom:10px;width:fit-content;">E-book · English</span>
+        <span class="tag lang-ar" style="margin-bottom:10px;width:fit-content;font-family:'Noto Sans Arabic',sans-serif;">كتاب إلكتروني · إنجليزي</span>
+        <h3 style="font-size:17px;color:var(--teal);margin-bottom:8px;line-height:1.35;" class="lang-en">Let Go of the Past &amp; Reclaim Your Life</h3>
+        <h3 style="font-family:'Noto Serif Arabic',serif;font-size:16px;color:var(--teal);margin-bottom:8px;line-height:1.5;" class="lang-ar">تخلّص من الماضي واستعد حياتك</h3>
+        <p style="font-size:13px;color:var(--mid);line-height:1.75;flex:1;margin-bottom:20px;" class="lang-en">Evidence-based CBT tools for releasing past trauma and rebuilding a fulfilling life. Written by Sara Adham.</p>
+        <p style="font-size:13px;color:var(--mid);line-height:1.85;flex:1;margin-bottom:20px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">أدوات CBT للتحرر من الماضي وبناء حياة مُرضية.</p>
+        <div style="border-top:1px solid var(--border);padding-top:16px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--teal);">$9.99</span>
+          <button data-price="book_cbt_en" class="btn btn-primary stripe-btn lang-en" style="padding:10px 22px;"><span>Buy Now</span><div class="spinner"></div></button>
+          <button data-price="book_cbt_en" class="btn btn-primary stripe-btn lang-ar" style="padding:10px 22px;font-family:'Noto Sans Arabic',sans-serif;"><span>اشترِ الآن</span><div class="spinner"></div></button>
+        </div>
+      </div>
+
+      <!-- 3. CBT E-book Arabic -->
+      <div class="card" style="padding:32px 24px;display:flex;flex-direction:column;">
+        <img src="/books/covers/cbt-ar-01.jpg" alt="تخلّص من الماضي — النسخة العربية"
+             style="width:120px;height:165px;object-fit:cover;border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,0.18);margin-bottom:20px;align-self:center;">
+        <span class="tag lang-en" style="margin-bottom:10px;width:fit-content;">E-book · Arabic</span>
+        <span class="tag lang-ar" style="margin-bottom:10px;width:fit-content;font-family:'Noto Sans Arabic',sans-serif;">كتاب إلكتروني · عربي</span>
+        <h3 style="font-size:17px;color:var(--teal);margin-bottom:8px;line-height:1.35;" class="lang-en">Reclaim Your Life with CBT (Arabic Edition)</h3>
+        <h3 style="font-family:'Noto Serif Arabic',serif;font-size:16px;color:var(--teal);margin-bottom:8px;line-height:1.5;" class="lang-ar">تخلّص من الماضي واستعد حياتك مع العلاج المعرفي</h3>
+        <p style="font-size:13px;color:var(--mid);line-height:1.75;flex:1;margin-bottom:20px;" class="lang-en">The complete Arabic CBT programme for personal transformation and healing by Sara Adham.</p>
+        <p style="font-size:13px;color:var(--mid);line-height:1.85;flex:1;margin-bottom:20px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">النسخة العربية الكاملة من برنامج CBT للتحول الشخصي والشفاء.</p>
+        <div style="border-top:1px solid var(--border);padding-top:16px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--teal);">$9.99</span>
+          <button data-price="book_cbt_ar" class="btn btn-primary stripe-btn lang-en" style="padding:10px 22px;"><span>Buy Now</span><div class="spinner"></div></button>
+          <button data-price="book_cbt_ar" class="btn btn-primary stripe-btn lang-ar" style="padding:10px 22px;font-family:'Noto Sans Arabic',sans-serif;"><span>اشترِ الآن</span><div class="spinner"></div></button>
+        </div>
+      </div>
+
+      <!-- 4. Red Sky -->
+      <div class="card" style="padding:32px 24px;display:flex;flex-direction:column;">
+        <!-- CSS art cover matching the real Red Sky design -->
+        <div style="width:120px;height:165px;border-radius:8px;overflow:hidden;margin-bottom:20px;box-shadow:0 6px 24px rgba(0,0,0,0.18);position:relative;background-color:#e8dcc4;align-self:center;flex-shrink:0;">
+          <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 4px,rgba(0,0,0,0.018) 4px,rgba(0,0,0,0.018) 5px);"></div>
+          <div style="position:absolute;top:10px;left:0;right:0;text-align:center;">
+            <span style="font-size:19px;font-weight:900;color:#1a1a1a;letter-spacing:1.5px;font-family:Georgia,serif;line-height:1;display:block;">RED SKY</span>
+            <span style="font-size:6px;color:#444;letter-spacing:0.5px;display:block;margin-top:4px;padding:0 10px;line-height:1.4;">NOT ANOTHER BOOK ABOUT WAR,<br>BUT ANOTHER BOOK ABOUT HOPE</span>
+          </div>
+          <div style="position:absolute;top:50px;left:50%;transform:translateX(-50%);width:76px;height:76px;background:#c84b00;border-radius:50%;opacity:0.9;"></div>
+          <svg style="position:absolute;top:46px;left:50%;transform:translateX(-50%);" width="56" height="72" viewBox="0 0 56 72" fill="none">
+            <line x1="28" y1="0" x2="28" y2="8" stroke="#1a1a1a" stroke-width="1.5"/>
+            <path d="M6 30 Q6 10 28 7 Q50 10 50 30" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+            <line x1="10" y1="30" x2="10" y2="58" stroke="#1a1a1a" stroke-width="1.2"/>
+            <line x1="18" y1="30" x2="17" y2="58" stroke="#1a1a1a" stroke-width="1.2"/>
+            <line x1="28" y1="30" x2="28" y2="58" stroke="#1a1a1a" stroke-width="1.2"/>
+            <line x1="38" y1="30" x2="39" y2="58" stroke="#1a1a1a" stroke-width="1.2"/>
+            <line x1="46" y1="30" x2="46" y2="58" stroke="#1a1a1a" stroke-width="1.2"/>
+            <path d="M8 40 Q28 37 48 40" stroke="#1a1a1a" stroke-width="1.1" fill="none"/>
+            <path d="M8 50 Q28 47 48 50" stroke="#1a1a1a" stroke-width="1.1" fill="none"/>
+            <line x1="7" y1="58" x2="49" y2="58" stroke="#1a1a1a" stroke-width="2"/>
+          </svg>
+          <svg style="position:absolute;top:22px;right:8px;" width="30" height="20" viewBox="0 0 30 20" fill="none">
+            <path d="M0 10 Q4 6 8 10 Q12 14 16 10" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+            <path d="M12 5 Q16 2 20 5 Q24 8 28 5" stroke="#1a1a1a" stroke-width="1.3" fill="none"/>
+            <path d="M18 14 Q22 11 26 14 Q28 16 30 14" stroke="#1a1a1a" stroke-width="1.2" fill="none"/>
+          </svg>
+          <div style="position:absolute;bottom:8px;left:0;right:0;text-align:center;">
+            <span style="font-size:8px;font-weight:700;color:#1a1a1a;letter-spacing:0.8px;display:block;font-family:Georgia,serif;">SARA ADHAM</span>
+            <span style="font-size:6px;color:#444;display:block;letter-spacing:0.3px;">CO-WRITER SARAH ALSALIH</span>
+          </div>
+        </div>
+        <span class="tag lang-en" style="margin-bottom:10px;width:fit-content;">Novel · English</span>
+        <span class="tag lang-ar" style="margin-bottom:10px;width:fit-content;font-family:'Noto Sans Arabic',sans-serif;">رواية · إنجليزي</span>
+        <h3 style="font-size:17px;color:var(--teal);margin-bottom:8px;line-height:1.35;" class="lang-en">Red Sky</h3>
+        <h3 style="font-family:'Noto Serif Arabic',serif;font-size:16px;color:var(--teal);margin-bottom:8px;line-height:1.5;" class="lang-ar">السماء الحمراء</h3>
+        <p style="font-size:13px;color:var(--mid);line-height:1.75;flex:1;margin-bottom:20px;" class="lang-en">Not another book about war, but another book about hope. Co-written by Sara Adham &amp; Sarah Alsaleh.</p>
+        <p style="font-size:13px;color:var(--mid);line-height:1.85;flex:1;margin-bottom:20px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">ليست كتاباً عن الحرب، بل عن الأمل. رواية بقلم سارة أدهم وسارة الصالح.</p>
+        <div style="border-top:1px solid var(--border);padding-top:16px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--teal);">$9.99</span>
+          <button data-price="book_red_sky" class="btn btn-primary stripe-btn lang-en" style="padding:10px 22px;"><span>Buy Now</span><div class="spinner"></div></button>
+          <button data-price="book_red_sky" class="btn btn-primary stripe-btn lang-ar" style="padding:10px 22px;font-family:'Noto Sans Arabic',sans-serif;"><span>اشترِ الآن</span><div class="spinner"></div></button>
+        </div>
+      </div>
+
+      <!-- 5. CBT Audiobook -->
+      <div class="card" style="padding:32px 24px;display:flex;flex-direction:column;">
+        <div style="width:120px;height:165px;background:linear-gradient(145deg,#1a3d3b,#2C5F5D);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 6px 24px rgba(0,0,0,0.22);gap:10px;align-self:center;flex-shrink:0;">
+          <span style="font-size:40px;">🎧</span>
+          <span style="font-size:10px;color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase;">Audiobook</span>
+        </div>
+        <span class="tag lang-en" style="margin-bottom:10px;width:fit-content;">Audiobook · Arabic</span>
+        <span class="tag lang-ar" style="margin-bottom:10px;width:fit-content;font-family:'Noto Sans Arabic',sans-serif;">كتاب صوتي · عربي</span>
+        <h3 style="font-size:17px;color:var(--teal);margin-bottom:8px;line-height:1.35;" class="lang-en">CBT Audiobook – Reclaim Your Life</h3>
+        <h3 style="font-family:'Noto Serif Arabic',serif;font-size:16px;color:var(--teal);margin-bottom:8px;line-height:1.5;" class="lang-ar">الكتاب الصوتي – تخلّص من الماضي واستعد حياتك</h3>
+        <p style="font-size:13px;color:var(--mid);line-height:1.75;flex:1;margin-bottom:20px;" class="lang-en">Listen and heal at your own pace. Sara Adham's CBT programme in audio format — perfect for on the go.</p>
+        <p style="font-size:13px;color:var(--mid);line-height:1.85;flex:1;margin-bottom:20px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">استمع وتعافَ بالسرعة التي تناسبك. برنامج CBT لسارة أدهم بصيغة صوتية.</p>
+        <div style="border-top:1px solid var(--border);padding-top:16px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--teal);">$9.99</span>
+          <button data-price="book_cbt_audio" class="btn btn-primary stripe-btn lang-en" style="padding:10px 22px;"><span>Buy Now</span><div class="spinner"></div></button>
+          <button data-price="book_cbt_audio" class="btn btn-primary stripe-btn lang-ar" style="padding:10px 22px;font-family:'Noto Sans Arabic',sans-serif;"><span>اشترِ الآن</span><div class="spinner"></div></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div style="background:var(--teal);padding:64px 0;">
+  <div class="container" style="text-align:center;">
+    <h2 style="font-size:clamp(28px,3vw,42px);color:#fff;margin-bottom:14px;" class="lang-en">Ready to Start Your Healing Journey?</h2>
+    <h2 style="font-family:'Noto Serif Arabic',serif;font-size:clamp(26px,3vw,40px);color:#fff;margin-bottom:14px;" class="lang-ar">&#x647;&#x644; &#x623;&#x646;&#x62A; &#x645;&#x633;&#x62A;&#x639;&#x62F; &#x644;&#x628;&#x62F;&#x621; &#x631;&#x62D;&#x644;&#x629; &#x627;&#x644;&#x634;&#x641;&#x627;&#x621;?</h2>
+    <p style="font-size:16px;color:rgba(255,255,255,0.8);margin-bottom:32px;" class="lang-en">Complement your reading with a 1-on-1 CBT session or the full certification programme.</p>
+    <p style="font-size:16px;color:rgba(255,255,255,0.8);margin-bottom:32px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x623;&#x643;&#x645;&#x644; &#x642;&#x631;&#x627;&#x621;&#x62A;&#x643; &#x628;&#x62C;&#x644;&#x633;&#x629; CBT &#x641;&#x631;&#x62F;&#x64A;&#x629; &#x623;&#x648; &#x628;&#x631;&#x646;&#x627;&#x645;&#x62C; &#x627;&#x644;&#x634;&#x647;&#x627;&#x62F;&#x629; &#x627;&#x644;&#x643;&#x627;&#x645;&#x644;.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="#sessions" class="btn btn-white lang-en">Book a Session</a>
+      <a href="#sessions" class="btn btn-white lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x627;&#x62D;&#x62C;&#x632; &#x62C;&#x644;&#x633;&#x629;</a>
+      <a href="#courses" class="btn btn-secondary lang-en" style="border-color:rgba(255,255,255,0.5);color:#fff;">CBT Certification</a>
+      <a href="#courses" class="btn btn-secondary lang-ar" style="border-color:rgba(255,255,255,0.5);color:#fff;font-family:'Noto Sans Arabic',sans-serif;">&#x634;&#x647;&#x627;&#x62F;&#x629; CBT</a>
+    </div>
+  </div>
+</div>
+<footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="lang-en">Nafsi Clinic</h3>
+          <h3 class="lang-ar">&#x639;&#x64A;&#x627;&#x62F;&#x629; &#x646;&#x641;&#x633;&#x64A;</h3>
+          <p class="sub lang-en">Sara Adham &middot; CBT Therapist</p>
+          <p class="sub lang-ar">&#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645; &middot; &#x645;&#x639;&#x627;&#x644;&#x62C;&#x629; CBT</p>
+          <p class="lang-en">Online CBT therapy, books, and certification &mdash; in Arabic, English &amp; Swedish.</p>
+          <p class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x639;&#x644;&#x627;&#x62C; CBT &#x648;&#x643;&#x62A;&#x628; &#x648;&#x634;&#x647;&#x627;&#x62F;&#x629; &mdash; &#x628;&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x625;&#x646;&#x62C;&#x644;&#x64A;&#x632;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x633;&#x648;&#x64A;&#x62F;&#x64A;&#x629;.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/nafsiclinic/" target="_blank" class="social-icon">f</a>
+            <a href="#" class="social-icon">ig</a>
+            <a href="https://wa.me/66966673420" class="social-icon">w</a>
+            <a href="#" class="social-icon">&#9654;</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="lang-en">Explore</h4><h4 class="lang-ar">&#x627;&#x633;&#x62A;&#x643;&#x634;&#x641;</h4>
+          <ul>
+            <li><a href="#books"><span class="lang-en">Books</span><span class="lang-ar">&#x627;&#x644;&#x643;&#x62A;&#x628;</span></a></li>
+            <li><a href="#sessions"><span class="lang-en">Sessions</span><span class="lang-ar">&#x627;&#x644;&#x62C;&#x644;&#x633;&#x627;&#x62A;</span></a></li>
+            <li><a href="#courses"><span class="lang-en">CBT Certification</span><span class="lang-ar">&#x634;&#x647;&#x627;&#x62F;&#x629; CBT</span></a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="lang-en">Get Started</h4><h4 class="lang-ar">&#x627;&#x628;&#x62F;&#x623; &#x627;&#x644;&#x622;&#x646;</h4>
+          <ul>
+            <li><a href="#sessions"><span class="lang-en">Book a Session</span><span class="lang-ar">&#x627;&#x62D;&#x62C;&#x632; &#x62C;&#x644;&#x633;&#x629;</span></a></li>
+            <li><a href="#books"><span class="lang-en">Buy a Book</span><span class="lang-ar">&#x627;&#x634;&#x62A;&#x631;&#x616; &#x643;&#x62A;&#x627;&#x628;&#x64B;&#x627;</span></a></li>
+            <li><a href="#courses"><span class="lang-en">Enroll in CBT</span><span class="lang-ar">&#x633;&#x62C;&#x617;&#x644; &#x641;&#x64A; CBT</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="lang-en">&copy; 2026 Nafsi Clinic &middot; Sara Adham. All rights reserved.</span>
+        <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&copy; &#x662;&#x660;&#x662;&#x666; &#x639;&#x64A;&#x627;&#x62F;&#x629; &#x646;&#x641;&#x633;&#x64A; &middot; &#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645;. &#x62C;&#x645;&#x64A;&#x639; &#x627;&#x644;&#x62D;&#x642;&#x648;&#x642; &#x645;&#x62D;&#x641;&#x648;&#x638;&#x629;.</span>
+        <span style="opacity:0.4;font-size:11px;">nafsiclinic.com</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div id="page-sessions" class="page-section">
+<div class="page-hero">
+  <div class="container">
+    <div class="lang-en">
+      <span class="section-label" style="color:rgba(255,255,255,0.6);">1-on-1 &middot; Online &middot; CBT</span>
+      <h1>Sessions &amp; Packages</h1>
+      <p>Private CBT sessions with Sara Adham &mdash; online, flexible, in Arabic, English &amp; Swedish.</p>
+    </div>
+    <div class="lang-ar">
+      <span class="section-label" style="color:rgba(255,255,255,0.6);">&#x641;&#x631;&#x62F;&#x64A; &middot; &#x639;&#x628;&#x631; &#x627;&#x644;&#x625;&#x646;&#x62A;&#x631;&#x646;&#x62A; &middot; CBT</span>
+      <h1 style="font-family:'Noto Serif Arabic',serif;">&#x627;&#x644;&#x62C;&#x644;&#x633;&#x627;&#x62A; &#x648;&#x627;&#x644;&#x628;&#x627;&#x642;&#x627;&#x62A;</h1>
+      <p style="font-family:'Noto Sans Arabic',sans-serif;">&#x62C;&#x644;&#x633;&#x627;&#x62A; CBT &#x62E;&#x627;&#x635;&#x629; &#x645;&#x639; &#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645; &mdash; &#x639;&#x628;&#x631; &#x627;&#x644;&#x625;&#x646;&#x62A;&#x631;&#x646;&#x62A;&#x60C; &#x645;&#x631;&#x646;&#x629;&#x60C; &#x628;&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x625;&#x646;&#x62C;&#x644;&#x64A;&#x632;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x633;&#x648;&#x64A;&#x62F;&#x64A;&#x629;.</p>
+    </div>
+  </div>
+</div>
+
+<section style="padding:80px 0;background:var(--white);">
+  <div class="container">
+    <div class="section-header">
+      <div class="lang-en"><span class="section-label">The Process</span><h2>How It Works</h2></div>
+      <div class="lang-ar"><span class="section-label">&#x627;&#x644;&#x639;&#x645;&#x644;&#x64A;&#x629;</span><h2 style="font-family:'Noto Serif Arabic',serif;">&#x643;&#x64A;&#x641; &#x64A;&#x639;&#x645;&#x644;</h2></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;">
+      <div style="padding:24px 16px;">
+        <div style="width:52px;height:52px;background:var(--teal-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px;font-weight:700;color:var(--teal);">1</div>
+        <h4 style="font-size:17px;color:var(--teal);margin-bottom:8px;" class="lang-en">Choose Package</h4>
+        <h4 style="font-family:'Noto Serif Arabic',serif;font-size:15px;color:var(--teal);margin-bottom:8px;" class="lang-ar">&#x627;&#x62E;&#x62A;&#x631; &#x628;&#x627;&#x642;&#x62A;&#x643;</h4>
+        <p style="font-size:13px;color:var(--mid);" class="lang-en">Select the session option that fits your needs.</p>
+        <p style="font-size:13px;color:var(--mid);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x627;&#x62E;&#x62A;&#x631; &#x62E;&#x64A;&#x627;&#x631; &#x627;&#x644;&#x62C;&#x644;&#x633;&#x629; &#x627;&#x644;&#x645;&#x646;&#x627;&#x633;&#x628;.</p>
+      </div>
+      <div style="padding:24px 16px;">
+        <div style="width:52px;height:52px;background:var(--teal-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px;font-weight:700;color:var(--teal);">2</div>
+        <h4 style="font-size:17px;color:var(--teal);margin-bottom:8px;" class="lang-en">Secure Payment</h4>
+        <h4 style="font-family:'Noto Serif Arabic',serif;font-size:15px;color:var(--teal);margin-bottom:8px;" class="lang-ar">&#x627;&#x644;&#x62F;&#x641;&#x639; &#x627;&#x644;&#x622;&#x645;&#x646;</h4>
+        <p style="font-size:13px;color:var(--mid);" class="lang-en">Complete checkout instantly via Stripe.</p>
+        <p style="font-size:13px;color:var(--mid);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x623;&#x62A;&#x645;&#x617; &#x627;&#x644;&#x62F;&#x641;&#x639; &#x641;&#x648;&#x631;&#x64B;&#x627; &#x639;&#x628;&#x631; Stripe.</p>
+      </div>
+      <div style="padding:24px 16px;">
+        <div style="width:52px;height:52px;background:var(--teal-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px;font-weight:700;color:var(--teal);">3</div>
+        <h4 style="font-size:17px;color:var(--teal);margin-bottom:8px;" class="lang-en">Schedule Session</h4>
+        <h4 style="font-family:'Noto Serif Arabic',serif;font-size:15px;color:var(--teal);margin-bottom:8px;" class="lang-ar">&#x62D;&#x62F;&#x617;&#x62F; &#x645;&#x648;&#x639;&#x62F;&#x643;</h4>
+        <p style="font-size:13px;color:var(--mid);" class="lang-en">Receive a booking link to pick your time.</p>
+        <p style="font-size:13px;color:var(--mid);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x633;&#x62A;&#x635;&#x644;&#x643; &#x631;&#x627;&#x628;&#x637; &#x644;&#x627;&#x62E;&#x62A;&#x64A;&#x627;&#x631; &#x627;&#x644;&#x648;&#x642;&#x62A; &#x627;&#x644;&#x645;&#x646;&#x627;&#x633;&#x628;.</p>
+      </div>
+      <div style="padding:24px 16px;">
+        <div style="width:52px;height:52px;background:var(--teal-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px;font-weight:700;color:var(--teal);">4</div>
+        <h4 style="font-size:17px;color:var(--teal);margin-bottom:8px;" class="lang-en">Begin Your Journey</h4>
+        <h4 style="font-family:'Noto Serif Arabic',serif;font-size:15px;color:var(--teal);margin-bottom:8px;" class="lang-ar">&#x627;&#x628;&#x62F;&#x623; &#x631;&#x62D;&#x644;&#x62A;&#x643;</h4>
+        <p style="font-size:13px;color:var(--mid);" class="lang-en">Meet Sara online and start your CBT programme.</p>
+        <p style="font-size:13px;color:var(--mid);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x627;&#x644;&#x62A;&#x642;&#x616; &#x628;&#x633;&#x627;&#x631;&#x629; &#x648;&#x627;&#x628;&#x62F;&#x623; &#x628;&#x631;&#x646;&#x627;&#x645;&#x62C;&#x643; &#x627;&#x644;&#x645;&#x62E;&#x635;&#x635;.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:60px 0 100px;background:var(--cream);">
+  <div class="container">
+    <div class="section-header">
+      <div class="lang-en"><span class="section-label">Choose Your Path</span><h2>Session Packages</h2><p>All sessions are 60 minutes, online via video call, in Arabic, English, or Swedish.</p></div>
+      <div class="lang-ar"><span class="section-label">&#x627;&#x62E;&#x62A;&#x631; &#x645;&#x633;&#x627;&#x631;&#x643;</span><h2 style="font-family:'Noto Serif Arabic',serif;">&#x628;&#x627;&#x642;&#x627;&#x62A; &#x627;&#x644;&#x62C;&#x644;&#x633;&#x627;&#x62A;</h2><p style="font-family:'Noto Sans Arabic',sans-serif;">&#x62C;&#x645;&#x64A;&#x639; &#x627;&#x644;&#x62C;&#x644;&#x633;&#x627;&#x62A; 60 &#x62F;&#x642;&#x64A;&#x642;&#x629;&#x60C; &#x639;&#x628;&#x631; &#x645;&#x643;&#x627;&#x644;&#x645;&#x629; &#x641;&#x64A;&#x62F;&#x64A;&#x648;&#x60C; &#x628;&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629; &#x623;&#x648; &#x627;&#x644;&#x625;&#x646;&#x62C;&#x644;&#x64A;&#x632;&#x64A;&#x629; &#x623;&#x648; &#x627;&#x644;&#x633;&#x648;&#x64A;&#x62F;&#x64A;&#x629;.</p></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
+
+      <div class="card" style="padding:36px 30px;display:flex;flex-direction:column;">
+        <div style="font-size:30px;margin-bottom:14px;">&#127807;</div>
+        <h3 style="font-size:22px;color:var(--charcoal);margin-bottom:6px;" class="lang-en">Single Session</h3>
+        <h3 style="font-family:'Noto Serif Arabic',serif;font-size:20px;color:var(--charcoal);margin-bottom:6px;" class="lang-ar">&#x62C;&#x644;&#x633;&#x629; &#x648;&#x627;&#x62D;&#x62F;&#x629;</h3>
+        <p style="font-size:13px;color:var(--mid);margin-bottom:8px;" class="lang-en">1 &times; 60-minute private session</p><div style="margin-bottom:18px;"><span data-price-display="session_single" style="font-size:30px;font-weight:700;color:var(--teal);font-family:'Cormorant Garamond',serif;">$120</span><span style="font-size:13px;color:var(--mid);" class="lang-en"> / session</span><span style="font-size:13px;color:var(--mid);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar"> / جلسة</span></div>
+        <p style="font-size:13px;color:var(--mid);margin-bottom:18px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x62C;&#x644;&#x633;&#x629; &#x648;&#x627;&#x62D;&#x62F;&#x629; 60 &#x62F;&#x642;&#x64A;&#x642;&#x629;</p>
+        <ul style="list-style:none;flex:1;display:flex;flex-direction:column;gap:9px;margin-bottom:24px;">
+          <li style="font-size:14px;color:var(--mid);display:flex;gap:9px;"><span style="color:var(--teal);font-weight:700;">&#10003;</span><span class="lang-en">Initial assessment &amp; goal setting</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x62A;&#x642;&#x64A;&#x64A;&#x645; &#x623;&#x648;&#x644;&#x64A; &#x648;&#x62A;&#x62D;&#x62F;&#x64A;&#x62F; &#x627;&#x644;&#x623;&#x647;&#x62F;&#x627;&#x641;</span></li>
+          <li style="font-size:14px;color:var(--mid);display:flex;gap:9px;"><span style="color:var(--teal);font-weight:700;">&#10003;</span><span class="lang-en">Personalised CBT approach</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x646;&#x647;&#x62C; CBT &#x645;&#x62E;&#x635;&#x635;</span></li>
+          <li style="font-size:14px;color:var(--mid);display:flex;gap:9px;"><span style="color:var(--teal);font-weight:700;">&#10003;</span><span class="lang-en">Secure online video call</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x645;&#x643;&#x627;&#x644;&#x645;&#x629; &#x641;&#x64A;&#x62F;&#x64A;&#x648; &#x622;&#x645;&#x646;&#x629;</span></li>
+          <li style="font-size:14px;color:var(--mid);display:flex;gap:9px;"><span style="color:var(--teal);font-weight:700;">&#10003;</span><span class="lang-en">Arabic, English or Swedish</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x639;&#x631;&#x628;&#x64A; &#x623;&#x648; &#x625;&#x646;&#x62C;&#x644;&#x64A;&#x632;&#x64A; &#x623;&#x648; &#x633;&#x648;&#x64A;&#x62F;&#x64A;</span></li>
+        </ul>
+        <div style="border-top:1px solid var(--border);padding-top:22px;">
+          <button data-price="session_single" class="btn btn-primary stripe-btn lang-en" style="width:100%;margin-bottom:6px;"><span>Book Now</span><div class="spinner"></div></button>
+          <button data-price="session_single" class="btn btn-primary stripe-btn lang-ar" style="width:100%;margin-bottom:6px;font-family:'Noto Sans Arabic',sans-serif;"><span>&#x627;&#x62D;&#x62C;&#x632; &#x627;&#x644;&#x622;&#x646;</span><div class="spinner"></div></button>
+          
+        </div>
+      </div>
+
+      <div class="card" style="padding:36px 30px;display:flex;flex-direction:column;background:var(--teal);border-color:var(--teal);position:relative;">
+        <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;white-space:nowrap;" class="lang-en">Most Popular</div>
+        <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;white-space:nowrap;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x627;&#x644;&#x623;&#x643;&#x579;&#x631; &#x637;&#x644;&#x628;&#x64B;&#x627;</div>
+        <div style="font-size:30px;margin-bottom:14px;">&#127807;</div>
+        <h3 style="font-size:22px;color:#fff;margin-bottom:6px;" class="lang-en">Starter Package</h3>
+        <h3 style="font-family:'Noto Serif Arabic',serif;font-size:20px;color:#fff;margin-bottom:6px;" class="lang-ar">&#x628;&#x627;&#x642;&#x629; &#x627;&#x644;&#x628;&#x62F;&#x627;&#x64A;&#x629;</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.75);margin-bottom:8px;" class="lang-en">5 &times; 60-minute sessions</p><div style="margin-bottom:18px;"><span data-price-display="session_starter" style="font-size:30px;font-weight:700;color:rgba(255,255,255,0.95);font-family:'Cormorant Garamond',serif;">$495</span><span style="font-size:13px;color:rgba(255,255,255,0.65);" class="lang-en"> for 5 sessions</span></div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.75);margin-bottom:18px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">5 &#x62C;&#x644;&#x633;&#x627;&#x62A; &times; 60 &#x62F;&#x642;&#x64A;&#x642;&#x629;</p>
+        <ul style="list-style:none;flex:1;display:flex;flex-direction:column;gap:9px;margin-bottom:24px;">
+          <li style="font-size:14px;color:rgba(255,255,255,0.85);display:flex;gap:9px;"><span style="color:var(--gold-light);font-weight:700;">&#10003;</span><span class="lang-en">Full intake &amp; personalised plan</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x62A;&#x642;&#x64A;&#x64A;&#x645; &#x634;&#x627;&#x645;&#x644; &#x648;&#x62E;&#x637;&#x629; &#x645;&#x62E;&#x635;&#x635;&#x629;</span></li>
+          <li style="font-size:14px;color:rgba(255,255,255,0.85);display:flex;gap:9px;"><span style="color:var(--gold-light);font-weight:700;">&#10003;</span><span class="lang-en">Structured CBT programme</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C; CBT &#x645;&#x646;&#x638;&#x617;&#x645;</span></li>
+          <li style="font-size:14px;color:rgba(255,255,255,0.85);display:flex;gap:9px;"><span style="color:var(--gold-light);font-weight:700;">&#10003;</span><span class="lang-en">Between-session support materials</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x645;&#x648;&#x627;&#x62F; &#x62F;&#x639;&#x645; &#x628;&#x64A;&#x646; &#x627;&#x644;&#x62C;&#x644;&#x633;&#x627;&#x62A;</span></li>
+          <li style="font-size:14px;color:rgba(255,255,255,0.85);display:flex;gap:9px;"><span style="color:var(--gold-light);font-weight:700;">&#10003;</span><span class="lang-en">Flexible weekly scheduling</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x62C;&#x62F;&#x648;&#x644; &#x645;&#x631;&#x646; &#x623;&#x633;&#x628;&#x648;&#x639;&#x64A;&#x64B;&#x627;</span></li>
+        </ul>
+        <div style="border-top:1px solid rgba(255,255,255,0.2);padding-top:22px;">
+          <button data-price="session_starter" class="btn btn-white stripe-btn lang-en" style="width:100%;margin-bottom:6px;"><span>Book Now</span><div class="spinner"></div></button>
+          <button data-price="session_starter" class="btn btn-white stripe-btn lang-ar" style="width:100%;margin-bottom:6px;font-family:'Noto Sans Arabic',sans-serif;"><span>&#x627;&#x62D;&#x62C;&#x632; &#x627;&#x644;&#x622;&#x646;</span><div class="spinner"></div></button>
+          
+        </div>
+      </div>
+
+      <div class="card" style="padding:36px 30px;display:flex;flex-direction:column;">
+        <div style="font-size:30px;margin-bottom:14px;">&#127795;</div>
+        <h3 style="font-size:22px;color:var(--charcoal);margin-bottom:6px;" class="lang-en">8-Session Package</h3>
+        <h3 style="font-family:'Noto Serif Arabic',serif;font-size:20px;color:var(--charcoal);margin-bottom:6px;" class="lang-ar">&#x628;&#x627;&#x642;&#x629; 8 &#x62C;&#x644;&#x633;&#x627;&#x62A;</h3>
+        <p style="font-size:13px;color:var(--mid);margin-bottom:8px;" class="lang-en">8 &times; 60-minute sessions</p><div style="margin-bottom:18px;"><span data-price-display="session_deep" style="font-size:30px;font-weight:700;color:var(--teal);font-family:'Cormorant Garamond',serif;">$749</span><span style="font-size:13px;color:var(--mid);" class="lang-en"> for 8 sessions</span></div>
+        <p style="font-size:13px;color:var(--mid);margin-bottom:18px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">8 &#x62C;&#x644;&#x633;&#x627;&#x62A; &times; 60 &#x62F;&#x642;&#x64A;&#x642;&#x629;</p>
+        <ul style="list-style:none;flex:1;display:flex;flex-direction:column;gap:9px;margin-bottom:24px;">
+          <li style="font-size:14px;color:var(--mid);display:flex;gap:9px;"><span style="color:var(--teal);font-weight:700;">&#10003;</span><span class="lang-en">Everything in Starter Package</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x643;&#x644; &#x645;&#x627; &#x641;&#x64A; &#x628;&#x627;&#x642;&#x629; &#x627;&#x644;&#x628;&#x62F;&#x627;&#x64A;&#x629;</span></li>
+          <li style="font-size:14px;color:var(--mid);display:flex;gap:9px;"><span style="color:var(--teal);font-weight:700;">&#10003;</span><span class="lang-en">Deep-dive CBT work</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x639;&#x645;&#x644; &#x645;&#x639;&#x645;&#x617;&#x642; &#x628;&#x623;&#x633;&#x644;&#x648;&#x628; CBT</span></li>
+          <li style="font-size:14px;color:var(--mid);display:flex;gap:9px;"><span style="color:var(--teal);font-weight:700;">&#10003;</span><span class="lang-en">Personalised healing roadmap</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x62E;&#x627;&#x631;&#x637;&#x629; &#x637;&#x631;&#x64A;&#x642; &#x634;&#x62E;&#x635;&#x64A;&#x629; &#x644;&#x644;&#x634;&#x641;&#x627;&#x621;</span></li>
+          <li style="font-size:14px;color:var(--mid);display:flex;gap:9px;"><span style="color:var(--teal);font-weight:700;">&#10003;</span><span class="lang-en">Priority scheduling</span><span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x623;&#x648;&#x644;&#x648;&#x64A;&#x629; &#x641;&#x64A; &#x62A;&#x62D;&#x62F;&#x64A;&#x62F; &#x627;&#x644;&#x645;&#x648;&#x627;&#x639;&#x64A;&#x62F;</span></li>
+        </ul>
+        <div style="border-top:1px solid var(--border);padding-top:22px;">
+          <button data-price="session_deep" class="btn btn-primary stripe-btn lang-en" style="width:100%;margin-bottom:6px;"><span>Book Now</span><div class="spinner"></div></button>
+          <button data-price="session_deep" class="btn btn-primary stripe-btn lang-ar" style="width:100%;margin-bottom:6px;font-family:'Noto Sans Arabic',sans-serif;"><span>&#x627;&#x62D;&#x62C;&#x632; &#x627;&#x644;&#x622;&#x646;</span><div class="spinner"></div></button>
+          
+        </div>
+      </div>
+
+    </div>
+      </div>
+</section>
+<footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="lang-en">Nafsi Clinic</h3>
+          <h3 class="lang-ar">&#x639;&#x64A;&#x627;&#x62F;&#x629; &#x646;&#x641;&#x633;&#x64A;</h3>
+          <p class="sub lang-en">Sara Adham &middot; CBT Therapist</p>
+          <p class="sub lang-ar">&#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645; &middot; &#x645;&#x639;&#x627;&#x644;&#x62C;&#x629; CBT</p>
+          <p class="lang-en">Online CBT therapy, books, and certification &mdash; in Arabic, English &amp; Swedish.</p>
+          <p class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x639;&#x644;&#x627;&#x62C; CBT &#x648;&#x643;&#x62A;&#x628; &#x648;&#x634;&#x647;&#x627;&#x62F;&#x629; &mdash; &#x628;&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x625;&#x646;&#x62C;&#x644;&#x64A;&#x632;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x633;&#x648;&#x64A;&#x62F;&#x64A;&#x629;.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/nafsiclinic/" target="_blank" class="social-icon">f</a>
+            <a href="#" class="social-icon">ig</a>
+            <a href="https://wa.me/66966673420" class="social-icon">w</a>
+            <a href="#" class="social-icon">&#9654;</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="lang-en">Explore</h4><h4 class="lang-ar">&#x627;&#x633;&#x62A;&#x643;&#x634;&#x641;</h4>
+          <ul>
+            <li><a href="#books"><span class="lang-en">Books</span><span class="lang-ar">&#x627;&#x644;&#x643;&#x62A;&#x628;</span></a></li>
+            <li><a href="#sessions"><span class="lang-en">Sessions</span><span class="lang-ar">&#x627;&#x644;&#x62C;&#x644;&#x633;&#x627;&#x62A;</span></a></li>
+            <li><a href="#courses"><span class="lang-en">CBT Certification</span><span class="lang-ar">&#x634;&#x647;&#x627;&#x62F;&#x629; CBT</span></a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="lang-en">Get Started</h4><h4 class="lang-ar">&#x627;&#x628;&#x62F;&#x623; &#x627;&#x644;&#x622;&#x646;</h4>
+          <ul>
+            <li><a href="#sessions"><span class="lang-en">Book a Session</span><span class="lang-ar">&#x627;&#x62D;&#x62C;&#x632; &#x62C;&#x644;&#x633;&#x629;</span></a></li>
+            <li><a href="#books"><span class="lang-en">Buy a Book</span><span class="lang-ar">&#x627;&#x634;&#x62A;&#x631;&#x616; &#x643;&#x62A;&#x627;&#x628;&#x64B;&#x627;</span></a></li>
+            <li><a href="#courses"><span class="lang-en">Enroll in CBT</span><span class="lang-ar">&#x633;&#x62C;&#x617;&#x644; &#x641;&#x64A; CBT</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="lang-en">&copy; 2026 Nafsi Clinic &middot; Sara Adham. All rights reserved.</span>
+        <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&copy; &#x662;&#x660;&#x662;&#x666; &#x639;&#x64A;&#x627;&#x62F;&#x629; &#x646;&#x641;&#x633;&#x64A; &middot; &#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645;. &#x62C;&#x645;&#x64A;&#x639; &#x627;&#x644;&#x62D;&#x642;&#x648;&#x642; &#x645;&#x62D;&#x641;&#x648;&#x638;&#x629;.</span>
+        <span style="opacity:0.4;font-size:11px;">nafsiclinic.com</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div id="page-courses" class="page-section">
+<div class="page-hero" style="padding:140px 0 72px;text-align:left;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;">
+      <div>
+        <div class="lang-en">
+          <span class="section-label" style="color:rgba(255,255,255,0.6);">Nafsi Academy &middot; CBT 1 &amp; 2</span>
+          <h1 style="font-size:clamp(32px,4vw,58px);">Complete CBT<br/>Certification Programme</h1>
+          <p style="margin-top:14px;font-size:17px;">A two-level CBT certification designed by Sara Adham &mdash; for personal transformation and professional development.</p>
+          <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;">
+            <button data-price="cbt_certification" class="btn btn-gold btn-lg stripe-btn lang-en"><span>Enroll Now &mdash; $3,495</span><div class="spinner"></div></button>
+            <a href="#overview" class="btn btn-secondary lang-en" style="border-color:rgba(255,255,255,0.5);color:#fff;">See What's Inside</a>
+          </div>
+        </div>
+        <div class="lang-ar" style="text-align:right;">
+          <span class="section-label" style="color:rgba(255,255,255,0.6);">&#x623;&#x643;&#x627;&#x62F;&#x64A;&#x645;&#x64A;&#x629; &#x646;&#x641;&#x633;&#x64A; &middot; CBT 1 &#x648;2</span>
+          <h1 style="font-family:'Noto Serif Arabic',serif;font-size:clamp(28px,4vw,52px);">&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C; &#x634;&#x647;&#x627;&#x62F;&#x629; &#x627;&#x644;&#x639;&#x644;&#x627;&#x62C;<br/>&#x627;&#x644;&#x645;&#x639;&#x631;&#x641;&#x64A; &#x627;&#x644;&#x633;&#x644;&#x648;&#x643;&#x64A; &#x627;&#x644;&#x643;&#x627;&#x645;&#x644;</h1>
+          <p style="margin-top:14px;font-size:17px;font-family:'Noto Sans Arabic',sans-serif;">&#x634;&#x647;&#x627;&#x62F;&#x629; CBT &#x634;&#x627;&#x645;&#x644;&#x629; &#x645;&#x646; &#x645;&#x633;&#x62A;&#x648;&#x64A;&#x64A;&#x646;&#x60C; &#x635;&#x645;&#x617;&#x62A;&#x647;&#x627; &#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645; &mdash; &#x644;&#x644;&#x62A;&#x62D;&#x648;&#x617;&#x644; &#x627;&#x644;&#x634;&#x62E;&#x635;&#x64A; &#x648;&#x627;&#x644;&#x62A;&#x637;&#x648;&#x64A;&#x631; &#x627;&#x644;&#x645;&#x647;&#x646;&#x64A;.</p>
+          <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;flex-direction:row-reverse;">
+            <button data-price="cbt_certification" class="btn btn-gold btn-lg stripe-btn lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;"><span>&#x633;&#x62C;&#x617;&#x644; &#x627;&#x644;&#x622;&#x646; &mdash; $3,495</span><div class="spinner"></div></button>
+            <a href="#overview" class="btn btn-secondary lang-ar" style="border-color:rgba(255,255,255,0.5);color:#fff;font-family:'Noto Sans Arabic',sans-serif;">&#x645;&#x627;&#x630;&#x627; &#x64A;&#x62A;&#x636;&#x645;&#x617;&#x646;</a>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:16px;padding:28px 32px;min-width:260px;backdrop-filter:blur(4px);">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+          <div style="text-align:center;padding:14px;background:rgba(255,255,255,0.07);border-radius:10px;">
+            <div style="font-size:22px;margin-bottom:6px;">&#128214;</div>
+            <p style="font-size:12px;color:rgba(255,255,255,0.7);" class="lang-en">CBT Levels 1 &amp; 2</p>
+            <p style="font-size:12px;color:rgba(255,255,255,0.7);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x627;&#x644;&#x645;&#x633;&#x62A;&#x648;&#x64A;&#x627;&#x646; 1 &#x648;2</p>
+          </div>
+          <div style="text-align:center;padding:14px;background:rgba(255,255,255,0.07);border-radius:10px;">
+            <div style="font-size:22px;margin-bottom:6px;">&#127942;</div>
+            <p style="font-size:12px;color:rgba(255,255,255,0.7);" class="lang-en">Certificate</p>
+            <p style="font-size:12px;color:rgba(255,255,255,0.7);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x634;&#x647;&#x627;&#x62F;&#x629; &#x645;&#x639;&#x62A;&#x645;&#x62F;&#x629;</p>
+          </div>
+          <div style="text-align:center;padding:14px;background:rgba(255,255,255,0.07);border-radius:10px;">
+            <div style="font-size:22px;margin-bottom:6px;">&#8734;&#65039;</div>
+            <p style="font-size:12px;color:rgba(255,255,255,0.7);" class="lang-en">Lifetime Access</p>
+            <p style="font-size:12px;color:rgba(255,255,255,0.7);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x648;&#x635;&#x648;&#x644; &#x645;&#x62F;&#x649; &#x627;&#x644;&#x62D;&#x64A;&#x627;&#x629;</p>
+          </div>
+          <div style="text-align:center;padding:14px;background:rgba(255,255,255,0.07);border-radius:10px;">
+            <div style="font-size:22px;margin-bottom:6px;">&#127758;</div>
+            <p style="font-size:12px;color:rgba(255,255,255,0.7);" class="lang-en">Arabic &amp; English</p>
+            <p style="font-size:12px;color:rgba(255,255,255,0.7);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x639;&#x631;&#x628;&#x64A; &amp; &#x625;&#x646;&#x62C;&#x644;&#x64A;&#x632;&#x64A;</p>
+          </div>
+        </div>
+        <div style="text-align:center;border-top:1px solid rgba(255,255,255,0.15);padding-top:18px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:700;color:#fff;line-height:1;">$3,495</div>
+          <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;" class="lang-en">USD &middot; Full Programme</p>
+          <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x62F;&#x648;&#x644;&#x627;&#x631; &#x623;&#x645;&#x631;&#x64A;&#x643;&#x64A; &middot; &#x627;&#x644;&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C; &#x627;&#x644;&#x643;&#x627;&#x645;&#x644;</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="overview" style="padding:100px 0;background:var(--white);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+      <div>
+        <div class="lang-en">
+          <span class="section-label">Programme Overview</span>
+          <h2 style="font-size:clamp(28px,3vw,42px);color:var(--teal);margin-bottom:18px;">What This Covers</h2>
+          <p style="font-size:15px;color:var(--mid);line-height:1.85;margin-bottom:18px;">Sara Adham's flagship certification &mdash; a complete two-level CBT programme from foundational theory to advanced clinical application.</p>
+          <div style="background:var(--teal-pale);border-radius:var(--radius);padding:26px;margin-bottom:18px;border:1px solid rgba(44,95,93,0.15);">
+            <h4 style="font-size:18px;color:var(--teal);margin-bottom:10px;">CBT Level 1 &mdash; Foundations</h4>
+            <p style="font-size:14px;color:var(--mid);line-height:1.8;">Core cognitive and behavioural principles, thought pattern identification, emotional regulation, and foundational CBT tools.</p>
+          </div>
+          <div style="background:linear-gradient(135deg,var(--teal-pale),var(--cream-dark));border-radius:var(--radius);padding:26px;border:1px solid rgba(44,95,93,0.15);">
+            <h4 style="font-size:18px;color:var(--teal);margin-bottom:10px;">CBT Level 2 &mdash; Advanced Practice</h4>
+            <p style="font-size:14px;color:var(--mid);line-height:1.8;">Complex case conceptualisation, advanced CBT techniques, schema therapy integration, and real-world transformation.</p>
+          </div>
+        </div>
+        <div class="lang-ar" style="text-align:right;">
+          <span class="section-label">&#x646;&#x638;&#x631;&#x629; &#x639;&#x627;&#x645;&#x629; &#x639;&#x644;&#x649; &#x627;&#x644;&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C;</span>
+          <h2 style="font-family:'Noto Serif Arabic',serif;font-size:clamp(26px,3vw,40px);color:var(--teal);margin-bottom:18px;">&#x645;&#x627; &#x64A;&#x63A;&#x637;&#x64A;&#x647; &#x647;&#x630;&#x627; &#x627;&#x644;&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C;</h2>
+          <p style="font-size:15px;color:var(--mid);line-height:1.95;margin-bottom:18px;font-family:'Noto Sans Arabic',sans-serif;">&#x627;&#x644;&#x634;&#x647;&#x627;&#x62F;&#x629; &#x627;&#x644;&#x631;&#x627;&#x626;&#x62F;&#x629; &#x644;&#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645; &mdash; &#x628;&#x631;&#x646;&#x627;&#x645;&#x62C; CBT &#x643;&#x627;&#x645;&#x644; &#x645;&#x646; &#x645;&#x633;&#x62A;&#x648;&#x64A;&#x64A;&#x646; &#x645;&#x646; &#x627;&#x644;&#x646;&#x638;&#x631;&#x64A;&#x629; &#x625;&#x644;&#x649; &#x627;&#x644;&#x62A;&#x637;&#x628;&#x64A;&#x642; &#x627;&#x644;&#x633;&#x631;&#x64A;&#x631;&#x64A; &#x627;&#x644;&#x645;&#x62A;&#x642;&#x62F;&#x617;&#x645;.</p>
+          <div style="background:var(--teal-pale);border-radius:var(--radius);padding:26px;margin-bottom:18px;border:1px solid rgba(44,95,93,0.15);">
+            <h4 style="font-family:'Noto Serif Arabic',serif;font-size:18px;color:var(--teal);margin-bottom:10px;">&#x627;&#x644;&#x645;&#x633;&#x62A;&#x648;&#x649; &#x627;&#x644;&#x623;&#x648;&#x617;&#x644; &mdash; &#x627;&#x644;&#x623;&#x633;&#x633;</h4>
+            <p style="font-size:14px;color:var(--mid);line-height:1.9;font-family:'Noto Sans Arabic',sans-serif;">&#x627;&#x644;&#x645;&#x628;&#x627;&#x62F;&#x626; &#x627;&#x644;&#x645;&#x639;&#x631;&#x641;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x633;&#x644;&#x648;&#x643;&#x64A;&#x629;&#x60C; &#x62A;&#x62D;&#x62F;&#x64A;&#x62F; &#x623;&#x646;&#x645;&#x627;&#x637; &#x627;&#x644;&#x62A;&#x641;&#x643;&#x64A;&#x631;&#x60C; &#x62A;&#x646;&#x638;&#x64A;&#x645; &#x627;&#x644;&#x645;&#x634;&#x627;&#x639;&#x631;&#x60C; &#x648;&#x623;&#x62F;&#x648;&#x627;&#x62A; CBT &#x627;&#x644;&#x623;&#x633;&#x627;&#x633;&#x64A;&#x629;.</p>
+          </div>
+          <div style="background:linear-gradient(135deg,var(--teal-pale),var(--cream-dark));border-radius:var(--radius);padding:26px;border:1px solid rgba(44,95,93,0.15);">
+            <h4 style="font-family:'Noto Serif Arabic',serif;font-size:18px;color:var(--teal);margin-bottom:10px;">&#x627;&#x644;&#x645;&#x633;&#x62A;&#x648;&#x649; &#x627;&#x644;&#x62B;&#x627;&#x646;&#x64A; &mdash; &#x627;&#x644;&#x645;&#x645;&#x627;&#x631;&#x633;&#x629; &#x627;&#x644;&#x645;&#x62A;&#x642;&#x62F;&#x617;&#x645;&#x629;</h4>
+            <p style="font-size:14px;color:var(--mid);line-height:1.9;font-family:'Noto Sans Arabic',sans-serif;">&#x62A;&#x635;&#x648;&#x631; &#x627;&#x644;&#x62D;&#x627;&#x644;&#x627;&#x62A; &#x627;&#x644;&#x645;&#x639;&#x642;&#x617;&#x62F;&#x629;&#x60C; &#x62A;&#x642;&#x646;&#x64A;&#x627;&#x62A; CBT &#x627;&#x644;&#x645;&#x62A;&#x642;&#x62F;&#x617;&#x645;&#x629;&#x60C; &#x648;&#x627;&#x644;&#x62A;&#x637;&#x628;&#x64A;&#x642; &#x627;&#x644;&#x641;&#x639;&#x644;&#x64A; &#x644;&#x644;&#x62A;&#x62D;&#x648;&#x617;&#x644; &#x627;&#x644;&#x634;&#x62E;&#x635;&#x64A; &#x648;&#x627;&#x644;&#x645;&#x647;&#x646;&#x64A;.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="lang-en"><span class="section-label">Everything Included</span><h3 style="font-size:26px;color:var(--teal);margin-bottom:22px;">What You Get</h3></div>
+        <div class="lang-ar" style="text-align:right;"><span class="section-label">&#x643;&#x644; &#x645;&#x627; &#x64A;&#x62A;&#x636;&#x645;&#x617;&#x646;&#x647;</span><h3 style="font-family:'Noto Serif Arabic',serif;font-size:24px;color:var(--teal);margin-bottom:22px;">&#x645;&#x627; &#x633;&#x62A;&#x62D;&#x635;&#x644; &#x639;&#x644;&#x64A;&#x647;</h3></div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
+          <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:var(--cream);border-radius:10px;border:1px solid var(--border);">
+            <span style="font-size:20px;flex-shrink:0;">&#129504;</span>
+            <div>
+              <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:2px;" class="lang-en">CBT Levels 1 &amp; 2 Full Curriculum</p>
+              <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:2px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x627;&#x644;&#x645;&#x633;&#x62A;&#x648;&#x64A;&#x627;&#x646; 1 &#x648;2 &mdash; &#x627;&#x644;&#x645;&#x646;&#x647;&#x62C; &#x627;&#x644;&#x643;&#x627;&#x645;&#x644;</p>
+              <p style="font-size:13px;color:var(--mid);" class="lang-en">All core modules from foundations to advanced</p>
+              <p style="font-size:13px;color:var(--mid);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x62C;&#x645;&#x64A;&#x639; &#x627;&#x644;&#x648;&#x62D;&#x62F;&#x627;&#x62A; &#x645;&#x646; &#x627;&#x644;&#x623;&#x633;&#x633; &#x62D;&#x62A;&#x649; &#x627;&#x644;&#x645;&#x62A;&#x642;&#x62F;&#x617;&#x645;</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:var(--cream);border-radius:10px;border:1px solid var(--border);">
+            <span style="font-size:20px;flex-shrink:0;">&#127926;</span>
+            <div>
+              <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:2px;" class="lang-en">Video Lessons &amp; Worksheets</p>
+              <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:2px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x62F;&#x631;&#x648;&#x633; &#x641;&#x64A;&#x62F;&#x64A;&#x648; &#x648;&#x623;&#x648;&#x631;&#x627;&#x642; &#x639;&#x645;&#x644;</p>
+              <p style="font-size:13px;color:var(--mid);" class="lang-en">On-demand &mdash; return to content anytime</p>
+              <p style="font-size:13px;color:var(--mid);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x645;&#x62A;&#x627;&#x62D; &#x639;&#x646;&#x62F; &#x627;&#x644;&#x637;&#x644;&#x628; &mdash; &#x639;&#x615;&#x62F; &#x625;&#x644;&#x64A;&#x647; &#x645;&#x62A;&#x649; &#x634;&#x626;&#x62A;</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:var(--cream);border-radius:10px;border:1px solid var(--border);">
+            <span style="font-size:20px;flex-shrink:0;">&#127942;</span>
+            <div>
+              <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:2px;" class="lang-en">Certificate of Completion</p>
+              <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:2px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x634;&#x647;&#x627;&#x62F;&#x629; &#x625;&#x62A;&#x645;&#x627;&#x645; &#x645;&#x639;&#x62A;&#x645;&#x62F;&#x629;</p>
+              <p style="font-size:13px;color:var(--mid);" class="lang-en">Issued by Nafsi Academy upon completion</p>
+              <p style="font-size:13px;color:var(--mid);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x62A;&#x635;&#x62F;&#x631; &#x645;&#x646; &#x623;&#x643;&#x627;&#x62F;&#x64A;&#x645;&#x64A;&#x629; &#x646;&#x641;&#x633;&#x64A; &#x639;&#x646;&#x62F; &#x627;&#x644;&#x625;&#x62A;&#x645;&#x627;&#x645;</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:var(--cream);border-radius:10px;border:1px solid var(--border);">
+            <span style="font-size:20px;flex-shrink:0;">&#8734;&#65039;</span>
+            <div>
+              <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:2px;" class="lang-en">Lifetime Access via Nafsi Academy</p>
+              <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:2px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x648;&#x635;&#x648;&#x644; &#x645;&#x62F;&#x649; &#x627;&#x644;&#x62D;&#x64A;&#x627;&#x629; &#x639;&#x628;&#x631; &#x623;&#x643;&#x627;&#x62F;&#x64A;&#x645;&#x64A;&#x629; &#x646;&#x641;&#x633;&#x64A;</p>
+              <p style="font-size:13px;color:var(--mid);" class="lang-en">Hosted on Wix Spaces &mdash; all devices</p>
+              <p style="font-size:13px;color:var(--mid);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x645;&#x633;&#x62A;&#x636;&#x627;&#x641; &#x639;&#x644;&#x649; Wix Spaces &mdash; &#x62C;&#x645;&#x64A;&#x639; &#x627;&#x644;&#x623;&#x62C;&#x647;&#x632;&#x629;</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--teal);border-radius:var(--radius);padding:28px;text-align:center;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:700;color:#fff;line-height:1;">$3,495</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.7);margin:6px 0 18px;" class="lang-en">USD &middot; Full Programme &middot; Lifetime Access</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.7);margin:6px 0 18px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x62F;&#x648;&#x644;&#x627;&#x631; &#x623;&#x645;&#x631;&#x64A;&#x643;&#x64A; &middot; &#x627;&#x644;&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C; &#x627;&#x644;&#x643;&#x627;&#x645;&#x644; &middot; &#x648;&#x635;&#x648;&#x644; &#x645;&#x62F;&#x649; &#x627;&#x644;&#x62D;&#x64A;&#x627;&#x629;</p>
+          <button data-price="cbt_certification" class="btn btn-white stripe-btn lang-en" style="width:100%;margin-bottom:6px;"><span>Enroll Now</span><div class="spinner"></div></button>
+          <button data-price="cbt_certification" class="btn btn-white stripe-btn lang-ar" style="width:100%;margin-bottom:6px;font-family:'Noto Sans Arabic',sans-serif;"><span>&#x633;&#x62C;&#x617;&#x644; &#x627;&#x644;&#x622;&#x646;</span><div class="spinner"></div></button>
+          <p style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px;">&#128274; Powered by Stripe &middot; Instant access after payment</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:80px 0;background:var(--cream);">
+  <div class="container">
+    <div class="section-header">
+      <div class="lang-en"><span class="section-label">Is This For You?</span><h2>Who Enrolls in This Programme</h2></div>
+      <div class="lang-ar"><span class="section-label">&#x647;&#x644; &#x647;&#x630;&#x627; &#x645;&#x646;&#x627;&#x633;&#x628; &#x644;&#x643;&#x61F;</span><h2 style="font-family:'Noto Serif Arabic',serif;">&#x644;&#x645;&#x646; &#x647;&#x630;&#x627; &#x627;&#x644;&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C;&#x61F;</h2></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div style="background:var(--white);border-radius:var(--radius);padding:30px;border:1px solid var(--border);text-align:center;">
+        <div style="font-size:36px;margin-bottom:14px;">&#127807;</div>
+        <h4 style="font-size:18px;color:var(--teal);margin-bottom:8px;" class="lang-en">Personal Healing</h4>
+        <h4 style="font-family:'Noto Serif Arabic',serif;font-size:16px;color:var(--teal);margin-bottom:8px;" class="lang-ar">&#x627;&#x644;&#x634;&#x641;&#x627;&#x621; &#x627;&#x644;&#x634;&#x62E;&#x635;&#x64A;</h4>
+        <p style="font-size:13px;color:var(--mid);line-height:1.7;" class="lang-en">Anyone navigating their own mental health journey who wants evidence-based tools.</p>
+        <p style="font-size:13px;color:var(--mid);line-height:1.8;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x643;&#x644; &#x645;&#x646; &#x64A;&#x633;&#x639;&#x649; &#x641;&#x64A; &#x631;&#x62D;&#x644;&#x629; &#x635;&#x62D;&#x62A;&#x647; &#x627;&#x644;&#x646;&#x641;&#x633;&#x64A;&#x629; &#x648;&#x64A;&#x631;&#x64A;&#x62F; &#x623;&#x62F;&#x648;&#x627;&#x62A; &#x642;&#x627;&#x626;&#x645;&#x629; &#x639;&#x644;&#x649; &#x627;&#x644;&#x623;&#x62F;&#x644;&#x629;.</p>
+      </div>
+      <div style="background:var(--white);border-radius:var(--radius);padding:30px;border:1px solid var(--border);text-align:center;">
+        <div style="font-size:36px;margin-bottom:14px;">&#128188;</div>
+        <h4 style="font-size:18px;color:var(--teal);margin-bottom:8px;" class="lang-en">Therapists &amp; Coaches</h4>
+        <h4 style="font-family:'Noto Serif Arabic',serif;font-size:16px;color:var(--teal);margin-bottom:8px;" class="lang-ar">&#x627;&#x644;&#x645;&#x639;&#x627;&#x644;&#x62C;&#x648;&#x646; &#x648;&#x627;&#x644;&#x645;&#x62F;&#x631;&#x628;&#x648;&#x646;</h4>
+        <p style="font-size:13px;color:var(--mid);line-height:1.7;" class="lang-en">Mental health professionals and coaches looking to deepen their CBT practice.</p>
+        <p style="font-size:13px;color:var(--mid);line-height:1.8;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x645;&#x62A;&#x62E;&#x635;&#x635;&#x648; &#x627;&#x644;&#x635;&#x62D;&#x629; &#x627;&#x644;&#x646;&#x641;&#x633;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x645;&#x62F;&#x631;&#x628;&#x648;&#x646; &#x627;&#x644;&#x631;&#x627;&#x63A;&#x628;&#x648;&#x646; &#x641;&#x64A; &#x62A;&#x639;&#x645;&#x64A;&#x642; &#x645;&#x645;&#x627;&#x631;&#x633;&#x62A;&#x647;&#x645; &#x644;&#x640; CBT.</p>
+      </div>
+      <div style="background:var(--white);border-radius:var(--radius);padding:30px;border:1px solid var(--border);text-align:center;">
+        <div style="font-size:36px;margin-bottom:14px;">&#127758;</div>
+        <h4 style="font-size:18px;color:var(--teal);margin-bottom:8px;" class="lang-en">Arabic &amp; English Speakers</h4>
+        <h4 style="font-family:'Noto Serif Arabic',serif;font-size:16px;color:var(--teal);margin-bottom:8px;" class="lang-ar">&#x627;&#x644;&#x645;&#x62A;&#x62D;&#x62F;&#x617;&#x579;&#x648;&#x646; &#x628;&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x625;&#x646;&#x62C;&#x644;&#x64A;&#x632;&#x64A;&#x629;</h4>
+        <p style="font-size:13px;color:var(--mid);line-height:1.7;" class="lang-en">Fully bilingual programme accessible to Arabic and English speakers worldwide.</p>
+        <p style="font-size:13px;color:var(--mid);line-height:1.8;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C; &#x579;&#x646;&#x627;&#x626;&#x64A; &#x627;&#x644;&#x644;&#x63A;&#x629; &#x628;&#x627;&#x644;&#x643;&#x627;&#x645;&#x644; &#x645;&#x62A;&#x627;&#x62D; &#x644;&#x644;&#x62C;&#x645;&#x64A;&#x639; &#x62D;&#x648;&#x644; &#x627;&#x644;&#x639;&#x627;&#x644;&#x645;.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="background:linear-gradient(135deg,var(--teal),var(--teal-light));padding:80px 0;text-align:center;">
+  <div class="container">
+    <h2 style="font-size:clamp(26px,4vw,44px);color:#fff;margin-bottom:12px;" class="lang-en">Ready to Begin Your CBT Journey?</h2>
+    <h2 style="font-family:'Noto Serif Arabic',serif;font-size:clamp(24px,4vw,40px);color:#fff;margin-bottom:12px;" class="lang-ar">&#x647;&#x644; &#x623;&#x646;&#x62A; &#x645;&#x633;&#x62A;&#x639;&#x62F;&#x617; &#x644;&#x628;&#x62F;&#x621; &#x631;&#x62D;&#x644;&#x62A;&#x643;&#x61F;</h2>
+    <p style="color:rgba(255,255,255,0.8);margin-bottom:12px;" class="lang-en">Earn your Nafsi Academy CBT certificate &mdash; Levels 1 &amp; 2.</p>
+    <p style="color:rgba(255,255,255,0.8);margin-bottom:12px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x627;&#x62D;&#x635;&#x644; &#x639;&#x644;&#x649; &#x634;&#x647;&#x627;&#x62F;&#x629; CBT &#x645;&#x646; &#x623;&#x643;&#x627;&#x62F;&#x64A;&#x645;&#x64A;&#x629; &#x646;&#x641;&#x633;&#x64A; &mdash; &#x627;&#x644;&#x645;&#x633;&#x62A;&#x648;&#x64A;&#x627;&#x646; 1 &#x648;2.</p>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:700;color:#fff;margin:16px 0;">$3,495</div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button data-price="cbt_certification" class="btn btn-white btn-lg stripe-btn lang-en"><span>Enroll Now</span><div class="spinner"></div></button>
+      <button data-price="cbt_certification" class="btn btn-white btn-lg stripe-btn lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;"><span>&#x633;&#x62C;&#x617;&#x644; &#x627;&#x644;&#x622;&#x646;</span><div class="spinner"></div></button>
+    </div>
+    <p style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:14px;" class="lang-en">Powered by Stripe &middot; Instant access after payment &middot; Hosted on Nafsi Academy (Wix Spaces)</p>
+    <p style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:14px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x645;&#x62F;&#x639;&#x648;&#x645; &#x628;&#x640; Stripe &middot; &#x648;&#x635;&#x648;&#x644; &#x641;&#x648;&#x631;&#x64A; &middot; &#x645;&#x633;&#x62A;&#x636;&#x627;&#x641; &#x639;&#x644;&#x649; &#x623;&#x643;&#x627;&#x62F;&#x64A;&#x645;&#x64A;&#x629; &#x646;&#x641;&#x633;&#x64A;</p>
+  </div>
+</div>
+<footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="lang-en">Nafsi Clinic</h3>
+          <h3 class="lang-ar">&#x639;&#x64A;&#x627;&#x62F;&#x629; &#x646;&#x641;&#x633;&#x64A;</h3>
+          <p class="sub lang-en">Sara Adham &middot; CBT Therapist</p>
+          <p class="sub lang-ar">&#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645; &middot; &#x645;&#x639;&#x627;&#x644;&#x62C;&#x629; CBT</p>
+          <p class="lang-en">Online CBT therapy, books, and certification &mdash; in Arabic, English &amp; Swedish.</p>
+          <p class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x639;&#x644;&#x627;&#x62C; CBT &#x648;&#x643;&#x62A;&#x628; &#x648;&#x634;&#x647;&#x627;&#x62F;&#x629; &mdash; &#x628;&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x625;&#x646;&#x62C;&#x644;&#x64A;&#x632;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x633;&#x648;&#x64A;&#x62F;&#x64A;&#x629;.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/nafsiclinic/" target="_blank" class="social-icon">f</a>
+            <a href="#" class="social-icon">ig</a>
+            <a href="https://wa.me/66966673420" class="social-icon">w</a>
+            <a href="#" class="social-icon">&#9654;</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="lang-en">Explore</h4><h4 class="lang-ar">&#x627;&#x633;&#x62A;&#x643;&#x634;&#x641;</h4>
+          <ul>
+            <li><a href="#books"><span class="lang-en">Books</span><span class="lang-ar">&#x627;&#x644;&#x643;&#x62A;&#x628;</span></a></li>
+            <li><a href="#sessions"><span class="lang-en">Sessions</span><span class="lang-ar">&#x627;&#x644;&#x62C;&#x644;&#x633;&#x627;&#x62A;</span></a></li>
+            <li><a href="#courses"><span class="lang-en">CBT Certification</span><span class="lang-ar">&#x634;&#x647;&#x627;&#x62F;&#x629; CBT</span></a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="lang-en">Get Started</h4><h4 class="lang-ar">&#x627;&#x628;&#x62F;&#x623; &#x627;&#x644;&#x622;&#x646;</h4>
+          <ul>
+            <li><a href="#sessions"><span class="lang-en">Book a Session</span><span class="lang-ar">&#x627;&#x62D;&#x62C;&#x632; &#x62C;&#x644;&#x633;&#x629;</span></a></li>
+            <li><a href="#books"><span class="lang-en">Buy a Book</span><span class="lang-ar">&#x627;&#x634;&#x62A;&#x631;&#x616; &#x643;&#x62A;&#x627;&#x628;&#x64B;&#x627;</span></a></li>
+            <li><a href="#courses"><span class="lang-en">Enroll in CBT</span><span class="lang-ar">&#x633;&#x62C;&#x617;&#x644; &#x641;&#x64A; CBT</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="lang-en">&copy; 2026 Nafsi Clinic &middot; Sara Adham. All rights reserved.</span>
+        <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&copy; &#x662;&#x660;&#x662;&#x666; &#x639;&#x64A;&#x627;&#x62F;&#x629; &#x646;&#x641;&#x633;&#x64A; &middot; &#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645;. &#x62C;&#x645;&#x64A;&#x639; &#x627;&#x644;&#x62D;&#x642;&#x648;&#x642; &#x645;&#x62D;&#x641;&#x648;&#x638;&#x629;.</span>
+        <span style="opacity:0.4;font-size:11px;">nafsiclinic.com</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div id="page-success" class="page-section">
+<div class="success-hero">
+  <div class="success-card">
+    <div class="check-circle">&#10003;</div>
+    <div class="lang-en">
+      <h1 style="font-size:clamp(28px,4vw,42px);color:var(--teal);margin-bottom:14px;">Payment Successful!</h1>
+      <p style="font-size:17px;color:var(--mid);line-height:1.8;margin-bottom:10px;">Thank you for your purchase. A confirmation email is on its way to you.</p>
+      <p style="font-size:15px;color:var(--mid);line-height:1.8;margin-bottom:32px;">Sara’s team will be in touch shortly with your next steps.</p>
+    </div>
+    <div class="lang-ar">
+      <h1 style="font-family:'Noto Serif Arabic',serif;font-size:clamp(26px,4vw,38px);color:var(--teal);margin-bottom:14px;">&#x62A;&#x645;&#x617; &#x627;&#x644;&#x62F;&#x641;&#x639; &#x628;&#x646;&#x62C;&#x627;&#x62D;!</h1>
+      <p style="font-size:17px;color:var(--mid);line-height:1.9;margin-bottom:32px;font-family:'Noto Sans Arabic',sans-serif;">&#x634;&#x643;&#x631;&#x64B;&#x627; &#x644;&#x634;&#x631;&#x627;&#x626;&#x643;. &#x633;&#x64A;&#x62A;&#x648;&#x627;&#x635;&#x644; &#x645;&#x639;&#x643; &#x641;&#x631;&#x64A;&#x642; &#x633;&#x627;&#x631;&#x629; &#x642;&#x631;&#x64A;&#x628;&#x64B;&#x627;.</p>
+    </div>
+    <div style="background:var(--cream);border-radius:12px;padding:24px;margin-bottom:28px;border:1px solid var(--border);text-align:left;">
+      <p style="font-size:14px;color:var(--mid);margin-bottom:8px;" class="lang-en">&#128272; <strong>Course</strong>: access to Nafsi Academy will arrive by email.</p>
+      <p style="font-size:14px;color:var(--mid);margin-bottom:8px;" class="lang-en">&#128197; <strong>Session package</strong>: your booking link will arrive by email.</p>
+      <p style="font-size:14px;color:var(--mid);" class="lang-en">&#128218; <strong>Book</strong>: download details will arrive in your inbox.</p>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#home" class="btn btn-primary lang-en">Back to Home</a>
+      <a href="#home" class="btn btn-primary lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x627;&#x644;&#x639;&#x648;&#x62F;&#x629; &#x644;&#x644;&#x631;&#x626;&#x64A;&#x633;&#x64A;&#x629;</a>
+      <a href="https://wa.me/66966673420" class="btn btn-secondary" target="_blank">Contact Sara</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="page-cancel" class="page-section">
+<div class="cancel-hero">
+  <div class="cancel-card">
+    <div style="font-size:56px;margin-bottom:20px;">&#128214;</div>
+    <div class="lang-en">
+      <h1 style="font-size:clamp(26px,3vw,38px);color:var(--teal);margin-bottom:14px;">No problem &mdash; your cart is safe</h1>
+      <p style="font-size:16px;color:var(--mid);line-height:1.8;margin-bottom:28px;">Nothing was charged. Whenever you’re ready, go back and complete your purchase.</p>
+    </div>
+    <div class="lang-ar">
+      <h1 style="font-family:'Noto Serif Arabic',serif;font-size:clamp(24px,3vw,36px);color:var(--teal);margin-bottom:14px;">&#x644;&#x627; &#x628;&#x623;&#x633; &mdash; &#x644;&#x645; &#x64A;&#x62A;&#x645; &#x62E;&#x635;&#x645; &#x623;&#x64A; &#x645;&#x628;&#x644;&#x63A;</h1>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#sessions" class="btn btn-primary lang-en">Book a Session</a>
+      <a href="#sessions" class="btn btn-primary lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;">&#x627;&#x62D;&#x62C;&#x632; &#x62C;&#x644;&#x633;&#x629;</a>
+      <a href="#courses"  class="btn btn-secondary lang-en">CBT Certification</a>
+      <a href="#books"    class="btn btn-gold lang-en">Shop Books</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+
+// ---- SPA ROUTER ----
+function showPage(pageId) {
+  document.querySelectorAll('.page-section').forEach(s => {
+    s.classList.toggle('active', s.id === 'page-' + pageId);
+  });
+  window.scrollTo(0, 0);
+  document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === pageId);
+  });
+  if (typeof STRIPE_CONFIG !== 'undefined') {
+    STRIPE_CONFIG.cancelUrl = window.location.href.split('#')[0] + '#' + pageId;
+  }
+}
+function router() {
+  const hash = window.location.hash.replace('#', '') || 'home';
+  showPage(hash);
+}
+window.addEventListener('hashchange', router);
+
+// Direct click handler — works on file://, computer://, and https://
+document.addEventListener('click', function(e) {
+  var link = e.target.closest('a[href]');
+  if (!link) return;
+  var href = link.getAttribute('href');
+  if (href && href.charAt(0) === '#') {
+    var pageId = href.slice(1);
+    if (pageId) {
+      e.preventDefault();
+      try { history.pushState(null, '', href); } catch(x) {}
+      showPage(pageId);
+    }
+  }
+});
+
+/* ================================================================
+   NAFSI CLINIC — APP.JS
+   Handles: Language toggle, Stripe Checkout, UI helpers
+================================================================ */
+
+/* ----------------------------------------------------------------
+   STRIPE CONFIGURATION
+   ⚠️  Replace the values below with your actual Stripe keys/IDs
+   from https://dashboard.stripe.com
+---------------------------------------------------------------- */
+/* ════════════════════════════════════════════════════════════════
+   ★  NAFSI CLINIC — PAYMENT CONFIG
+   Fill in the 6 values below to activate Stripe checkout.
+   ════════════════════════════════════════════════════════════════
+
+   STEP 1 — Paste your Stripe Publishable Key
+            Stripe Dashboard → Developers → API keys
+
+   STEP 2 — Paste each Price ID
+            Stripe Dashboard → Product catalog → [product] → Pricing
+
+   STEP 3 — Set display prices shown to visitors on the site
+
+════════════════════════════════════════════════════════════════ */
+const NAFSI_PAYMENTS = {
+
+  // ── YOUR STRIPE PUBLISHABLE KEY ─────────────────────────────
+  stripeKey: 'pk_live_51OY3FADO6zLlf3eN64pdzIVtL3glk5qAeCgtEnOuUq0PtGHsbtL2uBeLGM4jxtBc6S9CyDlz5ZfQx3G0bp0wHEoD0021KmkFMT',
+
+  // ── PRODUCTS ─────────────────────────────────────────────────
+  products: {
+    book_narcissism:   { displayPrice: '$9.99',  priceId: 'price_1TLbd7DO6zLlf3eNsnaJWA7J', paymentLink: 'https://buy.stripe.com/00waEX6wIeHB0YW8fU5Vu0D' },
+    book_cbt_en:       { displayPrice: '$9.99',  priceId: 'price_1TLbobDO6zLlf3eNRsqYvli7', paymentLink: 'https://buy.stripe.com/3cI6oHg7i7f9cHE67M5Vu0F' },
+    book_cbt_ar:       { displayPrice: '$9.99',  priceId: 'price_1TLbocDO6zLlf3eNdXTPBwz6', paymentLink: 'https://buy.stripe.com/5kQ4gz4oA2YT8ro67M5Vu0G' },
+    book_cbt_audio:    { displayPrice: '$9.99',  priceId: 'price_1TLbodDO6zLlf3eN7EugInuR', paymentLink: 'https://buy.stripe.com/eVqdR9g7i1UP0YWeEi5Vu0H' },
+    book_red_sky:      { displayPrice: '$9.99',  priceId: 'price_1TM2JxDO6zLlf3eNlLTiEHCV', paymentLink: 'https://buy.stripe.com/14A28r08k0QLdLIao25Vu0I' },
+    session_single:    { displayPrice: '$120',   priceId: 'price_1TLbSaDO6zLlf3eNgjWE4sAX', paymentLink: 'https://buy.stripe.com/3cI00jg7ieHBbDA9jY5Vu0A' },
+    session_starter:   { displayPrice: '$495',   priceId: 'price_1TLbSbDO6zLlf3eNqmHurTOz', paymentLink: 'https://buy.stripe.com/aFa5kDaMYbvpazwfIm5Vu0B' },
+    session_deep:      { displayPrice: '$749',   priceId: 'price_1TLbV2DO6zLlf3eNmzAubpDv', paymentLink: 'https://buy.stripe.com/fZu7sLdZagPJgXUao25Vu0C' },
+    cbt_certification: { displayPrice: '$3,495', priceId: 'price_1TLbd8DO6zLlf3eNxFpEC0cg', paymentLink: 'https://buy.stripe.com/00w8wP08kczt5fceEi5Vu0E' },
+  },
+};
+
+// Shim for legacy references
+const STRIPE_CONFIG = {
+  publishableKey: NAFSI_PAYMENTS.stripeKey,
+  prices: Object.fromEntries(Object.entries(NAFSI_PAYMENTS.products).map(([k,v])=>[k,v.priceId])),
+  get successUrl() {
+    var b = window.location.href.split('#')[0];
+    return (b.startsWith('http')||b.startsWith('file')) ? b+'#success' : 'https://nafsiclinic.com/#success';
+  },
+  get cancelUrl() {
+    var b = window.location.href.split('#')[0];
+    return (b.startsWith('http')||b.startsWith('file')) ? b+'#cancel' : 'https://nafsiclinic.com/#cancel';
+  },
+};
+
+/* ----------------------------------------------------------------
+   STRIPE CHECKOUT
+---------------------------------------------------------------- */
+let stripeInstance = null;
+
+async function loadStripeJs() {
+  return new Promise(function(resolve, reject) {
+    if (window.Stripe) { resolve(); return; }
+    var s = document.createElement('script');
+    s.src = 'https://js.stripe.com/v3/';
+    s.onload = resolve;
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+async function getStripe() {
+  if (!stripeInstance) {
+    await loadStripeJs();
+    stripeInstance = Stripe(STRIPE_CONFIG.publishableKey);
+  }
+  return stripeInstance;
+}
+
+async function startCheckout(priceKey, btnEl) {
+  const product = NAFSI_PAYMENTS.products[priceKey];
+  const paymentLink = product ? product.paymentLink : null;
+  const priceId     = product ? (product.priceId || '') : '';
+
+  if (!paymentLink) {
+    showStripeSetupModal();
+    return;
+  }
+
+  // Visual loading state
+  if (btnEl) {
+    btnEl.classList.add('loading');
+    btnEl.disabled = true;
+  }
+
+  // Embed priceId in client_reference_id so webhook doesn't need Stripe API call
+  const sep = paymentLink.includes('?') ? '&' : '?';
+  window.location.href = priceId
+    ? paymentLink + sep + 'client_reference_id=' + encodeURIComponent(priceId)
+    : paymentLink;
+}
+
+function showStripeSetupModal() {
+  var existing = document.getElementById('nafsi-modal');
+  if (existing) existing.remove();
+  var overlay = document.createElement('div');
+  overlay.id = 'nafsi-modal';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;';
+  overlay.innerHTML = '<div style="background:#fff;border-radius:20px;padding:40px 36px;max-width:440px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.25);">'
+    + '<div style="font-size:44px;margin-bottom:16px;">&#128274;</div>'
+    + '<h2 style="font-size:22px;color:#2C5F5D;margin-bottom:12px;">Payments not yet active</h2>'
+    + '<p style="font-size:15px;color:#666;line-height:1.7;margin-bottom:28px;">Open the HTML file in a text editor and fill in your Stripe key + Price IDs in the <strong>NAFSI CLINIC — PAYMENT CONFIG</strong> block.</p>'
+    + '<button id="nafsi-modal-close" style="background:#2C5F5D;color:#fff;border:none;border-radius:10px;padding:12px 32px;font-size:15px;cursor:pointer;font-family:inherit;">OK</button>'
+    + '</div>';
+  document.body.appendChild(overlay);
+  document.getElementById('nafsi-modal-close').onclick = function() { overlay.remove(); };
+  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+}
+
+/* ----------------------------------------------------------------
+   LANGUAGE TOGGLE
+---------------------------------------------------------------- */
+function setLang(lang) {
+  const html = document.getElementById('html-root');
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+  // Update buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  // Persist
+  try { localStorage.setItem('nafsi-lang', lang); } catch(e) {}
+}
+
+/* ----------------------------------------------------------------
+   SMOOTH SCROLL for anchor links
+---------------------------------------------------------------- */
+function smoothScrollTo(targetId) {
+  const el = document.getElementById(targetId);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+/* ----------------------------------------------------------------
+   INIT
+---------------------------------------------------------------- */
+document.addEventListener('DOMContentLoaded', () => {
+  // ---- Run router on load so the right page shows ----
+  router();
+
+  // Inject display prices from config
+  Object.entries(NAFSI_PAYMENTS.products).forEach(function(entry) {
+    var key = entry[0], product = entry[1];
+    document.querySelectorAll('[data-price-display="'+key+'"]').forEach(function(el) {
+      el.textContent = product.displayPrice;
+    });
+  });
+
+  // Restore saved language
+  var saved = 'ar'; try { saved = localStorage.getItem('nafsi-lang') || 'ar'; } catch(e) {}
+  setLang(saved);
+
+  // Wire up lang buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+  });
+
+  // Wire up Stripe buttons (re-wire after pages are shown)
+  function wireStripe() {
+    document.querySelectorAll('[data-price]').forEach(btn => {
+      btn.onclick = () => startCheckout(btn.dataset.price, btn);
+    });
+  }
+  wireStripe();
+  window.addEventListener('hashchange', wireStripe);
+
+  // Sticky nav shadow
+  const nav = document.querySelector('nav');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,0.08)' : '';
+    });
+  }
+
+  // Hamburger menu
+  var burger = document.getElementById('nav-burger');
+  var drawer = document.getElementById('mobile-drawer');
+  var overlay = document.getElementById('drawer-overlay');
+  function openDrawer()  { drawer.classList.add('open');  burger.classList.add('open');  document.body.style.overflow='hidden'; }
+  function closeDrawer() { drawer.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow=''; }
+  if (burger) burger.addEventListener('click', function() {
+    drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+  });
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+  // Close drawer when a nav link is clicked
+  document.querySelectorAll('.mobile-drawer-panel a[data-page], .mobile-drawer-panel a.drawer-book-btn').forEach(function(a) {
+    a.addEventListener('click', closeDrawer);
+  });
+});
+
+</script>
+
+<!-- ===================== LOGIN MODAL ===================== -->
+<div class="modal-overlay" id="login-modal" role="dialog" aria-modal="true" aria-label="Sign in">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+    <div class="modal-brand">
+      <div class="modal-brand-name">Nafsi Clinic</div>
+      <div class="modal-brand-sub">Sara Adham &middot; CBT Therapist</div>
+    </div>
+    <hr class="modal-divider-line">
+    <h2 class="modal-title lang-en">Welcome back</h2>
+    <h2 class="modal-title lang-ar" style="font-family:'Noto Serif Arabic',serif;display:none;">مرحباً بعودتك</h2>
+    <p class="modal-sub lang-en">Sign in to access your course</p>
+    <p class="modal-sub lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">سجّل الدخول للوصول إلى دورتك</p>
+    <div class="modal-error" id="modal-error"></div>
+    <div class="modal-field">
+      <label class="lang-en" for="login-email">Email</label>
+      <label class="lang-ar" for="login-email" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">البريد الإلكتروني</label>
+      <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email" />
+    </div>
+    <div class="modal-field">
+      <label class="lang-en" for="login-password">Password</label>
+      <label class="lang-ar" for="login-password" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">كلمة المرور</label>
+      <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" />
+    </div>
+    <button class="modal-submit" id="login-submit">
+      <span class="lang-en">Sign In</span>
+      <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">تسجيل الدخول</span>
+    </button>
+    <div class="modal-footer">
+      <a href="#" id="forgot-pw-link" class="lang-en">Forgot your password?</a>
+      <a href="#" id="forgot-pw-link-ar" class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">نسيت كلمة المرور؟</a>
+    </div>
+
+  <!-- Forgot Password View (hidden by default) -->
+  <div id="forgot-pw-view" style="display:none;">
+    <button class="modal-close" id="forgot-close" aria-label="Close">&times;</button>
+    <div class="modal-brand">
+      <div class="modal-brand-name">Nafsi Clinic</div>
+      <div class="modal-brand-sub">Sara Adham &middot; CBT Therapist</div>
+    </div>
+    <hr class="modal-divider-line">
+    <h2 class="modal-title lang-en">Reset Password</h2>
+    <h2 class="modal-title lang-ar" style="font-family:'Noto Serif Arabic',serif;display:none;">إعادة تعيين كلمة المرور</h2>
+    <p class="modal-sub lang-en">Enter your email and we'll send you a reset link.</p>
+    <p class="modal-sub lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة التعيين.</p>
+    <div class="modal-error" id="forgot-error"></div>
+    <div id="forgot-success" style="display:none;background:#EAF2F2;color:#2C5F5D;border-radius:8px;padding:14px 16px;font-size:14px;margin-bottom:16px;text-align:center;">
+      <span class="lang-en">✓ Check your email for the reset link.</span>
+      <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">✓ تحقق من بريدك الإلكتروني للحصول على رابط إعادة التعيين.</span>
+    </div>
+    <div class="modal-field" id="forgot-email-field">
+      <label class="lang-en" for="forgot-email">Email</label>
+      <label class="lang-ar" for="forgot-email" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">البريد الإلكتروني</label>
+      <input type="email" id="forgot-email" placeholder="you@example.com" autocomplete="email" />
+    </div>
+    <button class="modal-submit" id="forgot-submit">
+      <span class="lang-en">Send Reset Link</span>
+      <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">إرسال رابط إعادة التعيين</span>
+    </button>
+    <div class="modal-footer">
+      <a href="#" id="back-to-login">
+        <span class="lang-en">← Back to Sign In</span>
+        <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">← العودة إلى تسجيل الدخول</span>
+      </a>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- Reset Password Modal (shown automatically when forgotPasswordToken is in URL) -->
+<div class="modal-overlay" id="reset-pw-modal" role="dialog" aria-modal="true" aria-label="Reset Password">
+  <div class="modal-box">
+    <div class="modal-brand">
+      <div class="modal-brand-name">Nafsi Clinic</div>
+      <div class="modal-brand-sub">Sara Adham &middot; CBT Therapist</div>
+    </div>
+    <hr class="modal-divider-line">
+
+    <!-- Default: set new password form -->
+    <div id="reset-form-section">
+      <h2 class="modal-title lang-en">Set New Password</h2>
+      <h2 class="modal-title lang-ar" style="font-family:'Noto Serif Arabic',serif;display:none;">تعيين كلمة مرور جديدة</h2>
+      <p class="modal-sub lang-en">Choose a strong password for your account.</p>
+      <p class="modal-sub lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">اختر كلمة مرور قوية لحسابك.</p>
+      <div class="modal-error" id="reset-error"></div>
+      <div class="modal-field">
+        <label class="lang-en" for="reset-password">New Password</label>
+        <label class="lang-ar" for="reset-password" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">كلمة المرور الجديدة</label>
+        <input type="password" id="reset-password" placeholder="••••••••" autocomplete="new-password" />
+      </div>
+      <div class="modal-field">
+        <label class="lang-en" for="reset-confirm">Confirm Password</label>
+        <label class="lang-ar" for="reset-confirm" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">تأكيد كلمة المرور</label>
+        <input type="password" id="reset-confirm" placeholder="••••••••" autocomplete="new-password" />
+      </div>
+      <button class="modal-submit" id="reset-submit">
+        <span class="lang-en">Save Password</span>
+        <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">حفظ كلمة المرور</span>
+      </button>
+    </div>
+
+    <!-- Success state -->
+    <div id="reset-success-section" style="display:none; text-align:center;">
+      <div style="font-size:48px; margin-bottom:16px;">✓</div>
+      <h2 class="modal-title lang-en" style="color:var(--teal);">Password Updated!</h2>
+      <h2 class="modal-title lang-ar" style="font-family:'Noto Serif Arabic',serif;color:var(--teal);display:none;">تم تحديث كلمة المرور!</h2>
+      <p class="modal-sub lang-en" style="margin-top:12px;">You can now sign in with your new password.</p>
+      <p class="modal-sub lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;margin-top:12px;display:none;">يمكنك الآن تسجيل الدخول بكلمة مرورك الجديدة.</p>
+      <button class="modal-submit" id="reset-done" style="margin-top:24px;">
+        <span class="lang-en">Sign In</span>
+        <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">تسجيل الدخول</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Wix SDK Login Logic -->
+<script type="module">
+  import { createClient, OAuthStrategy } from 'https://esm.sh/@wix/sdk@1';
+  import { members } from 'https://esm.sh/@wix/members@1';
+  import { redirects } from 'https://esm.sh/@wix/redirects@1';
+
+  const CLIENT_ID = '1c4f2982-7634-46d4-a833-b2ebdd62168c';
+  const COURSE_URL = 'https://courses.nafsiclinic.com/my-programs';
+
+  const wixClient = createClient({
+    modules: { members, redirects },
+    auth: OAuthStrategy({ clientId: CLIENT_ID })
+  });
+
+  // --- Elements ---
+  const modal      = document.getElementById('login-modal');
+  const closeBtn   = document.getElementById('modal-close');
+  const submitBtn  = document.getElementById('login-submit');
+  const errorEl    = document.getElementById('modal-error');
+  const emailIn    = document.getElementById('login-email');
+  const passIn     = document.getElementById('login-password');
+
+  // Forgot password elements
+  const forgotLink    = document.getElementById('forgot-pw-link');
+  const forgotLinkAr  = document.getElementById('forgot-pw-link-ar');
+  const forgotView    = document.getElementById('forgot-pw-view');
+  const forgotClose   = document.getElementById('forgot-close');
+  const forgotSubmit  = document.getElementById('forgot-submit');
+  const forgotEmail   = document.getElementById('forgot-email');
+  const forgotError   = document.getElementById('forgot-error');
+  const forgotSuccess = document.getElementById('forgot-success');
+  const forgotEmailField = document.getElementById('forgot-email-field');
+  const backToLogin   = document.getElementById('back-to-login');
+
+  // --- Login view ---
+  const loginView = modal.querySelector('.modal-box > *:not(#forgot-pw-view)');
+  function getLoginNodes() {
+    return [...modal.querySelector('.modal-box').children].filter(el => el.id !== 'forgot-pw-view');
+  }
+
+  function showLoginView() {
+    getLoginNodes().forEach(el => el.style.display = '');
+    forgotView.style.display = 'none';
+    forgotError.classList.remove('visible');
+    forgotSuccess.style.display = 'none';
+    forgotEmailField.style.display = '';
+    forgotEmail.value = '';
+    forgotSubmit.style.display = '';
+  }
+  function showForgotView() {
+    getLoginNodes().forEach(el => el.style.display = 'none');
+    forgotView.style.display = 'block';
+    setTimeout(() => forgotEmail.focus(), 100);
+  }
+
+  function openModal() {
+    showLoginView();
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => emailIn.focus(), 100);
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    errorEl.classList.remove('visible');
+    emailIn.value = ''; passIn.value = '';
+    showLoginView();
+  }
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.classList.add('visible');
+  }
+  function setLoading(on) {
+    submitBtn.disabled = on;
+    submitBtn.querySelector('.lang-en').textContent = on ? 'Signing in…' : 'Sign In';
+  }
+
+  // --- Forgot password handlers ---
+  forgotLink.addEventListener('click', e => { e.preventDefault(); showForgotView(); });
+  forgotLinkAr.addEventListener('click', e => { e.preventDefault(); showForgotView(); });
+  forgotClose.addEventListener('click', closeModal);
+  backToLogin.addEventListener('click', e => { e.preventDefault(); showLoginView(); });
+
+  forgotSubmit.addEventListener('click', async () => {
+    const email = forgotEmail.value.trim();
+    if (!email) {
+      forgotError.textContent = 'Please enter your email address.';
+      forgotError.classList.add('visible');
+      return;
+    }
+    forgotError.classList.remove('visible');
+    forgotSubmit.disabled = true;
+    forgotSubmit.querySelector('.lang-en').textContent = 'Sending…';
+
+    try {
+      await wixClient.auth.sendPasswordResetEmail(email, 'https://nafsiclinic.com/');
+      forgotEmailField.style.display = 'none';
+      forgotSubmit.style.display = 'none';
+      forgotSuccess.style.display = 'block';
+    } catch (err) {
+      forgotError.textContent = 'Could not send reset email. Please check the address and try again.';
+      forgotError.classList.add('visible');
+      forgotSubmit.disabled = false;
+      forgotSubmit.querySelector('.lang-en').textContent = 'Send Reset Link';
+    }
+  });
+
+  // --- Login handlers ---
+  document.querySelectorAll('.signin-course-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.preventDefault(); openModal(); });
+  });
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  passIn.addEventListener('keydown', e => { if (e.key === 'Enter') submitBtn.click(); });
+
+  submitBtn.addEventListener('click', async () => {
+    const email = emailIn.value.trim();
+    const password = passIn.value;
+    if (!email || !password) { showError('Please enter your email and password.'); return; }
+
+    setLoading(true);
+    errorEl.classList.remove('visible');
+
+    try {
+      const response = await wixClient.auth.login({ email, password });
+
+      if (response.loginState === 'SUCCESS') {
+        const tokens = await wixClient.auth.getMemberTokensForDirectLogin(response.data.sessionToken);
+        wixClient.auth.setTokens(tokens);
+
+        // Try creating a redirect session to transfer the session to the Wix site
+        try {
+          const { redirectSession } = await wixClient.redirects.createRedirectSession({
+            postFlowUrl: COURSE_URL
+          });
+          window.location.href = redirectSession?.fullUrl || COURSE_URL;
+        } catch {
+          window.location.href = COURSE_URL;
+        }
+      } else {
+        showError('Incorrect email or password. Please try again.');
+        setLoading(false);
+      }
+    } catch (err) {
+      showError('Incorrect email or password. Please try again.');
+      setLoading(false);
+    }
+  });
+
+  // ── RESET PASSWORD (forgotPasswordToken in URL) ──────────────────────────
+  const urlParams      = new URLSearchParams(window.location.search);
+  const resetToken     = urlParams.get('forgotPasswordToken');
+  const postResetUrl   = urlParams.get('redirectUrl') || window.location.pathname;
+
+  const resetModal     = document.getElementById('reset-pw-modal');
+  const resetError     = document.getElementById('reset-error');
+  const resetPassIn    = document.getElementById('reset-password');
+  const resetConfirmIn = document.getElementById('reset-confirm');
+  const resetSubmit    = document.getElementById('reset-submit');
+  const resetFormSec   = document.getElementById('reset-form-section');
+  const resetSuccSec   = document.getElementById('reset-success-section');
+  const resetDone      = document.getElementById('reset-done');
+
+  if (resetToken) {
+    // Hand off to the real Wix site — it handles the token natively and correctly
+    window.location.replace('https://www.nafsiclinic.com/' + window.location.search);
+  }
+
+  if (resetToken) {
+    // Clean token from URL bar without reload
+    window.history.replaceState({}, document.title, window.location.pathname);
+    resetModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  resetSubmit.addEventListener('click', async () => {
+    const newPass  = resetPassIn.value;
+    const confirm  = resetConfirmIn.value;
+
+    resetError.classList.remove('visible');
+
+    if (!newPass || newPass.length < 6) {
+      resetError.textContent = 'Password must be at least 6 characters.';
+      resetError.classList.add('visible');
+      return;
+    }
+    if (newPass !== confirm) {
+      resetError.textContent = 'Passwords do not match.';
+      resetError.classList.add('visible');
+      return;
+    }
+
+    resetSubmit.disabled = true;
+    resetSubmit.querySelector('.lang-en').textContent = 'Saving…';
+
+    try {
+      // Primary: use @wix/members authentication.changePassword
+      await wixClient.members.authentication.changePassword(newPass, resetToken);
+      resetFormSec.style.display = 'none';
+      resetSuccSec.style.display = 'block';
+    } catch (err) {
+      // Fallback: call the Wix Members REST API directly
+      try {
+        const resp = await fetch('https://www.wixapis.com/members/v1/auth/members/change-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-wix-client-id': CLIENT_ID },
+          body: JSON.stringify({ forgotPasswordToken: resetToken, newPassword: newPass })
+        });
+        if (resp.ok) {
+          resetFormSec.style.display = 'none';
+          resetSuccSec.style.display = 'block';
+        } else {
+          const data = await resp.json().catch(() => ({}));
+          throw new Error(data.message || 'Reset failed');
+        }
+      } catch (err2) {
+        resetError.textContent = 'Could not reset password. The link may have expired — please request a new one.';
+        resetError.classList.add('visible');
+        resetSubmit.disabled = false;
+        resetSubmit.querySelector('.lang-en').textContent = 'Save Password';
+      }
+    }
+  });
+
+  resetDone.addEventListener('click', () => {
+    resetModal.classList.remove('open');
+    document.body.style.overflow = '';
+    openModal(); // open sign-in modal
+  });
+</script>
+
+<!-- ── SLOT PICKER MODAL ─────────────────────────────────────────── -->
+<style>
+#slot-modal { position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s; }
+#slot-modal.open { opacity:1;pointer-events:all; }
+#slot-modal .sm-box { background:#fff;border-radius:16px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,0.25);padding:36px 32px; }
+.sm-title { font-family:'Cormorant Garamond',serif;font-size:24px;color:#1a3d3b;margin-bottom:4px; }
+.sm-sub { font-size:13px;color:#7a8a88;margin-bottom:24px; }
+.sm-dates { display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px; }
+.sm-date-btn { border:1.5px solid #d0dbd9;border-radius:10px;padding:10px 14px;cursor:pointer;background:#fff;text-align:center;transition:all .18s;min-width:80px; }
+.sm-date-btn:hover { border-color:#2C5F5D;color:#2C5F5D; }
+.sm-date-btn.active { background:#1a3d3b;border-color:#1a3d3b;color:#fff; }
+.sm-date-btn .day { font-size:11px;text-transform:uppercase;letter-spacing:.5px;opacity:.7; }
+.sm-date-btn .date { font-size:16px;font-weight:700;margin:2px 0; }
+.sm-date-btn .month { font-size:11px;opacity:.65; }
+.sm-times { display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px; }
+.sm-time-btn { border:1.5px solid #d0dbd9;border-radius:8px;padding:9px 16px;cursor:pointer;background:#fff;font-size:14px;font-weight:600;color:#1a3d3b;transition:all .18s; }
+.sm-time-btn:hover { border-color:#2C5F5D; }
+.sm-time-btn.active { background:#2C5F5D;border-color:#2C5F5D;color:#fff; }
+.sm-note { font-size:12px;color:#7a8a88;margin-bottom:20px; }
+.sm-confirm { width:100%;padding:14px;background:#1a3d3b;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:background .18s;letter-spacing:.3px; }
+.sm-confirm:hover { background:#2C5F5D; }
+.sm-confirm:disabled { opacity:.4;cursor:not-allowed; }
+.sm-pkg-label { font-size:12px;color:#b89a4a;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px;display:flex;align-items:center;gap:6px; }
+.sm-pkg-label::before { content:'';display:inline-block;width:18px;height:2px;background:#b89a4a;border-radius:2px; }
+.sm-section-title { font-size:13px;font-weight:700;color:#1a3d3b;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px; }
+.sm-times-wrap { min-height:52px; }
+.sm-no-date { font-size:13px;color:#9aadab;padding:10px 0; }
+</style>
+
+<div id="slot-modal" role="dialog" aria-modal="true">
+  <div class="sm-box">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+      <div>
+        <div class="sm-pkg-label" id="sm-pkg-name">Session Package</div>
+        <div class="sm-title lang-en">Choose Your Session Time</div>
+        <div class="sm-title lang-ar" style="font-family:'Noto Serif Arabic',serif;display:none;">اختر وقت جلستك</div>
+      </div>
+      <button id="sm-close" style="background:none;border:none;cursor:pointer;font-size:22px;color:#7a8a88;line-height:1;padding:4px;">&#x2715;</button>
+    </div>
+    <p class="sm-sub lang-en">Available Thu · Fri · Sat &nbsp;|&nbsp; 12:00 – 20:00 Bangkok time (ICT, UTC+7)</p>
+    <p class="sm-sub lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">الخميس · الجمعة · السبت &nbsp;|&nbsp; 12:00 – 20:00 بتوقيت بانكوك</p>
+
+    <div class="sm-section-title lang-en">Select a date</div>
+    <div class="sm-section-title lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">اختر التاريخ</div>
+    <div class="sm-dates" id="sm-dates"></div>
+
+    <div class="sm-section-title lang-en">Select a time</div>
+    <div class="sm-section-title lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">اختر الوقت</div>
+    <div class="sm-times-wrap">
+      <div class="sm-no-date lang-en" id="sm-pick-date-hint">← Pick a date first</div>
+      <div class="sm-times" id="sm-times" style="display:none;"></div>
+    </div>
+
+    <p class="sm-note lang-en">&#128274; After selecting your slot you'll be taken to secure payment. Sara will confirm your booking by email.</p>
+    <p class="sm-note lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">&#128274; بعد اختيار موعدك ستنتقل إلى صفحة الدفع الآمن. ستؤكد سارة الحجز عبر البريد الإلكتروني.</p>
+
+    <button class="sm-confirm" id="sm-confirm" disabled>
+      <span class="lang-en">Continue to Payment →</span>
+      <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">المتابعة للدفع ←</span>
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const DAYS       = [4,5,6];  // Thu=4, Fri=5, Sat=6
+  const HOURS      = [12,13,14,15,16,17,18,19]; // 12:00–19:00 Bangkok (slots end by 20:00)
+  const TZ_OFFSET  = 7;        // Bangkok UTC+7
+  const CAL_HOOK   = 'https://hook.eu1.make.com/1blputxq4kkyxpqyj19yloq4usw8njfe';
+
+  let selectedDate   = null;
+  let selectedHour   = null;
+  let pendingPriceKey = null;
+  let busyPeriods    = null; // cached from Make
+
+  const slotModal  = document.getElementById('slot-modal');
+  const smClose    = document.getElementById('sm-close');
+  const smDates    = document.getElementById('sm-dates');
+  const smTimes    = document.getElementById('sm-times');
+  const smConfirm  = document.getElementById('sm-confirm');
+  const smPkgName  = document.getElementById('sm-pkg-name');
+  const smPickHint = document.getElementById('sm-pick-date-hint');
+
+  const PKG_LABELS = {
+    session_single:  'Single Session — $120',
+    session_starter: 'Starter Package — $495',
+    session_deep:    '8-Session Package — $749',
+  };
+
+  // Bangkok ms from UTC ms
+  function toBangkokMs(utcMs) { return utcMs + TZ_OFFSET * 3600000; }
+
+  // Check if a slot (h:00 on day bkkDay) overlaps any busy period
+  function isSlotBusy(bkkDayMs, hour) {
+    if (!busyPeriods || !busyPeriods.length) return false;
+    const slotStart = bkkDayMs + hour * 3600000 - TZ_OFFSET * 3600000; // back to UTC ms
+    const slotEnd   = slotStart + 3600000; // 1-hour slot
+    return busyPeriods.some(b => {
+      const bs = new Date(b.start).getTime();
+      const be = new Date(b.end).getTime();
+      return slotStart < be && slotEnd > bs; // overlap
+    });
+  }
+
+  // Get next 28 days filtered to Thu/Fri/Sat
+  function getUpcomingDays() {
+    const days = [];
+    const nowBkk = toBangkokMs(Date.now());
+    for (let d = 1; d <= 28; d++) {
+      const dayMs = nowBkk + d * 86400000;
+      const dt = new Date(dayMs);
+      if (DAYS.includes(dt.getDay())) {
+        days.push({ y: dt.getFullYear(), m: dt.getMonth(), day: dt.getDate(), dow: dt.getDay(), ms: dayMs });
+      }
+      if (days.length >= 9) break;
+    }
+    return days;
+  }
+
+  async function fetchBusy() {
+    try {
+      const r = await fetch(CAL_HOOK);
+      if (!r.ok) return;
+      busyPeriods = await r.json();
+    } catch(e) {
+      busyPeriods = []; // fallback: show all slots
+    }
+  }
+
+  function buildDates() {
+    smDates.innerHTML = '<div style="font-size:12px;color:#9aadab;padding:8px 0;">Loading availability…</div>';
+    fetchBusy().then(() => {
+      smDates.innerHTML = '';
+      const dayNames   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      getUpcomingDays().forEach(s => {
+        // Check if ANY slot is free on this day
+        const hasFree = HOURS.some(h => !isSlotBusy(s.ms, h));
+        const btn = document.createElement('button');
+        btn.className = 'sm-date-btn' + (hasFree ? '' : ' sm-date-full');
+        if (!hasFree) btn.disabled = true;
+        btn.style.opacity = hasFree ? '1' : '0.35';
+        btn.innerHTML = `<div class="day">${dayNames[s.dow]}</div><div class="date">${s.day}</div><div class="month">${monthNames[s.m]}</div>`;
+        if (hasFree) btn.addEventListener('click', () => {
+          document.querySelectorAll('.sm-date-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          selectedDate = s;
+          selectedHour = null;
+          document.querySelectorAll('.sm-time-btn').forEach(b => b.classList.remove('active'));
+          smConfirm.disabled = true;
+          buildTimes();
+        });
+        smDates.appendChild(btn);
+      });
+    });
+  }
+
+  function buildTimes() {
+    smTimes.innerHTML = '';
+    smPickHint.style.display = 'none';
+    smTimes.style.display = 'flex';
+    HOURS.forEach(h => {
+      const busy = isSlotBusy(selectedDate.ms, h);
+      const btn = document.createElement('button');
+      btn.className = 'sm-time-btn';
+      btn.textContent = `${String(h).padStart(2,'0')}:00`;
+      if (busy) { btn.disabled = true; btn.style.opacity = '0.3'; btn.title = 'Not available'; }
+      else btn.addEventListener('click', () => {
+        document.querySelectorAll('.sm-time-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedHour = h;
+        smConfirm.disabled = false;
+      });
+      smTimes.appendChild(btn);
+    });
+  }
+
+  function openSlotModal(priceKey) {
+    pendingPriceKey = priceKey;
+    selectedDate = null;
+    selectedHour = null;
+    smConfirm.disabled = true;
+    smPickHint.style.display = '';
+    smTimes.style.display = 'none';
+    smPkgName.textContent = PKG_LABELS[priceKey] || 'Session Package';
+    buildDates();
+    slotModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSlotModal() {
+    slotModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  smClose.addEventListener('click', closeSlotModal);
+  slotModal.addEventListener('click', e => { if (e.target === slotModal) closeSlotModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSlotModal(); });
+
+  smConfirm.addEventListener('click', () => {
+    if (!selectedDate || selectedHour === null || !pendingPriceKey) return;
+
+    const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const dayNames   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const slotLabel  = `${dayNames[selectedDate.dow]} ${selectedDate.day} ${monthNames[selectedDate.m]} ${selectedDate.y} at ${String(selectedHour).padStart(2,'0')}:00 Bangkok time`;
+    const refId      = encodeURIComponent(slotLabel.replace(/\s/g, '_'));
+
+    const product = (typeof NAFSI_PAYMENTS !== 'undefined' ? NAFSI_PAYMENTS : window.NAFSI_PAYMENTS || {}).products || {};
+    const productObj  = product[pendingPriceKey] || {};
+    const paymentLink = productObj.paymentLink || null;
+    const priceId     = productObj.priceId || '';
+
+    if (!paymentLink) { closeSlotModal(); if(window.showStripeSetupModal) window.showStripeSetupModal(); return; }
+
+    // Append priceId|slot as client_reference_id so the webhook knows product without a Stripe API call
+    const refWithPrice = encodeURIComponent(priceId + '--SLOT--' + slotLabel.replace(/\s/g, '_'));
+    const sep = paymentLink.includes('?') ? '&' : '?';
+    window.location.href = paymentLink + sep + 'client_reference_id=' + refWithPrice;
+  });
+
+  // Intercept session "Book Now" buttons
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-price]');
+    if (!btn) return;
+    const key = btn.getAttribute('data-price');
+    if (!['session_single','session_starter','session_deep'].includes(key)) return;
+    // Only intercept on sessions page
+    const sessionPage = document.getElementById('page-sessions');
+    if (sessionPage && getComputedStyle(sessionPage).display === 'none') return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    openSlotModal(key);
+  }, true); // capture phase — runs before startCheckout
+
+})();
+</script>
+</body>
+</html>

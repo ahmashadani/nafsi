@@ -1781,12 +1781,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const resetSuccSec   = document.getElementById('reset-success-section');
   const resetDone      = document.getElementById('reset-done');
 
-  // Show set-password modal when link contains forgotPasswordToken
+  // When a forgotPasswordToken arrives, hand straight off to the Wix courses site
+  // which handles its own password tokens natively — no custom JS API calls needed.
   if (resetToken) {
-    // Remove token from URL bar (no reload) so the token stays in the JS variable only
-    window.history.replaceState({}, document.title, window.location.pathname);
-    resetModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    window.location.replace('https://courses.nafsiclinic.com' + window.location.search);
   }
 
   resetSubmit.addEventListener('click', async () => {

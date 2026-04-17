@@ -1864,7 +1864,7 @@ document.addEventListener('DOMContentLoaded', () => {
 .sm-date-btn .date { font-size:16px;font-weight:700;margin:2px 0; }
 .sm-date-btn .month { font-size:11px;opacity:.65; }
 .sm-times { display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px; }
-.sm-time-btn { border:1.5px solid #d0dbd9;border-radius:8px;padding:9px 16px;cursor:pointer;background:#fff;font-size:14px;font-weight:600;color:#1a3d3b;transition:all .18s; }
+.sm-time-btn { border:1.5px solid #d0dbd9;border-radius:8px;padding:9px 14px;cursor:pointer;background:#fff;font-size:14px;font-weight:600;color:#1a3d3b;transition:all .18s;text-align:center;line-height:1.3;min-width:80px; }
 .sm-time-btn:hover { border-color:#2C5F5D; }
 .sm-time-btn.active { background:#2C5F5D;border-color:#2C5F5D;color:#fff; }
 .sm-note { font-size:12px;color:#7a8a88;margin-bottom:20px; }
@@ -1918,6 +1918,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const HOURS      = [12,13,14,15,16,17,18,19]; // 12:00–19:00 Bangkok (slots end by 20:00)
   const TZ_OFFSET  = 7;        // Bangkok UTC+7
   const CAL_HOOK   = 'https://hook.eu1.make.com/1blputxq4kkyxpqyj19yloq4usw8njfe';
+  const USER_TZ    = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  // Returns user-local time string + whether the date shifts vs Bangkok date
+  function slotLocalInfo(y, m, d, bkkHour) {
+    const utcMs   = Date.UTC(y, m, d, bkkHour - TZ_OFFSET, 0, 0);
+    const localDt = new Date(utcMs);
+    const localTime = localDt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZone: USER_TZ });
+    // Detect cross-midnight day shift
+    const bkkDateStr   = new Date(Date.UTC(y, m, d, 12)).toLocaleDateString('en-GB', { timeZone: 'Asia/Bangkok', day: 'numeric' });
+    const localDateStr = localDt.toLocaleDateString('en-GB', { timeZone: USER_TZ, day: 'numeric' });
+    return { localTime, dayShifted: bkkDateStr !== localDateStr };
+  }
 
   let selectedDate   = null;
   let selectedHour   = null;
@@ -1972,7 +1984,9 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const r = await fetch(CAL_HOOK);
       if (!r.ok) return;
-      busyPeriods = await r.json();
+      const data = await r.json();
+      // Make.com returns {"busy":[...]} — extract the array
+      busyPeriods = Array.isArray(data) ? data : (data.busy || []);
     } catch(e) {
       busyPeriods = []; // fallback: show all slots
     }
@@ -2012,9 +2026,13 @@ document.addEventListener('DOMContentLoaded', () => {
     smTimes.style.display = 'flex';
     HOURS.forEach(h => {
       const busy = isSlotBusy(selectedDate.ms, h);
+      const { localTime, dayShifted } = slotLocalInfo(selectedDate.y, selectedDate.m, selectedDate.day, h);
+      const bkkLabel = `${String(h).padStart(2,'0')}:00 BKK`;
       const btn = document.createElement('button');
       btn.className = 'sm-time-btn';
-      btn.textContent = `${String(h).padStart(2,'0')}:00`;
+      btn.innerHTML =
+        `<span style="font-size:14px;font-weight:700;display:block;">${localTime}</span>` +
+        `<span style="font-size:10px;color:#9aadab;display:block;">${bkkLabel}${dayShifted ? ' ·&nbsp;prev&nbsp;day' : ''}</span>`;
       if (busy) { btn.disabled = true; btn.style.opacity = '0.3'; btn.title = 'Not available'; }
       else btn.addEventListener('click', () => {
         document.querySelectorAll('.sm-time-btn').forEach(b => b.classList.remove('active'));
@@ -2034,6 +2052,11 @@ document.addEventListener('DOMContentLoaded', () => {
     smPickHint.style.display = '';
     smTimes.style.display = 'none';
     smPkgName.textContent = PKG_LABELS[priceKey] || 'Session Package';
+    // Show user's detected timezone in the subtitle
+    const tzShort = new Intl.DateTimeFormat('en', { timeZoneName: 'short', timeZone: USER_TZ })
+      .formatToParts(new Date()).find(p => p.type === 'timeZoneName')?.value || USER_TZ;
+    const subEn = document.querySelector('.sm-sub.lang-en');
+    if (subEn) subEn.innerHTML = `Available Thu · Fri · Sat &nbsp;|&nbsp; Times shown in your timezone (${tzShort})`;
     buildDates();
     slotModal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -2053,8 +2076,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const dayNames   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    const slotLabel  = `${dayNames[selectedDate.dow]} ${selectedDate.day} ${monthNames[selectedDate.m]} ${selectedDate.y} at ${String(selectedHour).padStart(2,'0')}:00 Bangkok time`;
-    const refId      = encodeURIComponent(slotLabel.replace(/\s/g, '_'));
+    // No colon in the slot reference — Stripe strips colons from client_reference_id
+    const hourStr    = String(selectedHour).padStart(2,'0');
+    const slotRef    = `${dayNames[selectedDate.dow]}_${selectedDate.day}_${monthNames[selectedDate.m]}_${selectedDate.y}_at_${hourStr}00_Bangkok_time`;
 
     const product = (typeof NAFSI_PAYMENTS !== 'undefined' ? NAFSI_PAYMENTS : window.NAFSI_PAYMENTS || {}).products || {};
     const productObj  = product[pendingPriceKey] || {};
@@ -2063,8 +2087,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!paymentLink) { closeSlotModal(); if(window.showStripeSetupModal) window.showStripeSetupModal(); return; }
 
-    // Append priceId|slot as client_reference_id so the webhook knows product without a Stripe API call
-    const refWithPrice = encodeURIComponent(priceId + '--SLOT--' + slotLabel.replace(/\s/g, '_'));
+    // Append priceId--SLOT--slotRef as client_reference_id
+    const refWithPrice = encodeURIComponent(priceId + '--SLOT--' + slotRef);
     const sep = paymentLink.includes('?') ? '&' : '?';
     window.location.href = paymentLink + sep + 'client_reference_id=' + refWithPrice;
   });

@@ -319,9 +319,9 @@ async function sendCertificationEmail(toEmail, toName) {
 function parseSlot(refId) {
   if (!refId) return null;
   try {
-    // Format: Thursday_17_Apr_2026_at_14:00_Bangkok_time
+    // Format: Thursday_17_Apr_2026_at_1400_Bangkok_time  (no colon — Stripe strips colons)
     const decoded = decodeURIComponent(refId).replace(/_/g, ' ');
-    const match = decoded.match(/(\w+)\s+(\d+)\s+(\w+)\s+(\d{4})\s+at\s+(\d{2}):00/);
+    const match = decoded.match(/(\w+)\s+(\d+)\s+(\w+)\s+(\d{4})\s+at\s+(\d{2})0{0,2}/);
     if (!match) return null;
     const [, dayName, day, month, year, hour] = match;
     const months = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
@@ -541,6 +541,26 @@ exports.handler = async (event) => {
       } catch (err) {
         console.error('[session] ✗ Email failed:', err.message);
         return { statusCode: 500, body: `Session email failed: ${err.message}` };
+      }
+
+      // Auto-block Google Calendar so the slot disappears from the booking page
+      if (slot && process.env.MAKE_CALENDAR_WEBHOOK) {
+        try {
+          await fetch(process.env.MAKE_CALENDAR_WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              title:          `CBT Session — ${customerName || customerEmail}`,
+              start:          slot.startUtc.toISOString(),
+              end:            slot.endUtc.toISOString(),
+              description:    `Package: ${pkg.label} (${pkg.price})\nClient: ${customerName} <${customerEmail}>\nBooked via nafsiclinic.com`,
+              attendeeEmail:  customerEmail,
+            }),
+          });
+          console.log(`[session] ✓ Calendar blocked: ${slot.label}`);
+        } catch (calErr) {
+          console.warn('[session] ⚠ Calendar block failed (non-fatal):', calErr.message);
+        }
       }
       continue;
     }

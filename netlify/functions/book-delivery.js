@@ -240,23 +240,23 @@ async function sendCertificationEmail(toEmail, toName) {
 
           <!-- Step 1 -->
           <div style="background:#f0f7f7;border-left:4px solid #2C5F5D;border-radius:0 10px 10px 0;padding:20px 24px;margin-bottom:16px;">
-            <p style="color:#2C5F5D;font-weight:bold;font-size:15px;margin:0 0 6px;">Step 1 — Check your inbox</p>
-            <p style="color:#555;font-size:14px;line-height:1.7;margin:0;">
-              You will receive a second email from Nafsi Clinic with a <strong>"Set Password"</strong> button. Click it to create your password and activate your account. Check your spam folder if you don't see it within a few minutes.
-            </p>
-          </div>
-
-          <!-- Step 2 -->
-          <div style="background:#f0f7f7;border-left:4px solid #2C5F5D;border-radius:0 10px 10px 0;padding:20px 24px;margin-bottom:16px;">
-            <p style="color:#2C5F5D;font-weight:bold;font-size:15px;margin:0 0 6px;">Step 2 — Access your programme</p>
+            <p style="color:#2C5F5D;font-weight:bold;font-size:15px;margin:0 0 6px;">Step 1 — Access your programme</p>
             <p style="color:#555;font-size:14px;line-height:1.7;margin:0 0 14px;">
-              Once your password is set, click below to go directly to your programme:
+              Click below and sign in with your <strong>Google account</strong> — no password needed.
             </p>
             <div style="text-align:center;">
               <a href="${COURSE_URL}" style="display:inline-block;background:#1a3d3b;color:#ffffff;text-decoration:none;font-weight:bold;font-size:15px;padding:14px 36px;border-radius:8px;">
                 🎓 Go to My Programme
               </a>
             </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div style="background:#f0f7f7;border-left:4px solid #2C5F5D;border-radius:0 10px 10px 0;padding:20px 24px;margin-bottom:16px;">
+            <p style="color:#2C5F5D;font-weight:bold;font-size:15px;margin:0 0 6px;">Step 2 — Sign in with Google</p>
+            <p style="color:#555;font-size:14px;line-height:1.7;margin:0;">
+              On the page, click <strong>"Continue with Google"</strong> and select the Google account you used at checkout. You'll land directly inside your programme.
+            </p>
           </div>
 
           <!-- Step 3 -->
@@ -274,10 +274,10 @@ async function sendCertificationEmail(toEmail, toName) {
               تهانينا! تم تأكيد تسجيلك في <strong>برنامج شهادة العلاج السلوكي المعرفي (المستوى الأول والثاني)</strong>.
             </p>
             <p style="color:#555;font-size:14px;line-height:1.9;margin:0 0 8px;">
-              <strong>الخطوة الأولى:</strong> ستصلك رسالة ثانية من عيادة نفسي تحتوي على زر "تعيين كلمة المرور". اضغط عليه لتفعيل حسابك. تحقق من مجلد الرسائل غير المرغوب فيها إذا لم تجدها.
+              <strong>الخطوة الأولى:</strong> اضغط على زر "الانتقال إلى برنامجي" أعلاه.
             </p>
             <p style="color:#555;font-size:14px;line-height:1.9;margin:0;">
-              <strong>الخطوة الثانية:</strong> بعد تفعيل حسابك، انتقل مباشرة إلى برنامجك عبر الرابط أعلاه.
+              <strong>الخطوة الثانية:</strong> اضغط على <strong>"Continue with Google"</strong> وسجّل الدخول بحساب Google الذي استخدمته عند الشراء. ستجد نفسك مباشرة داخل برنامجك.
             </p>
           </div>
 
@@ -449,7 +449,7 @@ async function handleCertification(email, name) {
     console.warn('[enrollment] WIX_API not set — skipping Wix member creation');
   } else {
     await createWixMember(email, name);
-    await sendWixPasswordEmail(email);
+    // No password email — users sign in with Google on courses.nafsiclinic.com
   }
   // Always send our bilingual Brevo welcome email with course access instructions
   await sendCertificationEmail(email, name);

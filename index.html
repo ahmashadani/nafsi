@@ -1503,87 +1503,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- ===================== LOGIN MODAL ===================== -->
 <div class="modal-overlay" id="login-modal" role="dialog" aria-modal="true" aria-label="Sign in">
-  <div class="modal-box">
+  <div class="modal-box" style="max-width:400px;padding:44px 36px 36px;">
     <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
     <div class="modal-brand">
       <div class="modal-brand-name">Nafsi Clinic</div>
       <div class="modal-brand-sub">Sara Adham &middot; CBT Therapist</div>
     </div>
     <hr class="modal-divider-line">
-    <h2 class="modal-title lang-en">Welcome back</h2>
-    <h2 class="modal-title lang-ar" style="font-family:'Noto Serif Arabic',serif;display:none;">مرحباً بعودتك</h2>
-    <p class="modal-sub lang-en">Sign in to access your course</p>
-    <p class="modal-sub lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">سجّل الدخول للوصول إلى دورتك</p>
 
-    <!-- Google sign-in — primary method -->
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="font-size:42px;margin-bottom:12px;">🎓</div>
+      <h2 class="modal-title lang-en" style="margin-bottom:8px;">Welcome back</h2>
+      <h2 class="modal-title lang-ar" style="font-family:'Noto Serif Arabic',serif;display:none;margin-bottom:8px;">مرحباً بعودتك</h2>
+      <p class="modal-sub lang-en" style="margin-bottom:0;">Access your CBT programme on the Nafsi Academy portal.</p>
+      <p class="modal-sub lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;margin-bottom:0;">ادخل إلى برنامجك عبر بوابة أكاديمية نفسي.</p>
+    </div>
+
+    <!-- Primary CTA — go to courses site -->
     <a href="https://courses.nafsiclinic.com/my-programs"
-       style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px;background:#fff;border:1.5px solid #d0dbd9;border-radius:8px;font-size:15px;font-weight:600;color:#1a3d3b;text-decoration:none;margin-bottom:16px;box-sizing:border-box;transition:border-color .15s;"
-       onmouseover="this.style.borderColor='#2C5F5D'" onmouseout="this.style.borderColor='#d0dbd9'">
-      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
-      <span class="lang-en">Continue with Google</span>
-      <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">متابعة بحساب Google</span>
+       style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#1a3d3b;border-radius:8px;font-size:15px;font-weight:600;color:#fff;text-decoration:none;margin-bottom:14px;box-sizing:border-box;transition:background .15s;"
+       onmouseover="this.style.background='#2C5F5D'" onmouseout="this.style.background='#1a3d3b'">
+      <span class="lang-en">Go to My Course</span>
+      <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">الانتقال إلى دورتي</span>
     </a>
 
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-      <hr style="flex:1;border:none;border-top:1px solid #e8e8e4;margin:0;">
-      <span style="font-size:12px;color:#aaa;" class="lang-en">or sign in with email</span>
-      <span style="font-size:12px;color:#aaa;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">أو بالبريد الإلكتروني</span>
-      <hr style="flex:1;border:none;border-top:1px solid #e8e8e4;margin:0;">
-    </div>
-
-    <div class="modal-error" id="modal-error"></div>
-    <div class="modal-field">
-      <label class="lang-en" for="login-email">Email</label>
-      <label class="lang-ar" for="login-email" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">البريد الإلكتروني</label>
-      <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email" />
-    </div>
-    <div class="modal-field">
-      <label class="lang-en" for="login-password">Password</label>
-      <label class="lang-ar" for="login-password" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">كلمة المرور</label>
-      <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" />
-    </div>
-    <button class="modal-submit" id="login-submit">
-      <span class="lang-en">Sign In</span>
-      <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">تسجيل الدخول</span>
-    </button>
-    <div class="modal-footer">
-      <a href="#" id="forgot-pw-link" class="lang-en">Forgot your password?</a>
-      <a href="#" id="forgot-pw-link-ar" class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">نسيت كلمة المرور؟</a>
-    </div>
-
-  <!-- Forgot Password View (hidden by default) -->
-  <div id="forgot-pw-view" style="display:none;">
-    <button class="modal-close" id="forgot-close" aria-label="Close">&times;</button>
-    <div class="modal-brand">
-      <div class="modal-brand-name">Nafsi Clinic</div>
-      <div class="modal-brand-sub">Sara Adham &middot; CBT Therapist</div>
-    </div>
-    <hr class="modal-divider-line">
-    <h2 class="modal-title lang-en">Reset Password</h2>
-    <h2 class="modal-title lang-ar" style="font-family:'Noto Serif Arabic',serif;display:none;">إعادة تعيين كلمة المرور</h2>
-    <p class="modal-sub lang-en">Enter your email and we'll send you a reset link.</p>
-    <p class="modal-sub lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة التعيين.</p>
-    <div class="modal-error" id="forgot-error"></div>
-    <div id="forgot-success" style="display:none;background:#EAF2F2;color:#2C5F5D;border-radius:8px;padding:14px 16px;font-size:14px;margin-bottom:16px;text-align:center;">
-      <span class="lang-en">✓ Check your email for the reset link.</span>
-      <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">✓ تحقق من بريدك الإلكتروني للحصول على رابط إعادة التعيين.</span>
-    </div>
-    <div class="modal-field" id="forgot-email-field">
-      <label class="lang-en" for="forgot-email">Email</label>
-      <label class="lang-ar" for="forgot-email" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">البريد الإلكتروني</label>
-      <input type="email" id="forgot-email" placeholder="you@example.com" autocomplete="email" />
-    </div>
-    <button class="modal-submit" id="forgot-submit">
-      <span class="lang-en">Send Reset Link</span>
-      <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">إرسال رابط إعادة التعيين</span>
-    </button>
-    <div class="modal-footer">
-      <a href="#" id="back-to-login">
-        <span class="lang-en">← Back to Sign In</span>
-        <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">← العودة إلى تسجيل الدخول</span>
-      </a>
-    </div>
-  </div>
+    <p style="text-align:center;font-size:12px;color:#aaa;margin:0;line-height:1.6;">
+      <span class="lang-en">You'll log in with the email &amp; password from your welcome email.<br>On mobile, use the <strong style="color:#2C5F5D;">Wix Spaces</strong> app.</span>
+      <span class="lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;display:none;">سجّل الدخول بالبريد الإلكتروني وكلمة المرور من رسالة الترحيب.<br>على الجوال، استخدم تطبيق <strong style="color:#2C5F5D;">Wix Spaces</strong>.</span>
+    </p>
   </div>
 </div>
 
@@ -1634,239 +1581,42 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 
-<!-- Wix SDK Login Logic -->
-<script type="module">
-  import { createClient, OAuthStrategy } from 'https://esm.sh/@wix/sdk@1';
-  import { members } from 'https://esm.sh/@wix/members@1';
-  import { redirects } from 'https://esm.sh/@wix/redirects@1';
-
-  const CLIENT_ID = '1c4f2982-7634-46d4-a833-b2ebdd62168c';
+<!-- Login Modal Logic — simplified: modal open/close only, navigation handled by "Go to My Course" link -->
+<script>
+  (function() {
   const COURSE_URL = 'https://courses.nafsiclinic.com/my-programs';
 
-  const wixClient = createClient({
-    modules: { members, redirects },
-    auth: OAuthStrategy({ clientId: CLIENT_ID })
-  });
-
   // --- Elements ---
-  const modal      = document.getElementById('login-modal');
-  const closeBtn   = document.getElementById('modal-close');
-  const submitBtn  = document.getElementById('login-submit');
-  const errorEl    = document.getElementById('modal-error');
-  const emailIn    = document.getElementById('login-email');
-  const passIn     = document.getElementById('login-password');
-
-  // Forgot password elements
-  const forgotLink    = document.getElementById('forgot-pw-link');
-  const forgotLinkAr  = document.getElementById('forgot-pw-link-ar');
-  const forgotView    = document.getElementById('forgot-pw-view');
-  const forgotClose   = document.getElementById('forgot-close');
-  const forgotSubmit  = document.getElementById('forgot-submit');
-  const forgotEmail   = document.getElementById('forgot-email');
-  const forgotError   = document.getElementById('forgot-error');
-  const forgotSuccess = document.getElementById('forgot-success');
-  const forgotEmailField = document.getElementById('forgot-email-field');
-  const backToLogin   = document.getElementById('back-to-login');
-
-  // --- Login view ---
-  const loginView = modal.querySelector('.modal-box > *:not(#forgot-pw-view)');
-  function getLoginNodes() {
-    return [...modal.querySelector('.modal-box').children].filter(el => el.id !== 'forgot-pw-view');
-  }
-
-  function showLoginView() {
-    getLoginNodes().forEach(el => el.style.display = '');
-    forgotView.style.display = 'none';
-    forgotError.classList.remove('visible');
-    forgotSuccess.style.display = 'none';
-    forgotEmailField.style.display = '';
-    forgotEmail.value = '';
-    forgotSubmit.style.display = '';
-  }
-  function showForgotView() {
-    getLoginNodes().forEach(el => el.style.display = 'none');
-    forgotView.style.display = 'block';
-    setTimeout(() => forgotEmail.focus(), 100);
-  }
+  const modal    = document.getElementById('login-modal');
+  const closeBtn = document.getElementById('modal-close');
 
   function openModal() {
-    showLoginView();
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
-    setTimeout(() => emailIn.focus(), 100);
   }
   function closeModal() {
     modal.classList.remove('open');
     document.body.style.overflow = '';
-    errorEl.classList.remove('visible');
-    emailIn.value = ''; passIn.value = '';
-    showLoginView();
-  }
-  function showError(msg) {
-    errorEl.textContent = msg;
-    errorEl.classList.add('visible');
-  }
-  function setLoading(on) {
-    submitBtn.disabled = on;
-    submitBtn.querySelector('.lang-en').textContent = on ? 'Signing in…' : 'Sign In';
   }
 
-  // --- Forgot password handlers ---
-  forgotLink.addEventListener('click', e => { e.preventDefault(); showForgotView(); });
-  forgotLinkAr.addEventListener('click', e => { e.preventDefault(); showForgotView(); });
-  forgotClose.addEventListener('click', closeModal);
-  backToLogin.addEventListener('click', e => { e.preventDefault(); showLoginView(); });
-
-  forgotSubmit.addEventListener('click', async () => {
-    const email = forgotEmail.value.trim();
-    if (!email) {
-      forgotError.textContent = 'Please enter your email address.';
-      forgotError.classList.add('visible');
-      return;
-    }
-    forgotError.classList.remove('visible');
-    forgotSubmit.disabled = true;
-    forgotSubmit.querySelector('.lang-en').textContent = 'Sending…';
-
-    try {
-      await wixClient.auth.sendPasswordResetEmail(email, 'https://nafsiclinic.com/');
-      forgotEmailField.style.display = 'none';
-      forgotSubmit.style.display = 'none';
-      forgotSuccess.style.display = 'block';
-    } catch (err) {
-      forgotError.textContent = 'Could not send reset email. Please check the address and try again.';
-      forgotError.classList.add('visible');
-      forgotSubmit.disabled = false;
-      forgotSubmit.querySelector('.lang-en').textContent = 'Send Reset Link';
-    }
+  // Open modal when any "Sign In to Course" button is clicked
+  document.querySelectorAll('.signin-course-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) { e.preventDefault(); openModal(); });
   });
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (modal) modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-  // --- Login handlers ---
-  document.querySelectorAll('.signin-course-btn').forEach(btn => {
-    btn.addEventListener('click', e => { e.preventDefault(); openModal(); });
-  });
-  closeBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-  passIn.addEventListener('keydown', e => { if (e.key === 'Enter') submitBtn.click(); });
+  // Auto-open if ?login=1 in URL
+  var urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('login') === '1') { setTimeout(openModal, 300); }
 
-  submitBtn.addEventListener('click', async () => {
-    const email = emailIn.value.trim();
-    const password = passIn.value;
-    if (!email || !password) { showError('Please enter your email and password.'); return; }
-
-    setLoading(true);
-    errorEl.classList.remove('visible');
-
-    try {
-      const response = await wixClient.auth.login({ email, password });
-
-      if (response.loginState === 'SUCCESS') {
-        const tokens = await wixClient.auth.getMemberTokensForDirectLogin(response.data.sessionToken);
-        wixClient.auth.setTokens(tokens);
-
-        // Try creating a redirect session to transfer the session to the Wix site
-        try {
-          const { redirectSession } = await wixClient.redirects.createRedirectSession({
-            postFlowUrl: COURSE_URL
-          });
-          window.location.href = redirectSession?.fullUrl || COURSE_URL;
-        } catch {
-          window.location.href = COURSE_URL;
-        }
-      } else {
-        showError('Incorrect email or password. Please try again.');
-        setLoading(false);
-      }
-    } catch (err) {
-      showError('Incorrect email or password. Please try again.');
-      setLoading(false);
-    }
-  });
-
-  // ── RESET PASSWORD (forgotPasswordToken in URL) ──────────────────────────
-  const urlParams      = new URLSearchParams(window.location.search);
-  const resetToken     = urlParams.get('forgotPasswordToken');
-  const postResetUrl   = urlParams.get('redirectUrl') || window.location.pathname;
-
-  const resetModal     = document.getElementById('reset-pw-modal');
-  const resetError     = document.getElementById('reset-error');
-  const resetPassIn    = document.getElementById('reset-password');
-  const resetConfirmIn = document.getElementById('reset-confirm');
-  const resetSubmit    = document.getElementById('reset-submit');
-  const resetFormSec   = document.getElementById('reset-form-section');
-  const resetSuccSec   = document.getElementById('reset-success-section');
-  const resetDone      = document.getElementById('reset-done');
-
-  // When a forgotPasswordToken arrives, hand straight off to the Wix courses site
-  // which handles its own password tokens natively — no custom JS API calls needed.
-  if (resetToken) {
-    window.location.replace('https://courses.nafsiclinic.com' + window.location.search);
+  // If ?wixSession= present, redirect straight to course portal
+  if (urlParams.get('wixSession')) {
+    window.location.replace(COURSE_URL);
   }
 
-  resetSubmit.addEventListener('click', async () => {
-    const newPass  = resetPassIn.value;
-    const confirm  = resetConfirmIn.value;
-
-    resetError.classList.remove('visible');
-
-    if (!newPass || newPass.length < 6) {
-      resetError.textContent = 'Password must be at least 6 characters.';
-      resetError.classList.add('visible');
-      return;
-    }
-    if (newPass !== confirm) {
-      resetError.textContent = 'Passwords do not match.';
-      resetError.classList.add('visible');
-      return;
-    }
-
-    resetSubmit.disabled = true;
-    resetSubmit.querySelector('.lang-en').textContent = 'Saving…';
-
-    let success = false;
-
-    // Try 1: Wix SDK (members.authentication.changePassword)
-    try {
-      await wixClient.members.authentication.changePassword(newPass, resetToken);
-      success = true;
-    } catch (_) { /* fall through */ }
-
-    // Try 2: Wix REST API directly
-    if (!success) {
-      try {
-        const resp = await fetch('https://www.wixapis.com/members/v1/auth/members/change-password', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'x-wix-client-id': CLIENT_ID },
-          body: JSON.stringify({ forgotPasswordToken: resetToken, newPassword: newPass }),
-        });
-        if (resp.ok) {
-          success = true;
-        } else {
-          const data = await resp.json().catch(() => ({}));
-          console.warn('[reset] REST failed:', data);
-        }
-      } catch (err2) {
-        console.warn('[reset] REST error:', err2);
-      }
-    }
-
-    if (success) {
-      resetFormSec.style.display = 'none';
-      resetSuccSec.style.display = 'block';
-    } else {
-      resetError.textContent = 'Could not reset password. The link may have expired — please request a new one.';
-      resetError.classList.add('visible');
-      resetSubmit.disabled = false;
-      resetSubmit.querySelector('.lang-en').textContent = 'Save Password';
-    }
-  });
-
-  resetDone.addEventListener('click', () => {
-    resetModal.classList.remove('open');
-    document.body.style.overflow = '';
-    openModal(); // open sign-in modal
-  });
+  })();
 </script>
 
 <!-- ── SLOT PICKER MODAL ─────────────────────────────────────────── -->
@@ -1896,6 +1646,10 @@ document.addEventListener('DOMContentLoaded', () => {
 .sm-section-title { font-size:13px;font-weight:700;color:#1a3d3b;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px; }
 .sm-times-wrap { min-height:52px; }
 .sm-no-date { font-size:13px;color:#9aadab;padding:10px 0; }
+html[lang="en"] #slot-modal .lang-en { display:block !important; }
+html[lang="en"] #slot-modal span.lang-en { display:inline !important; }
+html[lang="ar"] #slot-modal .lang-ar { display:block !important; }
+html[lang="ar"] #slot-modal span.lang-ar { display:inline !important; }
 </style>
 
 <div id="slot-modal" role="dialog" aria-modal="true">
@@ -1963,6 +1717,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const smConfirm  = document.getElementById('sm-confirm');
   const smPkgName  = document.getElementById('sm-pkg-name');
   const smPickHint = document.getElementById('sm-pick-date-hint');
+
+  // Keep the modal at the document root so hidden SPA sections can't collapse it.
+  if (slotModal && slotModal.parentElement !== document.body) {
+    document.body.appendChild(slotModal);
+  }
 
   const PKG_LABELS = {
     session_single:  'Single Session — $120',
@@ -2077,6 +1836,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .formatToParts(new Date()).find(p => p.type === 'timeZoneName')?.value || USER_TZ;
     const subEn = document.querySelector('.sm-sub.lang-en');
     if (subEn) subEn.innerHTML = `Available Thu · Fri · Sat &nbsp;|&nbsp; Times shown in your timezone (${tzShort})`;
+    const subAr = document.querySelector('.sm-sub.lang-ar');
+    if (subAr) subAr.innerHTML = `الخميس · الجمعة · السبت &nbsp;|&nbsp; التوقيت بحسب منطقتك (${tzShort})`;
     buildDates();
     slotModal.classList.add('open');
     document.body.style.overflow = 'hidden';

@@ -4,6 +4,18 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Nafsi Clinic | Sara Adham &middot; CBT Therapist</title>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (!params.get('forgotPasswordToken')) return;
+
+      // Wix member reset links were being sent to the Netlify marketing site,
+      // which cannot consume Wix reset tokens. Forward the untouched token
+      // query to the Wix Online Programs site instead.
+      var wixResetBase = 'https://courses.nafsiclinic.com/participant-page/b39097d6-5233-49d4-8654-f4c0e09d7df9';
+      window.location.replace(wixResetBase + window.location.search + window.location.hash);
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Serif+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -186,6 +198,29 @@ html[dir="rtl"] .nav-logo-main { font-family: 'Noto Serif Arabic', serif; }
 .section-header { text-align: center; margin-bottom: 60px; }
 .section-header h2 { font-size: clamp(32px,4vw,50px); color: var(--teal); margin-bottom: 14px; }
 .section-header p { font-size: 16px; color: var(--mid); max-width: 560px; margin: 0 auto; }
+
+/* ---- CPD CERTIFICATION ---- */
+.cpd-badge {
+  display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  margin-top: 20px; padding: 9px 13px; border-radius: 999px;
+  background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28);
+  color: #fff; font-size: 12px; font-weight: 600;
+}
+.cpd-badge a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.cpd-panel {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 22px; margin-bottom: 22px;
+  box-shadow: var(--shadow);
+}
+.cpd-panel h4 { font-size: 19px; color: var(--teal); margin-bottom: 8px; }
+.cpd-panel p { font-size: 13px; color: var(--mid); line-height: 1.75; }
+.cpd-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+.cpd-actions a {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 14px; border-radius: 6px; font-size: 13px; font-weight: 600;
+  border: 1px solid var(--teal); color: var(--teal);
+}
+.cpd-actions a:first-child { background: var(--teal); color: var(--white); }
 
 /* ---- CARDS ---- */
 .card {
@@ -548,8 +583,8 @@ html[dir="rtl"] .mobile-drawer-panel { right:auto; left:0; box-shadow:4px 0 32px
         <div style="width:52px;height:52px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px;">🏆</div>
         <h3 style="font-size:22px;color:var(--teal);margin-bottom:8px;" class="lang-en">CBT Certification</h3>
         <h3 style="font-family:'Noto Serif Arabic',serif;font-size:20px;color:var(--teal);margin-bottom:8px;" class="lang-ar">شهادة CBT</h3>
-        <p style="font-size:14px;color:var(--mid);line-height:1.7;margin-bottom:20px;" class="lang-en">Complete CBT Levels 1 &amp; 2 programme. Enroll for $3,495.</p>
-        <p style="font-family:'Noto Sans Arabic',sans-serif;font-size:14px;color:var(--mid);line-height:1.8;margin-bottom:20px;" class="lang-ar">برنامج CBT المستويين 1 و2. سجّل مقابل $3,495.</p>
+        <p style="font-size:14px;color:var(--mid);line-height:1.7;margin-bottom:20px;" class="lang-en">CPD-certified CBT Levels 1 &amp; 2 programme. Enroll for $3,495.</p>
+        <p style="font-family:'Noto Sans Arabic',sans-serif;font-size:14px;color:var(--mid);line-height:1.8;margin-bottom:20px;" class="lang-ar">برنامج CBT المعتمد من CPD للمستويين 1 و2. سجّل مقابل $3,495.</p>
         <span style="font-size:14px;font-weight:600;color:var(--gold);" class="lang-en">Enroll Now →</span>
         <span style="font-family:'Noto Sans Arabic',sans-serif;font-size:14px;font-weight:600;color:var(--gold);" class="lang-ar">سجّل الآن ←</span>
       </a>
@@ -984,8 +1019,13 @@ html[dir="rtl"] .mobile-drawer-panel { right:auto; left:0; box-shadow:4px 0 32px
           <span class="section-label" style="color:rgba(255,255,255,0.6);">Nafsi Academy &middot; CBT 1 &amp; 2</span>
           <h1 style="font-size:clamp(32px,4vw,58px);">Complete CBT<br/>Certification Programme</h1>
           <p style="margin-top:14px;font-size:17px;">A two-level CBT certification designed by Sara Adham &mdash; for personal transformation and professional development.</p>
+          <div class="cpd-badge">
+            <span>CPD Certified Course</span>
+            <a href="https://www.cpduk.co.uk/providers/nafsi-clinic" target="_blank" rel="noopener">Verify on CPD UK</a>
+          </div>
           <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;">
-            <button data-price="cbt_certification" class="btn btn-gold btn-lg stripe-btn lang-en"><span>Enroll Now &mdash; $3,495</span><div class="spinner"></div></button>
+            <button data-price="cbt_certification" class="btn btn-gold btn-lg stripe-btn lang-en"><span>Pay in Full &mdash; $3,495</span><div class="spinner"></div></button>
+            <button data-price="cbt_certification_plan" class="btn btn-secondary btn-lg stripe-btn lang-en" style="border-color:rgba(255,255,255,0.65);color:#fff;"><span>Pay Monthly &mdash; $595/mo</span><div class="spinner"></div></button>
             <a href="#overview" class="btn btn-secondary lang-en" style="border-color:rgba(255,255,255,0.5);color:#fff;">See What's Inside</a>
           </div>
         </div>
@@ -993,8 +1033,13 @@ html[dir="rtl"] .mobile-drawer-panel { right:auto; left:0; box-shadow:4px 0 32px
           <span class="section-label" style="color:rgba(255,255,255,0.6);">&#x623;&#x643;&#x627;&#x62F;&#x64A;&#x645;&#x64A;&#x629; &#x646;&#x641;&#x633;&#x64A; &middot; CBT 1 &#x648;2</span>
           <h1 style="font-family:'Noto Serif Arabic',serif;font-size:clamp(28px,4vw,52px);">&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C; &#x634;&#x647;&#x627;&#x62F;&#x629; &#x627;&#x644;&#x639;&#x644;&#x627;&#x62C;<br/>&#x627;&#x644;&#x645;&#x639;&#x631;&#x641;&#x64A; &#x627;&#x644;&#x633;&#x644;&#x648;&#x643;&#x64A; &#x627;&#x644;&#x643;&#x627;&#x645;&#x644;</h1>
           <p style="margin-top:14px;font-size:17px;font-family:'Noto Sans Arabic',sans-serif;">&#x634;&#x647;&#x627;&#x62F;&#x629; CBT &#x634;&#x627;&#x645;&#x644;&#x629; &#x645;&#x646; &#x645;&#x633;&#x62A;&#x648;&#x64A;&#x64A;&#x646;&#x60C; &#x635;&#x645;&#x617;&#x62A;&#x647;&#x627; &#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645; &mdash; &#x644;&#x644;&#x62A;&#x62D;&#x648;&#x617;&#x644; &#x627;&#x644;&#x634;&#x62E;&#x635;&#x64A; &#x648;&#x627;&#x644;&#x62A;&#x637;&#x648;&#x64A;&#x631; &#x627;&#x644;&#x645;&#x647;&#x646;&#x64A;.</p>
+          <div class="cpd-badge" style="flex-direction:row-reverse;font-family:'Noto Sans Arabic',sans-serif;">
+            <span>دورة معتمدة من CPD</span>
+            <a href="https://www.cpduk.co.uk/providers/nafsi-clinic" target="_blank" rel="noopener">تحقق عبر CPD UK</a>
+          </div>
           <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;flex-direction:row-reverse;">
-            <button data-price="cbt_certification" class="btn btn-gold btn-lg stripe-btn lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;"><span>&#x633;&#x62C;&#x617;&#x644; &#x627;&#x644;&#x622;&#x646; &mdash; $3,495</span><div class="spinner"></div></button>
+            <button data-price="cbt_certification" class="btn btn-gold btn-lg stripe-btn lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;"><span>&#x627;&#x62F;&#x641;&#x639; &#x643;&#x627;&#x645;&#x644;&#x627;&#x64B; &mdash; $3,495</span><div class="spinner"></div></button>
+            <button data-price="cbt_certification_plan" class="btn btn-secondary btn-lg stripe-btn lang-ar" style="border-color:rgba(255,255,255,0.65);color:#fff;font-family:'Noto Sans Arabic',sans-serif;"><span>&#x627;&#x62F;&#x641;&#x639; &#x634;&#x647;&#x631;&#x64A;&#x627;&#x64B; &mdash; $595</span><div class="spinner"></div></button>
             <a href="#overview" class="btn btn-secondary lang-ar" style="border-color:rgba(255,255,255,0.5);color:#fff;font-family:'Noto Sans Arabic',sans-serif;">&#x645;&#x627;&#x630;&#x627; &#x64A;&#x62A;&#x636;&#x645;&#x617;&#x646;</a>
           </div>
         </div>
@@ -1008,8 +1053,8 @@ html[dir="rtl"] .mobile-drawer-panel { right:auto; left:0; box-shadow:4px 0 32px
           </div>
           <div style="text-align:center;padding:14px;background:rgba(255,255,255,0.07);border-radius:10px;">
             <div style="font-size:22px;margin-bottom:6px;">&#127942;</div>
-            <p style="font-size:12px;color:rgba(255,255,255,0.7);" class="lang-en">Certificate</p>
-            <p style="font-size:12px;color:rgba(255,255,255,0.7);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x634;&#x647;&#x627;&#x62F;&#x629; &#x645;&#x639;&#x62A;&#x645;&#x62F;&#x629;</p>
+            <p style="font-size:12px;color:rgba(255,255,255,0.7);" class="lang-en">CPD Certified</p>
+            <p style="font-size:12px;color:rgba(255,255,255,0.7);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">معتمد من CPD</p>
           </div>
           <div style="text-align:center;padding:14px;background:rgba(255,255,255,0.07);border-radius:10px;">
             <div style="font-size:22px;margin-bottom:6px;">&#8734;&#65039;</div>
@@ -1024,7 +1069,7 @@ html[dir="rtl"] .mobile-drawer-panel { right:auto; left:0; box-shadow:4px 0 32px
         </div>
         <div style="text-align:center;border-top:1px solid rgba(255,255,255,0.15);padding-top:18px;">
           <div style="font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:700;color:#fff;line-height:1;">$3,495</div>
-          <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;" class="lang-en">USD &middot; Full Programme</p>
+          <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;" class="lang-en">or $595/month for 6 months</p>
           <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x62F;&#x648;&#x644;&#x627;&#x631; &#x623;&#x645;&#x631;&#x64A;&#x643;&#x64A; &middot; &#x627;&#x644;&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C; &#x627;&#x644;&#x643;&#x627;&#x645;&#x644;</p>
         </div>
       </div>
@@ -1039,7 +1084,7 @@ html[dir="rtl"] .mobile-drawer-panel { right:auto; left:0; box-shadow:4px 0 32px
         <div class="lang-en">
           <span class="section-label">Programme Overview</span>
           <h2 style="font-size:clamp(28px,3vw,42px);color:var(--teal);margin-bottom:18px;">What This Covers</h2>
-          <p style="font-size:15px;color:var(--mid);line-height:1.85;margin-bottom:18px;">Sara Adham's flagship certification &mdash; a complete two-level CBT programme from foundational theory to advanced clinical application.</p>
+          <p style="font-size:15px;color:var(--mid);line-height:1.85;margin-bottom:18px;">Sara Adham's flagship CPD-certified course &mdash; a complete two-level CBT programme from foundational theory to advanced clinical application.</p>
           <div style="background:var(--teal-pale);border-radius:var(--radius);padding:26px;margin-bottom:18px;border:1px solid rgba(44,95,93,0.15);">
             <h4 style="font-size:18px;color:var(--teal);margin-bottom:10px;">CBT Level 1 &mdash; Foundations</h4>
             <p style="font-size:14px;color:var(--mid);line-height:1.8;">Core cognitive and behavioural principles, thought pattern identification, emotional regulation, and foundational CBT tools.</p>
@@ -1052,7 +1097,7 @@ html[dir="rtl"] .mobile-drawer-panel { right:auto; left:0; box-shadow:4px 0 32px
         <div class="lang-ar" style="text-align:right;">
           <span class="section-label">&#x646;&#x638;&#x631;&#x629; &#x639;&#x627;&#x645;&#x629; &#x639;&#x644;&#x649; &#x627;&#x644;&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C;</span>
           <h2 style="font-family:'Noto Serif Arabic',serif;font-size:clamp(26px,3vw,40px);color:var(--teal);margin-bottom:18px;">&#x645;&#x627; &#x64A;&#x63A;&#x637;&#x64A;&#x647; &#x647;&#x630;&#x627; &#x627;&#x644;&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C;</h2>
-          <p style="font-size:15px;color:var(--mid);line-height:1.95;margin-bottom:18px;font-family:'Noto Sans Arabic',sans-serif;">&#x627;&#x644;&#x634;&#x647;&#x627;&#x62F;&#x629; &#x627;&#x644;&#x631;&#x627;&#x626;&#x62F;&#x629; &#x644;&#x633;&#x627;&#x631;&#x629; &#x623;&#x62F;&#x647;&#x645; &mdash; &#x628;&#x631;&#x646;&#x627;&#x645;&#x62C; CBT &#x643;&#x627;&#x645;&#x644; &#x645;&#x646; &#x645;&#x633;&#x62A;&#x648;&#x64A;&#x64A;&#x646; &#x645;&#x646; &#x627;&#x644;&#x646;&#x638;&#x631;&#x64A;&#x629; &#x625;&#x644;&#x649; &#x627;&#x644;&#x62A;&#x637;&#x628;&#x64A;&#x642; &#x627;&#x644;&#x633;&#x631;&#x64A;&#x631;&#x64A; &#x627;&#x644;&#x645;&#x62A;&#x642;&#x62F;&#x617;&#x645;.</p>
+          <p style="font-size:15px;color:var(--mid);line-height:1.95;margin-bottom:18px;font-family:'Noto Sans Arabic',sans-serif;">الشهادة الرائدة لسارة أدهم والمعتمدة من CPD &mdash; برنامج CBT كامل من مستويين من النظرية إلى التطبيق السريري المتقدّم.</p>
           <div style="background:var(--teal-pale);border-radius:var(--radius);padding:26px;margin-bottom:18px;border:1px solid rgba(44,95,93,0.15);">
             <h4 style="font-family:'Noto Serif Arabic',serif;font-size:18px;color:var(--teal);margin-bottom:10px;">&#x627;&#x644;&#x645;&#x633;&#x62A;&#x648;&#x649; &#x627;&#x644;&#x623;&#x648;&#x617;&#x644; &mdash; &#x627;&#x644;&#x623;&#x633;&#x633;</h4>
             <p style="font-size:14px;color:var(--mid);line-height:1.9;font-family:'Noto Sans Arabic',sans-serif;">&#x627;&#x644;&#x645;&#x628;&#x627;&#x62F;&#x626; &#x627;&#x644;&#x645;&#x639;&#x631;&#x641;&#x64A;&#x629; &#x648;&#x627;&#x644;&#x633;&#x644;&#x648;&#x643;&#x64A;&#x629;&#x60C; &#x62A;&#x62D;&#x62F;&#x64A;&#x62F; &#x623;&#x646;&#x645;&#x627;&#x637; &#x627;&#x644;&#x62A;&#x641;&#x643;&#x64A;&#x631;&#x60C; &#x62A;&#x646;&#x638;&#x64A;&#x645; &#x627;&#x644;&#x645;&#x634;&#x627;&#x639;&#x631;&#x60C; &#x648;&#x623;&#x62F;&#x648;&#x627;&#x62A; CBT &#x627;&#x644;&#x623;&#x633;&#x627;&#x633;&#x64A;&#x629;.</p>
@@ -1090,10 +1135,10 @@ html[dir="rtl"] .mobile-drawer-panel { right:auto; left:0; box-shadow:4px 0 32px
           <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:var(--cream);border-radius:10px;border:1px solid var(--border);">
             <span style="font-size:20px;flex-shrink:0;">&#127942;</span>
             <div>
-              <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:2px;" class="lang-en">Certificate of Completion</p>
-              <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:2px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x634;&#x647;&#x627;&#x62F;&#x629; &#x625;&#x62A;&#x645;&#x627;&#x645; &#x645;&#x639;&#x62A;&#x645;&#x62F;&#x629;</p>
-              <p style="font-size:13px;color:var(--mid);" class="lang-en">Issued by Nafsi Academy upon completion</p>
-              <p style="font-size:13px;color:var(--mid);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x62A;&#x635;&#x62F;&#x631; &#x645;&#x646; &#x623;&#x643;&#x627;&#x62F;&#x64A;&#x645;&#x64A;&#x629; &#x646;&#x641;&#x633;&#x64A; &#x639;&#x646;&#x62F; &#x627;&#x644;&#x625;&#x62A;&#x645;&#x627;&#x645;</p>
+              <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:2px;" class="lang-en">CPD-Certified Course</p>
+              <p style="font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:2px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">دورة معتمدة من CPD</p>
+              <p style="font-size:13px;color:var(--mid);" class="lang-en">Completion certificate issued by Nafsi Academy</p>
+              <p style="font-size:13px;color:var(--mid);font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">تصدر شهادة الإتمام من أكاديمية نفسي</p>
             </div>
           </div>
           <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:var(--cream);border-radius:10px;border:1px solid var(--border);">
@@ -1107,12 +1152,36 @@ html[dir="rtl"] .mobile-drawer-panel { right:auto; left:0; box-shadow:4px 0 32px
           </div>
         </div>
 
+        <div class="cpd-panel">
+          <div class="lang-en">
+            <span class="section-label" style="margin-bottom:8px;">CPD Certification</span>
+            <h4>Certified by The CPD Certification Service</h4>
+            <p>Cognitive Behavioral Therapy Practitioner Training is a CPD certified course. Nafsi Clinic is listed on CPD UK as Provider No. 22855.</p>
+            <div class="cpd-actions">
+              <a href="cpd/nafsi-cpd-member-certificate.pdf" target="_blank" rel="noopener">View member certificate</a>
+              <a href="https://www.cpduk.co.uk/providers/nafsi-clinic" target="_blank" rel="noopener">Check on cpduk.co.uk</a>
+            </div>
+          </div>
+          <div class="lang-ar" style="text-align:right;font-family:'Noto Sans Arabic',sans-serif;">
+            <span class="section-label" style="margin-bottom:8px;">اعتماد CPD</span>
+            <h4 style="font-family:'Noto Serif Arabic',serif;">معتمد من The CPD Certification Service</h4>
+            <p>برنامج Cognitive Behavioral Therapy Practitioner Training هو دورة معتمدة من CPD. عيادة نفسي مدرجة على موقع CPD UK برقم مزوّد 22855.</p>
+            <div class="cpd-actions" style="flex-direction:row-reverse;">
+              <a href="cpd/nafsi-cpd-member-certificate.pdf" target="_blank" rel="noopener">عرض شهادة العضوية</a>
+              <a href="https://www.cpduk.co.uk/providers/nafsi-clinic" target="_blank" rel="noopener">التحقق على cpduk.co.uk</a>
+            </div>
+          </div>
+        </div>
+
         <div style="background:var(--teal);border-radius:var(--radius);padding:28px;text-align:center;">
           <div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:700;color:#fff;line-height:1;">$3,495</div>
-          <p style="font-size:13px;color:rgba(255,255,255,0.7);margin:6px 0 18px;" class="lang-en">USD &middot; Full Programme &middot; Lifetime Access</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.7);margin:6px 0 8px;" class="lang-en">USD &middot; Full Programme &middot; Lifetime Access</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.85);margin:0 0 18px;" class="lang-en">Payment plan available: $595/month for 6 months</p>
           <p style="font-size:13px;color:rgba(255,255,255,0.7);margin:6px 0 18px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x62F;&#x648;&#x644;&#x627;&#x631; &#x623;&#x645;&#x631;&#x64A;&#x643;&#x64A; &middot; &#x627;&#x644;&#x628;&#x631;&#x646;&#x627;&#x645;&#x62C; &#x627;&#x644;&#x643;&#x627;&#x645;&#x644; &middot; &#x648;&#x635;&#x648;&#x644; &#x645;&#x62F;&#x649; &#x627;&#x644;&#x62D;&#x64A;&#x627;&#x629;</p>
-          <button data-price="cbt_certification" class="btn btn-white stripe-btn lang-en" style="width:100%;margin-bottom:6px;"><span>Enroll Now</span><div class="spinner"></div></button>
+          <button data-price="cbt_certification" class="btn btn-white stripe-btn lang-en" style="width:100%;margin-bottom:6px;"><span>Pay in Full</span><div class="spinner"></div></button>
+          <button data-price="cbt_certification_plan" class="btn btn-white stripe-btn lang-en" style="width:100%;margin-bottom:6px;"><span>Pay Monthly &mdash; $595/mo</span><div class="spinner"></div></button>
           <button data-price="cbt_certification" class="btn btn-white stripe-btn lang-ar" style="width:100%;margin-bottom:6px;font-family:'Noto Sans Arabic',sans-serif;"><span>&#x633;&#x62C;&#x617;&#x644; &#x627;&#x644;&#x622;&#x646;</span><div class="spinner"></div></button>
+          <button data-price="cbt_certification_plan" class="btn btn-white stripe-btn lang-ar" style="width:100%;margin-bottom:6px;font-family:'Noto Sans Arabic',sans-serif;"><span>&#x627;&#x62F;&#x641;&#x639; &#x634;&#x647;&#x631;&#x64A;&#x627;&#x64B; &mdash; $595</span><div class="spinner"></div></button>
           <p style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px;">&#128274; Powered by Stripe &middot; Instant access after payment</p>
         </div>
       </div>
@@ -1159,9 +1228,12 @@ html[dir="rtl"] .mobile-drawer-panel { right:auto; left:0; box-shadow:4px 0 32px
     <p style="color:rgba(255,255,255,0.8);margin-bottom:12px;" class="lang-en">Earn your Nafsi Academy CBT certificate &mdash; Levels 1 &amp; 2.</p>
     <p style="color:rgba(255,255,255,0.8);margin-bottom:12px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x627;&#x62D;&#x635;&#x644; &#x639;&#x644;&#x649; &#x634;&#x647;&#x627;&#x62F;&#x629; CBT &#x645;&#x646; &#x623;&#x643;&#x627;&#x62F;&#x64A;&#x645;&#x64A;&#x629; &#x646;&#x641;&#x633;&#x64A; &mdash; &#x627;&#x644;&#x645;&#x633;&#x62A;&#x648;&#x64A;&#x627;&#x646; 1 &#x648;2.</p>
     <div style="font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:700;color:#fff;margin:16px 0;">$3,495</div>
+    <p style="color:rgba(255,255,255,0.82);margin:-8px 0 18px;" class="lang-en">or $595/month for 6 months</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <button data-price="cbt_certification" class="btn btn-white btn-lg stripe-btn lang-en"><span>Enroll Now</span><div class="spinner"></div></button>
+      <button data-price="cbt_certification" class="btn btn-white btn-lg stripe-btn lang-en"><span>Pay in Full</span><div class="spinner"></div></button>
+      <button data-price="cbt_certification_plan" class="btn btn-white btn-lg stripe-btn lang-en"><span>Pay Monthly &mdash; $595/mo</span><div class="spinner"></div></button>
       <button data-price="cbt_certification" class="btn btn-white btn-lg stripe-btn lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;"><span>&#x633;&#x62C;&#x617;&#x644; &#x627;&#x644;&#x622;&#x646;</span><div class="spinner"></div></button>
+      <button data-price="cbt_certification_plan" class="btn btn-white btn-lg stripe-btn lang-ar" style="font-family:'Noto Sans Arabic',sans-serif;"><span>&#x627;&#x62F;&#x641;&#x639; &#x634;&#x647;&#x631;&#x64A;&#x627;&#x64B; &mdash; $595</span><div class="spinner"></div></button>
     </div>
     <p style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:14px;" class="lang-en">Powered by Stripe &middot; Instant access after payment &middot; Hosted on Nafsi Academy (Wix Spaces)</p>
     <p style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:14px;font-family:'Noto Sans Arabic',sans-serif;" class="lang-ar">&#x645;&#x62F;&#x639;&#x648;&#x645; &#x628;&#x640; Stripe &middot; &#x648;&#x635;&#x648;&#x644; &#x641;&#x648;&#x631;&#x64A; &middot; &#x645;&#x633;&#x62A;&#x636;&#x627;&#x641; &#x639;&#x644;&#x649; &#x623;&#x643;&#x627;&#x62F;&#x64A;&#x645;&#x64A;&#x629; &#x646;&#x641;&#x633;&#x64A;</p>
@@ -1334,6 +1406,7 @@ const NAFSI_PAYMENTS = {
     session_starter:   { displayPrice: '$495',   priceId: 'price_1TLbSbDO6zLlf3eNqmHurTOz', paymentLink: 'https://buy.stripe.com/aFa5kDaMYbvpazwfIm5Vu0B' },
     session_deep:      { displayPrice: '$749',   priceId: 'price_1TLbV2DO6zLlf3eNmzAubpDv', paymentLink: 'https://buy.stripe.com/fZu7sLdZagPJgXUao25Vu0C' },
     cbt_certification: { displayPrice: '$3,495', priceId: 'price_1TLbd8DO6zLlf3eNxFpEC0cg', paymentLink: 'https://buy.stripe.com/00w8wP08kczt5fceEi5Vu0E' },
+    cbt_certification_plan: { displayPrice: '$595/mo x 6', checkoutFunction: '/.netlify/functions/create-cbt-checkout' },
   },
 };
 
@@ -1378,9 +1451,10 @@ async function getStripe() {
 async function startCheckout(priceKey, btnEl) {
   const product = NAFSI_PAYMENTS.products[priceKey];
   const paymentLink = product ? product.paymentLink : null;
+  const checkoutFunction = product ? product.checkoutFunction : null;
   const priceId     = product ? (product.priceId || '') : '';
 
-  if (!paymentLink) {
+  if (!paymentLink && !checkoutFunction) {
     showStripeSetupModal();
     return;
   }
@@ -1389,6 +1463,31 @@ async function startCheckout(priceKey, btnEl) {
   if (btnEl) {
     btnEl.classList.add('loading');
     btnEl.disabled = true;
+  }
+
+  if (checkoutFunction) {
+    try {
+      const res = await fetch(checkoutFunction, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          successUrl: STRIPE_CONFIG.successUrl,
+          cancelUrl: STRIPE_CONFIG.cancelUrl,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.url) throw new Error(data.error || 'Checkout could not be started');
+      window.location.href = data.url;
+      return;
+    } catch (err) {
+      alert('Sorry, the monthly payment checkout could not be started. Please try again or contact Sara.');
+      console.error('[stripe] Monthly checkout failed:', err);
+      if (btnEl) {
+        btnEl.classList.remove('loading');
+        btnEl.disabled = false;
+      }
+      return;
+    }
   }
 
   // Embed priceId in client_reference_id so webhook doesn't need Stripe API call
@@ -1520,7 +1619,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
     <!-- Primary CTA — go to courses site -->
-    <a href="https://courses.nafsiclinic.com/my-programs"
+    <a href="https://courses.nafsiclinic.com/participant-page/b39097d6-5233-49d4-8654-f4c0e09d7df9"
        style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#1a3d3b;border-radius:8px;font-size:15px;font-weight:600;color:#fff;text-decoration:none;margin-bottom:14px;box-sizing:border-box;transition:background .15s;"
        onmouseover="this.style.background='#2C5F5D'" onmouseout="this.style.background='#1a3d3b'">
       <span class="lang-en">Go to My Course</span>
@@ -1584,7 +1683,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- Login Modal Logic — simplified: modal open/close only, navigation handled by "Go to My Course" link -->
 <script>
   (function() {
-  const COURSE_URL = 'https://courses.nafsiclinic.com/my-programs';
+  const COURSE_URL = 'https://courses.nafsiclinic.com/participant-page/b39097d6-5233-49d4-8654-f4c0e09d7df9';
 
   // --- Elements ---
   const modal    = document.getElementById('login-modal');
@@ -1892,3 +1991,4 @@ html[lang="ar"] #slot-modal span.lang-ar { display:inline !important; }
 </script>
 </body>
 </html>
+

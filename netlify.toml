@@ -1,0 +1,11 @@
+# Nafsi Clinic — Netlify Configuration
+
+[build]
+  functions = "netlify/functions"
+
+# Prevent direct browsing of the /books/ folder listing
+[[headers]]
+  for = "/books/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+    Cache-Control = "private, no-store"
